@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 配置一些整个项目通用和全局的配置，比如登陆，拦截器 -->
+	<package name="defaults" extends="json-default">
+		<interceptors>
+			<interceptor name="methodInterceptor" class="methodInterceptor"></interceptor>
+			<interceptor name="loginInterceptorUser" class="loginInterceptorUser"></interceptor>
+			<interceptor name="loginInterceptorAdmin" class="loginInterceptorAdmin"></interceptor>
+			<interceptor name="loadRunInterceptor" class="loadRunInterceptor"></interceptor>
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="methodInterceptor"></interceptor-ref>
+				<interceptor-ref name="loginInterceptorUser"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<global-results>
+			<result name="error" type="redirect">/404.jsp</result>
+			<result name="toIndex"  type="redirect">/first.jsp</result>
+			<result name="toLogin" type="redirect">/login.jsp</result>
+		</global-results>
+	</package>
+	
+	<!-- 页面跳转包 -->
+	<package name="ToAdminPKG" namespace="/admin" extends="defaults">
+		<action name="/*/*" method="{2}" class="{1}Action">
+			<result name="adminindex">/WEB-INF/adminpage/index.jsp</result>
+			<result name="pagemanage">/WEB-INF/adminpage/pagemanage.jsp</result>
+			<interceptor-ref name="loginInterceptorAdmin"></interceptor-ref>
+			<interceptor-ref name="loadRunInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+	</package>
+	
+</struts>

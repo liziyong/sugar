@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="sugar"
+  id="myeclipse.1473554203257"
+  context-root="/sugar"
+  j2ee-spec="5.0"
+  archive="sugar.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
