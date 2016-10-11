@@ -11,31 +11,30 @@ import javax.persistence.Table;
 
 /**
  * 
- * 注册了酒店的会员 
- * User 
- * 创建人:momolela 
+ * 用户模块
+ * User
+ * 创建人:jingbaba
  * 时间：2016年09月06日 18:41:45
- * 
  * @version 1.0.0
  * 
  */
 @Entity
-@Table(name = "hfy_user")
+@Table(name = "sugar_user")
 public class User implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private String userName;
-	private String passWord;
+	private String username;
+	private String password;
 	private String sex;
-	private String picUrl;
-	private String Email;
-	private String phoneNum;
-	private String realName;
-	private String idCard;
+	private String picurl;
+	private String email;
+	private String phonenum;
+	private String realname;
+	private String idcard;
 	private Integer status;
-	private Date createTime;
-	private Date updateTime;
+	private Date createtime;
+	private Date updatetime;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,25 +46,22 @@ public class User implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "username", length = 10)
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	@Column(name = "password", length = 20)
-	public String getPassWord() {
-		return passWord;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPassWord(String passWord) {
-		this.passWord = passWord;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	@Column(name = "sex", length = 1)
 	public String getSex() {
 		return sex;
 	}
@@ -74,52 +70,46 @@ public class User implements java.io.Serializable {
 		this.sex = sex;
 	}
 
-	@Column(name = "picurl")
-	public String getPicUrl() {
-		return picUrl;
+	public String getPicurl() {
+		return picurl;
 	}
 
-	public void setPicUrl(String picUrl) {
-		this.picUrl = picUrl;
+	public void setPicurl(String picurl) {
+		this.picurl = picurl;
 	}
 
-	@Column(name = "email")
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 
-	@Column(name = "phonenum")
-	public String getPhoneNum() {
-		return phoneNum;
+	public String getPhonenum() {
+		return phonenum;
 	}
 
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
+	public void setPhonenum(String phonenum) {
+		this.phonenum = phonenum;
 	}
 
-	@Column(name = "realname")
-	public String getRealName() {
-		return realName;
+	public String getRealname() {
+		return realname;
 	}
 
-	public void setRealName(String realName) {
-		this.realName = realName;
+	public void setRealname(String realname) {
+		this.realname = realname;
 	}
 
-	@Column(name = "idcard")
-	public String getIdCard() {
-		return idCard;
+	public String getIdcard() {
+		return idcard;
 	}
 
-	public void setIdCard(String idCard) {
-		this.idCard = idCard;
+	public void setIdcard(String idcard) {
+		this.idcard = idcard;
 	}
 
-	@Column(name = "status", length = 1)
 	public Integer getStatus() {
 		return status;
 	}
@@ -129,20 +119,19 @@ public class User implements java.io.Serializable {
 	}
 
 	@Column(name = "createtime", columnDefinition = "timestamp")
-	public Date getCreateTime() {
-		return createTime;
+	public Date getCreatetime() {
+		return createtime;
 	}
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setCreatetime(Date createtime) {
+		this.createtime = createtime;
 	}
 
-	@Column(name = "updatetime")
-	public Date getUpdateTime() {
-		return updateTime;
+	public Date getUpdatetime() {
+		return updatetime;
 	}
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
+	public void setUpdatetime(Date updatetime) {
+		this.updatetime = updatetime;
 	}
 }

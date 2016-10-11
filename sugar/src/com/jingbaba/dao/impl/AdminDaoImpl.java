@@ -23,6 +23,7 @@ import com.jingbaba.core.dao.BaseDaoImpl;
  * @author: momolela
  * @date 2016-5-12 下午6:23:51
  */
+@SuppressWarnings("rawtypes")
 @Repository
 @Transactional
 public class AdminDaoImpl extends BaseDaoImpl implements IAdminDao {

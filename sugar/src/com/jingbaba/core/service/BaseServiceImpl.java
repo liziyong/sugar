@@ -56,4 +56,8 @@ public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService
 	public List<T> find(String sql, Object... args) {
 		return baseDao.find(sql, args);
 	}
+
+	public List<T> findAll(String sql) {
+		return baseDao.findAll(sql);
+	}
 }

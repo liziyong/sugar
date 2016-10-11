@@ -21,11 +21,14 @@ import com.jingbaba.util.TmPageInfo;
 
 /**
  * 
- *  @ClassName: BaseDaoImpl  @Description:   @author: momolela
- *  @date 2016-6-19 下午1:58:20  @param <T>  @param <PK>
+ * @ClassName: BaseDaoImpl  
+ * @Description:   
+ * @author: momolela
+ * @date 2016-6-19 下午1:58:20  
+ * @param <T>  @param <PK>
  */
 @Transactional
-public class BaseDaoImpl<T, PK extends Serializable> {
+public class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK> {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -36,14 +39,11 @@ public class BaseDaoImpl<T, PK extends Serializable> {
 	 * 无参构造函数获取注入的实体
 	 */
 	public BaseDaoImpl() {
-		this.entityClass = TmReflectionUtils
-				.getSuperClassGenricType(getClass());
+		this.entityClass = TmReflectionUtils.getSuperClassGenricType(getClass());
 	}
 
 	/**
 	 * 得到注入的实体
-	 * 
-	 * @return
 	 */
 	public Class<T> getEntityClass() {
 		return entityClass;
@@ -51,8 +51,6 @@ public class BaseDaoImpl<T, PK extends Serializable> {
 
 	/**
 	 * 获取连接对象
-	 * 
-	 * @return
 	 */
 	public Session getSession() {
 		if (sessionFactory != null) {
@@ -63,9 +61,7 @@ public class BaseDaoImpl<T, PK extends Serializable> {
 
 	/**
 	 * 插入对应的实体对象
-	 * 
 	 * @param t
-	 * @return
 	 */
 	public T save(T t) {
 		try {
@@ -78,9 +74,7 @@ public class BaseDaoImpl<T, PK extends Serializable> {
 
 	/**
 	 * 根据主键获取实体(get)
-	 * 
 	 * @param id
-	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	public T get(PK id) {
@@ -90,9 +84,7 @@ public class BaseDaoImpl<T, PK extends Serializable> {
 
 	/**
 	 * 根据主键获取实体(load)
-	 * 
 	 * @param id
-	 * @return
 	 */
 	public T load(PK id) {
 		Assert.notNull(id, "id不能为空");
@@ -101,18 +93,15 @@ public class BaseDaoImpl<T, PK extends Serializable> {
 
 	/**
 	 * 根据主键获取实体(load),支持同步查询。
-	 * 
 	 * @param id
 	 * @param lock
-	 * @return
 	 */
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	public T load(PK id, boolean lock) {
 		Assert.notNull(id, "id不能为空");
 		T entity = null;
 		if (lock) {
-			entity = (T) getSession().load(getEntityClass(), id,
-					LockMode.UPGRADE);
+			entity = (T) getSession().load(getEntityClass(), id, LockMode.UPGRADE);
 		} else {
 			entity = (T) getSession().load(getEntityClass(), id);
 		}
@@ -121,7 +110,6 @@ public class BaseDaoImpl<T, PK extends Serializable> {
 
 	/**
 	 * 删除对象方法
-	 * 
 	 * @param entity
 	 */
 	public void delete(T entity) {
@@ -131,9 +119,7 @@ public class BaseDaoImpl<T, PK extends Serializable> {
 
 	/**
 	 * 根据ID删除对象方法
-	 * 
 	 * @param id
-	 * @return
 	 */
 	public T deleteById(PK id) {
 		Assert.notNull(id, "id不能为空");
@@ -144,9 +130,7 @@ public class BaseDaoImpl<T, PK extends Serializable> {
 
 	/**
 	 * 更新对象的方法
-	 * 
 	 * @param entity
-	 * @return
 	 */
 	public T update(T entity) {
 		getSession().update(entity);
@@ -155,10 +139,8 @@ public class BaseDaoImpl<T, PK extends Serializable> {
 
 	/**
 	 * 简单通用通配符查询
-	 * 
 	 * @param sql
 	 * @param args
-	 * @return
 	 */
 	public List<T> find(String sql, Object... args) {
 		Query query = getSession().createQuery(sql);
@@ -172,13 +154,11 @@ public class BaseDaoImpl<T, PK extends Serializable> {
 
 	/**
 	 * 获取当前离线查询对象
-	 * 
-	 * @return
 	 */
 	public DetachedCriteria getCurrentDetachedCriteria() {
 		return DetachedCriteria.forClass(getEntityClass());
 	}
-
+	@SuppressWarnings("unchecked")
 	public List<T> findByDetachedCriteria(
 			final DetachedCriteria detachedCriteria, final TmPageInfo pageInfo) {
 		return detachedCriteria.getExecutableCriteria(getSession())
@@ -186,7 +166,7 @@ public class BaseDaoImpl<T, PK extends Serializable> {
 				.setMaxResults(Integer.parseInt(pageInfo.getMaxResults()))
 				.list();
 	}
-
+	@SuppressWarnings("unchecked")
 	public List<T> findByDetachedCriteria(
 			final DetachedCriteria detachedCriteria, Integer pageNo,
 			Integer pageSize) {
@@ -196,19 +176,15 @@ public class BaseDaoImpl<T, PK extends Serializable> {
 
 	/**
 	 * 更新对象
-	 * 
 	 * @param entity
-	 * @return
 	 */
 	public T updateDefault(T entity) {
 		return updateByUpdater(TmUpdater.create(entity));
 	}
-
 	@SuppressWarnings("rawtypes")
 	private ClassMetadata getClassMetadata(Class clazz) {
 		return (ClassMetadata) sessionFactory.getClassMetadata(clazz);
 	}
-
 	@SuppressWarnings("unchecked")
 	public T updateByUpdater(TmUpdater updater) {
 		ClassMetadata cm = getClassMetadata(updater.getBean().getClass());
@@ -223,7 +199,6 @@ public class BaseDaoImpl<T, PK extends Serializable> {
 
 	/**
 	 * 将更新对象拷贝至实体对象，并处理many-to-one的更新。
-	 * 
 	 * @param updater
 	 * @param po
 	 */
@@ -255,6 +230,16 @@ public class BaseDaoImpl<T, PK extends Serializable> {
 			} catch (Exception e) {
 			}
 		}
+	}
+
+	/**
+	 * 查询表中的所有的记录
+	 * @param sql 'FROM pojoName'
+	 * @return List<T>
+	 */
+	public List<T> findAll(String sql) {
+		Query query = getSession().createQuery(sql);
+		return query.list();
 	}
 
 }

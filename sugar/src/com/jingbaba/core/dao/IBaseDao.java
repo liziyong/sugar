@@ -54,5 +54,7 @@ public interface IBaseDao<T,PK extends Serializable> {
 	public T updateDefault(T entity);
 	
 	public List<T> find(String sql ,Object...args);
+
+	public List<T> findAll(String sql);
 	
 }

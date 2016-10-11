@@ -55,4 +55,6 @@ public interface IBaseService<T,PK extends Serializable> {
 	
 	public List<T> find(String sql ,Object...args);
 	
+	public List<T> findAll(String sql);
+	
 }

@@ -11,13 +11,13 @@ import javax.persistence.Table;
  * 
  * 超级管理员
  * Admin
- * 创建人:momolela
+ * 创建人:jingbaba
  * 时间：2016年09月07日 22:15:59 
  * @version 1.0.0
  *
  */
 @Entity
-@Table(name = "shm_admin")
+@Table(name = "sugar_admin")
 public class Admin implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
