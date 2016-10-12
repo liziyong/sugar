@@ -8,15 +8,12 @@
  */
 package com.jingbaba.dao.impl;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
 import com.jingbaba.core.dao.BaseDaoImpl;
 import com.jingbaba.dao.IUserDao;
-import com.jingbaba.model.User;
 
 /**
  * @ClassName: UserDaoImpl

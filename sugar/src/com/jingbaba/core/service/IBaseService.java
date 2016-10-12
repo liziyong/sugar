@@ -45,16 +45,32 @@ public interface IBaseService<T,PK extends Serializable> {
 	/**
 	 * 根据主键删除实体
 	 * @param id
-	 * @return
 	 */
 	public T deleteById(PK id); 
 	
+	/**
+	 * 更具对象更新数据库中的一条记录
+	 * @param entity
+	 */
 	public T update(T entity);
 	
+	/**
+	 * 更新对象
+	 * @param entity
+	 */
 	public T updateDefault(T entity);
 	
+	/**
+	 * 最简单的组合查询
+	 * @param sql
+	 * @param args
+	 */
 	public List<T> find(String sql ,Object...args);
 	
+	/**
+	 * 查询表中所有的记录
+	 * @param sql
+	 */
 	public List<T> findAll(String sql);
 	
 }

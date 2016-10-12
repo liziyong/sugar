@@ -24,7 +24,7 @@ import com.jingbaba.util.TmPageInfo;
  * @ClassName: BaseDaoImpl  
  * @Description:   
  * @author: momolela
- * @date 2016-6-19 下午1:58:20  
+ * @date 2016-6-19 下午1:58:20
  * @param <T>  @param <PK>
  */
 @Transactional
@@ -153,25 +153,37 @@ public class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK> 
 	}
 
 	/**
-	 * 获取当前离线查询对象
+	 * 实现分页查询
+	 * @param detachedCriteria
+	 * @param pageInfo
 	 */
-	public DetachedCriteria getCurrentDetachedCriteria() {
-		return DetachedCriteria.forClass(getEntityClass());
-	}
 	@SuppressWarnings("unchecked")
-	public List<T> findByDetachedCriteria(
-			final DetachedCriteria detachedCriteria, final TmPageInfo pageInfo) {
+	public List<T> findByDetachedCriteria(final DetachedCriteria detachedCriteria, final TmPageInfo pageInfo) {
 		return detachedCriteria.getExecutableCriteria(getSession())
 				.setFirstResult(Integer.parseInt(pageInfo.getFirstResult()))
 				.setMaxResults(Integer.parseInt(pageInfo.getMaxResults()))
 				.list();
 	}
+	
+	/**
+	 * 实现分页查询
+	 * @param detachedCriteria
+	 * @param pageNo
+	 * @param pageSize
+	 */
 	@SuppressWarnings("unchecked")
-	public List<T> findByDetachedCriteria(
-			final DetachedCriteria detachedCriteria, Integer pageNo,
-			Integer pageSize) {
+	public List<T> findByDetachedCriteria(final DetachedCriteria detachedCriteria, Integer pageNo,Integer pageSize) {
 		return detachedCriteria.getExecutableCriteria(getSession())
-				.setFirstResult(pageNo).setMaxResults(pageSize).list();
+				.setFirstResult(pageNo)
+				.setMaxResults(pageSize)
+				.list();
+	}
+	
+	/**
+	 * 获取当前离线查询对象
+	 */
+	public DetachedCriteria getCurrentDetachedCriteria() {
+		return DetachedCriteria.forClass(getEntityClass());
 	}
 
 	/**
@@ -180,10 +192,6 @@ public class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK> 
 	 */
 	public T updateDefault(T entity) {
 		return updateByUpdater(TmUpdater.create(entity));
-	}
-	@SuppressWarnings("rawtypes")
-	private ClassMetadata getClassMetadata(Class clazz) {
-		return (ClassMetadata) sessionFactory.getClassMetadata(clazz);
 	}
 	@SuppressWarnings("unchecked")
 	public T updateByUpdater(TmUpdater updater) {
@@ -196,7 +204,10 @@ public class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK> 
 		updaterCopyToPersistentObject(updater, po);
 		return po;
 	}
-
+	@SuppressWarnings("rawtypes")
+	private ClassMetadata getClassMetadata(Class clazz) {
+		return (ClassMetadata) sessionFactory.getClassMetadata(clazz);
+	}
 	/**
 	 * 将更新对象拷贝至实体对象，并处理many-to-one的更新。
 	 * @param updater
