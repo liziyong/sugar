@@ -37,16 +37,8 @@
 			#s_signup .header .h_content .c_nav ul li{width:auto;height:35px;float:left;padding:0 5px 0 5px;margin-right:20px;}
 			#s_signup .header .h_content .c_nav ul li a{width:100%;height:35px;line-height:35px;display:block;}
 			
-			#s_signup .imgbanner{width:100%;height:220px;}
-			#s_signup .imgbanner .mask{width:100%;height:220px;position:absolute;z-index:2;background:rgba(255,255,255,.4);top:0;}
-			
-			#s_signup .dataform{width:300px;height:300px;margin:20px auto 0 auto;}
-			#s_signup .dataform .username input{color:#333;width:100%;height:36px;border-radius:4px;border:1px solid #bbb;text-indent:10px;outline:none;margin-top:20px;}
-			#s_signup .dataform .password input{color:#333;width:100%;height:36px;border-radius:4px;border:1px solid #bbb;text-indent:10px;outline:none;margin-top:20px;}
-			#s_signup .dataform .login input{width:100%;height:36px;border-radius:4px;border:none;background:#03a9f4;color:#fff;margin-top:20px;cursor:pointer;}
-			#s_signup .dataform .toregister{width:100%;height:36px;border:1px solid #03a9f4;border-radius:4px;text-align:center;line-height:36px;color:#03a9f4;margin-top:20px;}
-			#s_signup .dataform .toregister .toreg{cursor:pointer;}
-			#s_signup .dataform .toregister .toreg:hover{color:#333;}
+			#s_signup .logo{width:1190px;height:43px;margin:0 auto;padding:20px 0;}
+			#s_signup .logo span{display:inline-block;zoom:1;height:43px;line-height:43px;margin-left: 6px;font-size: 22px;font-family: '\5FAE\8F6F\96C5\9ED1','\534E\6587\7EC6\9ED1','\9ED1\4F53',arial;font-weight: 400;vertical-align: middle;float:left;color:#000;}
 			
 			.clear{clear:both;}
 		
@@ -86,22 +78,22 @@
 		</div>
 		<!-- header end -->
 
-		<!-- imgbanner start -->
-		<div class="imgbanner" style="position:relative;">
-			<img src="${basePath }/images/banner_login.jpg" width="100%" height="220px"/>
-			<div class="mask"></div>
+		<!-- logo start -->
+		<div class="logo">
+			<div style="float:left;"><img src="images/logo.png" width="120"height="43"/></div>
+			<span style="">用户注册</span>
 		</div>
-		<div class="clear"></div>
-		<!-- imgbanner end -->
+		<!-- logo end -->
 
-		<!-- dataform start -->
-		<div class="dataform">
-			<div class="username"><input id="username" type="text" placeholder="请输入用户名" required/></div>
-			<div class="password"><input id="password" type="password" placeholder="请输入密码" required/></div>
-			<div class="login"><input type="button" value="登录" onclick="ajaxLogin(this)"/></div>
-			<div class="toregister">还没有账号？<span class="toreg" onclick="toreg()">免费注册</span></div>
+		<!-- nav start -->
+		<div class="nav">
+			<ul>
+				<li>设置邮箱</li>
+				<li>填写账号信息</li>
+				<li>注册成功</li>
+			</ul>
 		</div>
-		<!-- dataform end -->
+		<!-- nav end -->
 
 		<!-- footer start -->
 		<div class="footer" style="color:#333;position:fixed;bottom:0;left:0;width:100%;height:30px;text-align:center;line-height:30px;border-top:1px solid #bbb;background:#fff;">©sugar by jingbaba</div>
@@ -110,33 +102,6 @@
 	</div>
 
 <script type="text/javascript">
-	// 用户登录
-	function ajaxLogin(data){
-		var obj = $(data);
-		obj.val("登录中...");
-		var username = $("#username").val();
-		var password = $("#password").val();
-		$.ajax({
-			url: basePath+"/user/login",
-			data: {"username":username,"password":password},
-			type: 'post',
-			success:function(data){
-				if(data.result=="success"){
-					// 登录成功，跳转页面
-					window.location.href=basePath+"/index.jsp";
-				}else{
-					// 用户名或者密码出错，打印信息
-					alert(data.message);
-					obj.val("登录");
-				}
-			}
-		});
-	}
-	
-	// 跳转到注册页面
-	function toreg(){
-		alert();
-	}
 	
 </script>
 </body>
