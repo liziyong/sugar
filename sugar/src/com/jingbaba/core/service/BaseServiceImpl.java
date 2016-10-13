@@ -3,18 +3,23 @@ package com.jingbaba.core.service;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import com.jingbaba.core.dao.IBaseDao;
 
 /**
  * Service 基类
  */
+@Service
 public class BaseServiceImpl<T, PK extends Serializable> implements IBaseService<T, PK> {
 
 	protected Logger log = LoggerFactory.getLogger(getClass());
-
+	
+	@Resource(name="baseDaoImpl")
 	private IBaseDao<T, PK> baseDao;
 
 	public IBaseDao<T, PK> getBaseDao() {

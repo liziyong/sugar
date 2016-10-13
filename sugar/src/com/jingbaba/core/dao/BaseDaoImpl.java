@@ -15,6 +15,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.metadata.ClassMetadata;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
 import com.jingbaba.util.TmPageInfo;
@@ -27,6 +28,7 @@ import com.jingbaba.util.TmPageInfo;
  * @date 2016-6-19 下午1:58:20
  * @param <T>  @param <PK>
  */
+@Repository
 @Transactional
 public class BaseDaoImpl<T, PK extends Serializable> implements IBaseDao<T, PK> {
 
