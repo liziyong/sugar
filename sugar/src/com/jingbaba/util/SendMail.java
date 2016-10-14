@@ -45,8 +45,8 @@ public class SendMail implements Runnable{
 		props.setProperty("mail.smtp.port", "465");
 		props.setProperty("mail.smtp.socketFactory.port", "465");
 
-		String userName = "904582270@qq.com";
-		String emailpassword = "daxiongdi4sb";
+		String userName = "1083910359@qq.com";
+		String emailpassword = "hfy520szj@";
 		Authenticator authenticator = new MyAuthenticator(userName,emailpassword);
 
 		javax.mail.Session session = javax.mail.Session.getDefaultInstance(props, authenticator);
