@@ -83,6 +83,21 @@ public class UserAction extends BaseAction implements ServletRequestAware{
 	}
 	
 	/**
+	 * 注册时检测验证码
+	 * @return
+	 */
+	public String checkCode(){
+		String checkcode = request.getParameter("checkcode");
+		String securityCode = request.getSession().getAttribute("securityCode").toString();
+		if(checkcode.equals(securityCode)){
+			result = "success";
+		}else{
+			result = "fail";
+		}
+		return AJAX_SUCCESS;
+	}
+	
+	/**
 	 * 用户注册
 	 * @return
 	 */
@@ -90,39 +105,22 @@ public class UserAction extends BaseAction implements ServletRequestAware{
 	public String register(){
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String againpassword = request.getParameter("againpassword");
 		String sex = request.getParameter("sex");
 		String email = request.getParameter("email");
-		String hdatapage = request.getParameter("hdata");
-		String hdatasession = (String)request.getSession().getAttribute("hdata");
-		if(hdatasession!=null&hdatapage.equals(hdatasession)){
-			request.getSession().removeAttribute("hdata");
-			if(password.equals(againpassword)){
-				User u = new User();
-				u.setUsername(username);
-				u.setPassword(password);
-				u.setSex(sex);
-				u.setEmail(email);
-				u.setPicurl("images/user/pic.jpg");
-				userService.save(u);
-				
-				// 开子线程发邮件
-				SendMail sd = new SendMail();
-				sd.setUser(u,"register");
-				Thread t1 = new Thread(sd);
-				t1.start();
-				
-				ActionContext.getContext().getSession().put(TzConstanst.SESSION_USERKEY, u);
-				result = "success";
-			}
-			else{
-				result = "fail";
-				message = "密码不一致请重新注册";
-			}
-		}else{
-			result = "fail";
-			message = "注册成功！！！！但请不要重复注册。";
-		}
+		User u = new User();
+		u.setUsername(username);
+		u.setPassword(password);
+		u.setSex(sex);
+		u.setEmail(email);
+		u.setStatus(0);
+		u.setPicurl("images/user/pic.jpg");
+		userService.save(u);
+		// 开子线程发邮件
+		SendMail sd = new SendMail();
+		sd.setUser(u,"register");
+		Thread t1 = new Thread(sd);
+		t1.start();
+		result = "success";
 		return AJAX_SUCCESS;
 	}
 	
@@ -130,15 +128,16 @@ public class UserAction extends BaseAction implements ServletRequestAware{
 	 * 注册时检测用户名是否已经被占用
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public String checkName(){
 		Object[] param = new Object[1];
 		String sql = "FROM User u WHERE u.username=?";
 		String username = request.getParameter("username");
 		param[0] = username;
-		User u = (User) userService.find(sql,param);
-		if(u!=null){
+		List<User> u = userService.find(sql,param);
+		if(u!= null&&u.size()!=0){
 			result = "success";
-			message = "用户已经存在^-^";
+			message = "该用户名已经存在了^-^";
 		}else{
 			result = "fail";
 		}

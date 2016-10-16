@@ -61,9 +61,9 @@ public class SendMail implements Runnable{
 			if(flag=="register"){
 				msg.setSubject("sugar家居商城注册邮件");
 				msg.setContent(
-						"恭喜您已经成功注册成为sugar的一员，你的账号是:" + user.getUsername()
-								+ "\t你的密码为" + user.getPassword()
-								+ "请妥善保管，忘记密码请联系管理员。QQ:1083910359",
+						"恭喜您已经成功注册成为sugar的一员，你的账号是：" + user.getUsername()
+								+ "\t你的密码为：" + user.getPassword()
+								+ "，请妥善保管，忘记密码请联系管理员。QQ:1083910359",
 						"text/html;charset=utf-8");
 			}
 			if(flag=="change"){
