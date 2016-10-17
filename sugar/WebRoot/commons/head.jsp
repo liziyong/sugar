@@ -5,7 +5,7 @@
 		<div class="top">
 			<div class="t_nav">
 				<ul>
-					<li><a href="#">sugar网</a><span>|</span></li>
+					<li><a href="${basePath }/index.jsp">sugar网</a><span>|</span></li>
 					<li><a href="#">sugar论坛</a><span>|</span></li>
 					<li><a href="#">商品分类</a><span>|</span></li>
 					<li><a href="#">成为设计师</a><span>|</span></li>

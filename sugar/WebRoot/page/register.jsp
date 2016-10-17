@@ -19,8 +19,8 @@
 			
 			#s_signup{width:100%;height:100%;}
 			
-			#s_signup .logo{width:1190px;height:43px;margin:0 auto;padding:20px 0;}
-			#s_signup .logo span{display:inline-block;zoom:1;height:43px;line-height:43px;margin-left: 6px;font-size: 22px;font-family: '\5FAE\8F6F\96C5\9ED1','\534E\6587\7EC6\9ED1','\9ED1\4F53',arial;font-weight: 400;vertical-align: middle;float:left;color:#000;}
+			#s_signup .logo{width:1190px;height:80px;margin:0 auto;padding:20px 0;}
+			#s_signup .logo span{display:inline-block;zoom:1;height:80px;line-height:80px;margin-left: 6px;font-size: 22px;font-family: '\5FAE\8F6F\96C5\9ED1','\534E\6587\7EC6\9ED1','\9ED1\4F53',arial;font-weight: 400;vertical-align: middle;float:left;color:#000;}
 			
 			#s_signup .nav{width:1190px;height:46px;border-bottom:2px solid #e6e6e6;margin:0 auto;}
 			#s_signup .nav ul{width:720px;margin:0 auto;}
@@ -41,7 +41,7 @@
 
 		<!-- logo start -->
 		<div class="logo">
-			<div style="float:left;"><img src="images/logo.png" width="120"height="43"/></div>
+			<div style="float:left;"><img src="../images/logo.png" width="120"height="80"/></div>
 			<span style="">用户注册</span>
 		</div>
 		<!-- logo end -->

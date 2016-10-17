@@ -22,8 +22,8 @@
 			#sugar .middle{width:100%;height:1210px;background:#fff;}
 			#sugar .middle .m_nav{width:100%;height:100px;}
 			#sugar .middle .m_nav .n_nav{width:1226px;height:100px;margin:0 auto;}
-			#sugar .middle .m_nav .n_nav .logo{width:55px;height:55px;background:#ff6700;display:block;text-align:center;margin-top:22px;float:left;}
-			#sugar .middle .m_nav .n_nav .nav{width:800px;height:100px;float:left;}
+			#sugar .middle .m_nav .n_nav .logo{width:180px;height:100px;display:block;text-align:center;float:left;}
+			#sugar .middle .m_nav .n_nav .nav{width:700px;height:100px;float:left;}
 			#sugar .middle .m_nav .n_nav .nav ul li{height:100px;float:right;padding-left:15px;padding-right:15px;line-height:100px;}
 			#sugar .middle .m_nav .n_nav .nav a{height:100px;display:block;font-size:16px;color:#000;}
 			#sugar .middle .m_nav .n_nav .search{width:320px;height:75px;float:right;padding-top:25px;position:relative;}
@@ -173,7 +173,7 @@
 		<div class="middle">
 			<div class="m_nav">
 				<div class="n_nav">
-					<a class="logo"><img src="images/index/mi-logo.png" alt="logo" width="49" height="49"/></a>
+					<a class="logo"><img src="images/logo.png" alt="logo" width="120" height="80" style="margin-top:10px;"/></a>
 					<div class="nav">
 						<ul>
 							<li><a href="#">家居装饰</a></li>
