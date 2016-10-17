@@ -3,6 +3,7 @@
 		<link type="text/css" rel="stylesheet" href="${basePath}/css/animate.css"></link>
 		<link type="text/css" rel="stylesheet" href="${basePath}/css/tz.css"></link>
 		<link type="text/css" rel="stylesheet" href="${basePath}/css/common.css"></link>
+		<link type="text/css" rel="stylesheet" href="${basePath}/css/head.css"></link>
 		<link type="text/css" rel="stylesheet" href="${basePath}/js/frameBase/css/frameBase.css"></link>
 		<link type="text/css" rel="stylesheet" href="${basePath}/js/jQWidgets/v-4_1_2/css/jqx-base.css"></link>
 		<link type="text/css" rel="stylesheet" href="${basePath}/js/jQWidgets/v-4_1_2/css/jqx-metro.css"></link>

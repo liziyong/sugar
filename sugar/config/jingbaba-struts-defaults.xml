@@ -19,7 +19,7 @@
 		
 		<global-results>
 			<result name="error" type="redirect">/404.jsp</result>
-			<result name="toIndex" type="redirect">/first.jsp</result>
+			<result name="toIndex" type="redirect">/index.jsp</result>
 			<result name="toLogin" type="redirect">/login.jsp</result>
 		</global-results>
 	</package>

@@ -1,3 +1,3 @@
 eclipse.preferences.version=1
-validator.Checked=config/struts.xml,WebRoot/js/jquery/jquery.js
+validator.Checked=config/struts.xml,config/jingbaba-struts-defaults.xml,WebRoot/js/jquery/jquery.js,WebRoot/page/register.jsp
 validator.Unchecked=
