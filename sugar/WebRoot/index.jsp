@@ -27,7 +27,7 @@
 			#sugar .middle .m_nav .n_nav .nav ul li{height:100px;float:right;padding-left:15px;padding-right:15px;line-height:100px;}
 			#sugar .middle .m_nav .n_nav .nav a{height:100px;display:block;font-size:16px;color:#000;}
 			#sugar .middle .m_nav .n_nav .search{width:320px;height:75px;float:right;padding-top:25px;position:relative;}
-			#sugar .middle .m_nav .n_nav .search input{width:235px;height:52px;float:right;outline:none;padding-left:10px;}
+			#sugar .middle .m_nav .n_nav .search input{width:235px;height:50px;float:right;outline:none;padding-left:10px;}
 			#sugar .middle .m_nav .n_nav .search .s_icon{width:52px;height:52px;display:block;border:1px solid #bbb;float:right;border-left:0;}
 			#sugar .middle .m_nav .n_nav .search .s_a{position:absolute;top:42px;right:64px;line-height:18px;}
 			#sugar .middle .m_nav .n_nav .search .s_a a:hover{background:#03a9f4;color:#fff;}
@@ -135,30 +135,6 @@
 			#sugar .last .l_movie .m_product ul li{width:296px;height:285px;float:left;margin-left:14px;background:#fff;}
 			#sugar .last .l_movie .m_product ul li a{display:block;width:154px;height:16px;color:#000;margin:30px auto 10px auto;}
 			#sugar .last .l_movie .m_product ul li p{width:100%;height:18px;text-align:center;}
-			/*footer start*/
-			#sugar .footer{width:100%;height:498px;background:#f5f5f5;}
-			/*f_site start*/
-			#sugar .footer .f_site{width:100%;height:272px;background:#fff;}
-			#sugar .footer .f_site .s_service{width:1226px;height:80px;border-bottom:1px solid #bbb;margin:0 auto;}
-			#sugar .footer .f_site .s_service a{width:135px;height:17px;display:block;color:#616161;float:left;font-size:16px;margin-top:30px;margin-left:95px;}
-			#sugar .footer .f_site .s_help{width:1226px;height:192px;margin:0px auto;}
-			#sugar .footer .f_site .s_help dl{float:left;width:165px;height:112px;margin-top:40px;}
-			#sugar .footer .f_site .s_help dl dt{font-size:14px;color:#000;width:165px;height:17px;margin-bottom:25px;}
-			#sugar .footer .f_site .s_help dl dd{color:#757575;line-height:26px;}
-			#sugar .footer .f_site .s_help .h_contact{width:242px;height:112px;float:right;border-left:1px solid #bbb;margin-top:40px;}
-			#sugar .footer .f_site .s_help .h_contact .phone{width:242px;height:22px;color:#ff6700;font-size:22px;text-align:center;margin:0 0 10px;}
-			#sugar .footer .f_site .s_help .h_contact .date{width:242px;height:36px;color:#000;font-size:12px;text-align:center;margin:0 0 12px;}
-			#sugar .footer .f_site .s_help .h_contact a{display:block;width:120px;height:30px;border:1px solid #ff6700;color:#ff6700;text-align:center;line-height:30px;margin-left:56px;}
-			/*f_banquan start*/
-			#sugar .footer .f_banquan{width:100%;height:206px;}
-			#sugar .footer .f_banquan .b_address{width:1226px;height:36px;margin:20px auto 0 auto;}
-			#sugar .footer .f_banquan .b_address .a_nav{float:left;width:750px;}
-			#sugar .footer .f_banquan .b_address .logo{float:left;}
-			#sugar .footer .f_banquan .b_address p{width:670px;float:left;margin-left:10px;}
-			#sugar .footer .f_banquan .b_address p a{color:#6c6c6c;}
-			#sugar .footer .f_banquan .b_address span{margin-left:10px;display:block;float:left;}
-			#sugar .footer .f_banquan .b_address .a_anquan{float:right;width:282px;height:28px;}
-			#sugar .footer .f_banquan .b_address .a_anquan img{margin-left:5px;}
 		</style>
 	</head>
 
@@ -726,82 +702,9 @@
 		</div>
 		<!--end last-->
 
-		<!--footer start-->
-		<div class="footer">
-			<div class="f_site">
-				<div class="s_service">
-					<a href="#"><i></i>1小时快修服务</a>
-					<a href="#"><i></i>1小时快修服务</a>
-					<a href="#"><i></i>1小时快修服务</a>
-					<a href="#"><i></i>1小时快修服务</a>
-					<a href="#"><i></i>1小时快修服务</a>
-				</div>
-				<div class="s_help">
-					<dl>
-						<dt>帮助中心</dt>
-						<dd>购物指南</dd>
-						<dd>支付方式</dd>
-						<dd>配送方式</dd>
-					</dl>
-					<dl>
-						<dt>帮助中心</dt>
-						<dd>购物指南</dd>
-						<dd>支付方式</dd>
-						<dd>配送方式</dd>
-					</dl>
-					<dl>
-						<dt>帮助中心</dt>
-						<dd>购物指南</dd>
-						<dd>支付方式</dd>
-						<dd>配送方式</dd>
-					</dl>
-					<dl>
-						<dt>帮助中心</dt>
-						<dd>购物指南</dd>
-						<dd>支付方式</dd>
-						<dd>配送方式</dd>
-					</dl>
-					<dl>
-						<dt>帮助中心</dt>
-						<dd>购物指南</dd>
-						<dd>支付方式</dd>
-						<dd>配送方式</dd>
-					</dl>
-					<div class="h_contact">
-						<p class="phone">400-100-5678</p>
-						<p class="date">周一至周日 8:00-18:00<br>（仅收市话费）</p>
-						<a href="#"><i></i>24小时在线客服</a>
-					</div>
-				</div>
-			</div>
-			<div class="f_banquan">
-				<div class="b_address">
-					<div class="a_nav">
-						<img class="logo" src="images/index/logo-footer.png" width="36" height="36"/>
-						<p>
-							<a href="#">小米网</a>&nbsp;|
-							<a href="#">MIUI</a>&nbsp;|
-							<a href="#">米聊</a>&nbsp;|
-							<a href="#">多看书城</a>&nbsp;|
-							<a href="#">小米路由器</a>&nbsp;|
-							<a href="#">小米后院</a>&nbsp;|
-							<a href="#">小米天猫店</a>&nbsp;|
-							<a href="#">小米淘宝直营店</a>&nbsp;|
-							<a href="#">小米网盟</a>&nbsp;|
-							<a href="#">问题反馈</a>&nbsp;|
-							<a href="#">Select Region</a>
-						</p>
-						<span>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备1101080212535号 京网文[2014]0059-0009号</span>
-					</div>
-					<div class="a_anquan">
-						<img src="images/index/v-logo-2.png" width="85" height="28"/>
-						<img src="images/index/v-logo-1.png" width="85" height="28"/>
-						<img src="images/index/v-logo-3.png" width="85" height="28"/>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--end footer-->
+		<!-- footer start -->
+		<div class="footer" style="color:#333;position:fixed;bottom:0;left:0;width:100%;height:30px;text-align:center;line-height:30px;border-top:1px solid #bbb;background:#fff;">©sugar by jingbaba</div>
+		<!-- footer end -->
 
 	</div>
 <script type="text/javascript">

@@ -6,7 +6,7 @@
 			<div class="t_nav">
 				<ul>
 					<li><a href="${basePath }/index.jsp">sugar网</a><span>|</span></li>
-					<li><a href="#">sugar论坛</a><span>|</span></li>
+					<li><a href="#">sugar设计论坛</a><span>|</span></li>
 					<li><a href="#">商品分类</a><span>|</span></li>
 					<li><a href="#">成为设计师</a><span>|</span></li>
 					<li><a href="#">成为卖家</a></li>
@@ -27,9 +27,9 @@
 				</div>
 				<div class="info_xiala">
 					<ul>
-						<li><i class="i_icon" style="background-position:-215px -327px;"></i>用户中心</li>
+						<li><i class="i_icon" style="background-position:-215px -327px;"></i>我的sugar</li>
 						<li><span style="color:red;position: absolute;top: 34px;left: -30px;font-weight: 600;">3</span><i class="i_icon" style="background-position:-234px -57px;"></i>用户信息</li>
-						<li class="quit"><i class="i_icon" style="background-position:-255px -57px;"></i>用户退出</li>
+						<li class="quit"><i class="i_icon" style="background-position:-255px -57px;"></i>退出</li>
 					</ul>
 				</div>
 			</div>
