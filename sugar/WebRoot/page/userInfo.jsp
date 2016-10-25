@@ -78,7 +78,7 @@
 							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">邮箱：</span><input style="text-indent:5px;margin-left:13px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="1083910359@qq.com"/></div>
 							<div style="float:right;width:259px;height:30px;color:#fff;margin-right:139px;margin-top:5px;line-height:30px;text-align:center;background:#46df8e;border-radius:2px;">我想修改密码</div>
 						</div>
-						<div style="display:none;width:100%;height:60px;margin-top:10px;">
+						<div style="width:100%;height:60px;margin-top:10px;">
 							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">旧密码：</span><input style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="momolela"/></div>
 							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">新密码：</span><input style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="男"/></div>
 						</div>

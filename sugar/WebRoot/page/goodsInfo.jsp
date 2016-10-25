@@ -18,7 +18,23 @@
 			a{text-decoration:none;color:#fff;}
 			
 			#goodsInfo{width:100%;height:auto;}
-			#goodsInfo .content{width:1205px;height:auto;margin:0 auto 60px auto;position:relative;}
+			#goodsInfo .m_nav{width:100%;height:100px;background:#fff;position:absolute;top:40px;left:0;z-index:9999;}
+			#goodsInfo .m_nav.fixed{position:fixed;top:0px;left:0px;border-bottom:1px solid #f6f6f6;}
+			#goodsInfo .m_nav .n_nav{width:1226px;height:100px;margin:0 auto;}
+			#goodsInfo .m_nav .n_nav .logo{width:180px;height:100px;display:block;text-align:center;float:left;}
+			#goodsInfo .m_nav .n_nav .nav{width:700px;height:100px;float:left;}
+			#goodsInfo .m_nav .n_nav .nav ul li{height:100px;float:right;padding-left:15px;padding-right:15px;line-height:100px;}
+			#goodsInfo .m_nav .n_nav .nav a{height:100px;display:block;font-size:16px;color:#000;}
+			#goodsInfo .m_nav .n_nav .search{width:320px;height:75px;float:right;padding-top:25px;position:relative;}
+			#goodsInfo .m_nav .n_nav .search input{width:235px;height:50px;float:right;outline:none;padding-left:10px;}
+			#goodsInfo .m_nav .n_nav .search .s_icon{width:52px;height:52px;display:block;border:1px solid #bbb;float:right;border-left:0;}
+			#goodsInfo .m_nav .n_nav .search .s_a{position:absolute;top:42px;right:64px;line-height:18px;}
+			#goodsInfo .m_nav .n_nav .search .s_a a:hover{background:#03a9f4;color:#fff;}
+			#goodsInfo .m_nav .n_nav .search .s_a .ex_s1{text-align:center;color:#757575;width:auto;height:18px;display:block;background:#eee;float:left;padding:0 5px 0 5px;}
+			#goodsInfo .m_nav .n_nav .search .s_a .ex_s2{text-align:center;color:#757575;width:auto;height:18px;display:block;background:#eee;float:left;margin-left:5px;padding:0 5px 0 5px;}
+			
+			#goodsInfo .content{width:1205px;height:auto;margin:100px auto 60px auto;position:relative;}
+			
 			
 			/*c_left start*/
 			#goodsInfo .content .c_left{width:900px;height:auto;float:left;}
@@ -75,6 +91,32 @@
 		<!-- header start -->
 		<jsp:include  page="/commons/head.jsp"/>
 		<!-- header end -->
+		
+		<div class="m_nav">
+			<div class="n_nav">
+				<a class="logo"><img src="../images/logo.png" alt="logo" width="120" height="80" style="margin-top:10px;"/></a>
+				<div class="nav">
+					<ul>
+						<li><a href="#">家居装饰</a></li>
+						<li><a href="#">纺织品</a></li>
+						<li><a href="#">儿童部</a></li>
+						<li><a href="#">餐厅</a></li>
+						<li><a href="#">厨房· 家居</a></li>
+						<li><a href="#">客厅</a></li>
+						<li><a href="#">浴室</a></li>
+						<li><a href="#">精装卧室</a></li>
+					</ul>
+				</div>
+				<div class="search">
+					<a class="s_icon" href="#"></a>
+					<input type="text"/>
+					<div class="s_a">
+						<a class="ex_s1" href="#">卧室储物</a>
+						<a class="ex_s2" href="#">舒适床垫</a>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		<!-- content start -->
 		<div class="content">
@@ -228,6 +270,28 @@
 	</div>
 
 <script type="text/javascript">
+	$(function(){
+		//滚动屏幕的时候nav固定
+		$(window).scroll(function(){
+			var topScr=$(window).scrollTop();
+			if(topScr>40){
+				$("#goodsInfo .m_nav").addClass("fixed");
+			}else{
+				$("#goodsInfo .m_nav").removeClass("fixed");
+			}
+		});
+	});
+	
+	// 选中搜索框，让s_a隐藏，失焦后又显示
+	$(".search input").focus(function(){
+		$(".s_a").hide();
+	});
+	$(".search input").blur(function(){
+		if($(".search input").val()==""){
+			$(".s_a").show();
+		}
+	});
+
 </script>
 </body>
   

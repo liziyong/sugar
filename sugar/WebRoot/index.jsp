@@ -20,7 +20,8 @@
 			
 			/*middle start*/
 			#sugar .middle{width:100%;height:1210px;background:#fff;}
-			#sugar .middle .m_nav{width:100%;height:100px;}
+			#sugar .middle .m_nav{width:100%;height:100px;background:#fff;position:absolute;top:40px;left:0;z-index:9999;}
+			#sugar .middle .m_nav.fixed{position:fixed;top:0px;left:0px;border-bottom:1px solid #f6f6f6;}
 			#sugar .middle .m_nav .n_nav{width:1226px;height:100px;margin:0 auto;}
 			#sugar .middle .m_nav .n_nav .logo{width:180px;height:100px;display:block;text-align:center;float:left;}
 			#sugar .middle .m_nav .n_nav .nav{width:700px;height:100px;float:left;}
@@ -34,7 +35,7 @@
 			#sugar .middle .m_nav .n_nav .search .s_a .ex_s1{text-align:center;color:#757575;width:auto;height:18px;display:block;background:#eee;float:left;padding:0 5px 0 5px;}
 			#sugar .middle .m_nav .n_nav .search .s_a .ex_s2{text-align:center;color:#757575;width:auto;height:18px;display:block;background:#eee;float:left;margin-left:5px;padding:0 5px 0 5px;}
 			/*m_banner start*/
-			#sugar .middle .m_banner{width:1226px;height:460px;margin:0 auto;position:relative;overflow:hidden;}
+			#sugar .middle .m_banner{width:1226px;height:460px;margin:0 auto;position:relative;overflow:hidden;margin-top:100px;}
 			#sugar .middle .m_banner .b_nav{z-index:999;width:234px;height:460px;position:absolute;top:0px;left:0px;background:rgba(0,0,0,0.6);}
 			#sugar .middle .m_banner .b_nav .nav{padding-top:20px;padding-bottom:20px;}
 			#sugar .middle .m_banner .b_nav .nav ul li{width:204px;height:42px;font-size:14px;padding-left:30px;line-height:42px;}
@@ -135,6 +136,8 @@
 			#sugar .last .l_movie .m_product ul li{width:296px;height:285px;float:left;margin-left:14px;background:#fff;}
 			#sugar .last .l_movie .m_product ul li a{display:block;width:154px;height:16px;color:#000;margin:30px auto 10px auto;}
 			#sugar .last .l_movie .m_product ul li p{width:100%;height:18px;text-align:center;}
+			
+			.clear{clear:both;}
 		</style>
 	</head>
 
@@ -750,6 +753,16 @@
 				$(".m_banner .b_focus .b_img").find("li").eq(index).fadeIn("400").siblings().hide();
 			},3000);
 		}
+		
+		//滚动屏幕的时候nav固定
+		$(window).scroll(function(){
+			var topScr=$(window).scrollTop();
+			if(topScr>40){
+				$("#sugar .middle .m_nav").addClass("fixed");
+			}else{
+				$("#sugar .middle .m_nav").removeClass("fixed");
+			}
+		});
 	});
 	
 	// 选中搜索框，让s_a隐藏，失焦后又显示
