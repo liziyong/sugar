@@ -23,8 +23,9 @@
 			#mysugar .content .c_left{width:160px;height:500px;background:rgba(0,0,0,.4);position:absolute;top:40px;left:0;}
 			#mysugar .content .c_left.fixed{position:fixed;top:10px;left:62px;}
 			#mysugar .content .c_left ul li{width:100%;height:40px;position:relative;}
-			#mysugar .content .c_left ul .set{margin-top:300px;}
+			#mysugar .content .c_left ul .set{margin-top:260px;}
 			#mysugar .content .c_left ul .set i{width:20px;height:20px;background:url("../images/icon1.png") no-repeat;background-position:-688px -406px;display:inline-block;margin:8px auto;line-height:35px;}
+			#mysugar .content .c_left ul li.on{background:#adb0b1;}
 			#mysugar .content .c_left ul li:hover{background:#adb0b1;}
 			#mysugar .content .c_left ul li a{display:block;width:100%;height:40px;text-align:center;line-height:40px;color:#fff;font-size:14px;}
 			#mysugar .content .c_left ul li span{position:absolute;right:0;top:17px;display:inline-block;width:0;height:0;border-right:6px solid #fff;border-top:4px solid transparent;border-bottom:4px solid transparent;}
@@ -51,7 +52,7 @@
 		<div class="content">
 			<div class="c_left">
 				<ul>
-					<li><a href="#">账号设置</a><span></span></li>
+					<li class="on"><a href="#">账号设置</a><span></span></li>
 					<li><a href="#">我的购物车</a></li>
 					<li><a href="#">我的交易记录</a></li>
 					<li><a href="#">我的设计</a></li>
@@ -82,7 +83,7 @@
 							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">新密码：</span><input style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="男"/></div>
 						</div>
 					</div>
-					<div class="d_special" style="display:none;width:100%;height:auto;margin-top:20px;">
+					<div class="d_special" style="width:100%;height:auto;margin-top:20px;">
 						<div style="position:relative;width:720px;height:1px;border-top:1px solid #bbb;margin-left:60px;"><div style="position:absolute;width:auto;height:20px;background:#fff;top: -9px;left: 312px;">以下是商家信息</div></div>
 						<div style="width:100%;height:60px;margin-top:20px;">
 							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">身份证：</span><input style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="362426199511011810"/></div>
