@@ -143,6 +143,21 @@ public class UserAction extends BaseAction implements ServletRequestAware{
 		}
 		return AJAX_SUCCESS;
 	}
+	
+	/**
+	 * 检测旧密码
+	 * @return
+	 */
+	public String checkPassword(){
+		User user = (User) request.getSession().getAttribute("user");
+		String oldpass = request.getParameter("oldpass");
+		if(user.getPassword().equals(oldpass)){
+			result = "success";
+		}else{
+			result = "fail";
+		}
+		return AJAX_SUCCESS;
+	}
 		
 	/**
 	 * 用户注销
@@ -162,7 +177,30 @@ public class UserAction extends BaseAction implements ServletRequestAware{
 	 * 更新用户信息
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public String updateInfo(){
+		String username = request.getParameter("username");
+		String sex = request.getParameter("sex");
+		String email = request.getParameter("email");
+		String newpass = request.getParameter("newpass");
+		String phonenum = request.getParameter("phonenum");
+		Integer id = ((User)request.getSession().getAttribute("user")).getId();
+		if(("").equals(newpass)){
+			newpass = null;
+		}
+		if(("").equals(phonenum)){
+			phonenum = null;
+		}
+		User user = new User();
+		user.setUsername(username);
+		user.setSex(sex);
+		user.setEmail(email);
+		user.setPassword(newpass);
+		user.setPhonenum(phonenum);
+		user.setId(id);
+		userService.updateDefault(user);
+		request.getSession().setAttribute("user", userService.get(id));
+		result = "success";
 		return AJAX_SUCCESS;
 	}
 	

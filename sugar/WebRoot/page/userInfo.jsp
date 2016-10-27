@@ -74,8 +74,8 @@
 							<div class="changepass" style="cursor:pointer;float:right;width:259px;height:30px;color:#fff;margin-right:139px;margin-top:5px;line-height:30px;text-align:center;background:#46df8e;border-radius:2px;">我想修改密码</div>
 						</div>
 						<div class="pswmodel animated fadeInDown" style=" display:none;width:100%;height:60px;margin-top:10px;">
-							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">旧密码：</span><input id="oldpass" style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value=""/></div>
-							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">新密码：</span><input id="newpass" style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value=""/></div>
+							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">旧密码：</span><input id="oldpass" style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="password"/></div>
+							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">新密码：</span><input id="newpass" style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="password"/></div>
 						</div>
 					</div>
 					<div class="d_special" style="display:none;width:100%;height:auto;margin-top:20px;">
@@ -101,8 +101,9 @@
 	</div>
 
 <script type="text/javascript">
+var status = "${user.status}";	// 如果为2说明是店家
+var state = 0; // 0是不修改，1是修改
 $(function(){
-	var state = 0; // 0是不修，1是修改
 	$(window).scroll(function(){
 		var topScr=$(window).scrollTop();
 		if(topScr>70){
@@ -111,12 +112,10 @@ $(function(){
 			$("#mysugar .content .c_left").removeClass("fixed");
 		}
 	});
-	
 	var user = "${user}";
 	var username = "${user.username}";
 	var email = "${user.email}";
 	var sex = "${user.sex}";
-	var status = "${user.status}";
 	var picurl = "${user.picurl}";
 	if(user!=null){
 		var html = "<div class='info_pic'><img src='"+basePath+"/"+picurl+"'/></div>"+
@@ -171,6 +170,80 @@ $(function(){
 	});
 	
 });
+
+// 点击确认修改
+$(".d_submit a").click(function(){
+	// 准备数据要更新的数据
+	var username = $("#username").val();
+	var sex = $("#sex").val();
+	var email = $("#email").val();
+	var oldpass = $("#oldpass").val();
+	var newpass = $("#newpass").val();
+	var phonenum = $("#phonenum").val();
+	
+	if((status=="2"&&phonenum=="")||(state=="1"&&(oldpass==""||newpass==""))||(username==""||sex==""||email=="")){
+		showInfo("字段不能为空~","warning");
+	}else{
+		// 修改信息
+		$.ajax({
+			url: basePath+"/user/updateInfo",
+			data: {"username":username,"sex":sex,"email":email,"newpass":newpass,"phonenum":phonenum},
+			type: 'post',
+			traditional: true,
+			async: false,
+			success: function(data){
+				if(data.result="success"){
+					alert();
+				}
+			}
+		});
+	}
+});
+
+// 用户名不能重复校验
+var oldname = $("#username").val();
+$("#username").blur(function(){
+	var username = $("#username").val();
+	$.ajax({
+		url: basePath+"/user/checkName",
+		data: {"username":username},
+		type: 'post',
+		traditional: true,
+		success: function(data){
+			if(data.result=="success"&&username!=oldname){
+				showInfo("用户名已经被注册了~","warning");
+				$("#username").val("");
+			}
+		}
+	});
+});
+
+// 检验旧的密码
+$("#oldpass").blur(function(){
+	var oldpass = $("#oldpass").val();
+	$.ajax({
+		url: basePath+"/user/checkPassword",
+		data: {"oldpass":oldpass},
+		type: 'post',
+		traditional: true,
+		success: function(data){
+			if(data.result=="fail"){
+				showInfo("原密码出错了~","warning");
+				$("#oldpass").val("");
+			}
+		}
+	});
+});
+
+/* $.ajax({
+	url: basePath+"/",
+	data: {},
+	type: 'post',
+	traditional: true,
+	async: false,
+	success: function(data){
+	}
+}); */
 
 </script>
 </body>
