@@ -27,7 +27,7 @@
 				</div>
 				<div class="info_xiala">
 					<ul>
-						<li><i class="i_icon" style="background-position:-215px -327px;"></i>我的sugar</li>
+						<li onclick="toMySugar()"><i class="i_icon" style="background-position:-215px -327px;"></i>我的sugar</li>
 						<li><span style="color:red;position: absolute;top: 34px;left: -30px;font-weight: 600;">3</span><i class="i_icon" style="background-position:-234px -57px;"></i>用户信息</li>
 						<li class="quit"><i class="i_icon" style="background-position:-255px -57px;"></i>退出</li>
 					</ul>
@@ -52,4 +52,8 @@
 		// alert();
 		window.location.href=basePath+"/user/logout";
 	});
+	// 跳转到我的用户中心
+	function toMySugar(){
+		window.location.href = basePath+"/page/userInfo.jsp";
+	}
 </script>

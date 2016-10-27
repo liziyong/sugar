@@ -19,7 +19,7 @@
 			
 			#mysugar{width:100%;height:auto;}
 			
-			#mysugar .content{width:1225px;height:auto;margin:0 auto 60px auto;position:relative;}
+			#mysugar .content{width:1225px;height:auto;margin:0 auto 30px auto;position:relative;}
 			#mysugar .content .c_left{width:160px;height:500px;background:rgba(0,0,0,.4);position:absolute;top:40px;left:0;}
 			#mysugar .content .c_left.fixed{position:fixed;top:10px;left:62px;}
 			#mysugar .content .c_left ul li{width:100%;height:40px;position:relative;}
@@ -31,7 +31,7 @@
 			#mysugar .content .c_left ul li span{position:absolute;right:0;top:17px;display:inline-block;width:0;height:0;border-right:6px solid #fff;border-top:4px solid transparent;border-bottom:4px solid transparent;}
 			
 			#mysugar .content .c_right{width:1020px;height:auto;float:right;margin-top:40px;}
-			#mysugar .content .c_right .r_userInfo{width:100%;height:100px;background:#fff;box-shadow:0px 0px 3px #000;}
+			#mysugar .content .c_right .r_userInfo{width:100%;height:80px;background:#fff;box-shadow:0px 0px 3px #000;}
 			#mysugar .content .c_right .r_userInfo .info_pic{margin:-26px 0 0 50px;float:left;width:90px;height:90px;border-radius:50%;box-shadow:0px 0px 3px #03a9f4;}
 			#mysugar .content .c_right .r_userInfo .info_pic img{display:block;width:90px;height:90px;border-radius:50%;}
 			
@@ -62,38 +62,33 @@
 			</div>
 			<div class="c_right">
 				<div class="r_userInfo">
-					<div class="info_pic"><img src="${basePath }/images/user/pic.jpg"/></div>
-					<div class="info_username" style="height:100px;width:auto;line-height:100px;float:left;margin-left:20px;font-size:14px;color:#333;"><span>用户名：</span>静爸爸</div>
-					<div class="info_sex" style="height:100px;width:auto;line-height:100px;float:left;margin-left:60px;font-size:14px;color:#333;"><span>性别：</span>男</div>
-					<div class="info_email" style="height:100px;width:auto;line-height:100px;float:left;margin-left:60px;font-size:14px;color:#333;"><span>邮箱：</span>1083910359@qqom</div>
-					<div class="info_status" style="height:100px;width:auto;line-height:100px;float:left;margin-left:60px;font-size:14px;color:#333;"><span>身份：</span>普通会员</div>
 				</div>
 				<div class="r_dataForm">
 					<div class="d_base">
 						<div style="width:100%;height:60px;margin-top:20px;">
-							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">用户名：</span><input style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="momolela"/></div>
-							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">性别：</span><input style="text-indent:5px;margin-left:13px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="男"/></div>
+							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">用户名：</span><input id="username" style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="${user.username }"/></div>
+							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">性别：</span><input id="sex" style="text-indent:5px;margin-left:13px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value=""/></div>
 						</div>
 						<div style="width:100%;height:60px;margin-top:10px;">
-							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">邮箱：</span><input style="text-indent:5px;margin-left:13px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="1083910359@qq.com"/></div>
-							<div style="float:right;width:259px;height:30px;color:#fff;margin-right:139px;margin-top:5px;line-height:30px;text-align:center;background:#46df8e;border-radius:2px;">我想修改密码</div>
+							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">邮箱：</span><input id="email" style="text-indent:5px;margin-left:13px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="${user.email}"/></div>
+							<div class="changepass" style="cursor:pointer;float:right;width:259px;height:30px;color:#fff;margin-right:139px;margin-top:5px;line-height:30px;text-align:center;background:#46df8e;border-radius:2px;">我想修改密码</div>
 						</div>
-						<div style="width:100%;height:60px;margin-top:10px;">
-							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">旧密码：</span><input style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="momolela"/></div>
-							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">新密码：</span><input style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="男"/></div>
+						<div class="pswmodel animated fadeInDown" style=" display:none;width:100%;height:60px;margin-top:10px;">
+							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">旧密码：</span><input id="oldpass" style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value=""/></div>
+							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">新密码：</span><input id="newpass" style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value=""/></div>
 						</div>
 					</div>
-					<div class="d_special" style="width:100%;height:auto;margin-top:20px;">
+					<div class="d_special" style="display:none;width:100%;height:auto;margin-top:20px;">
 						<div style="position:relative;width:720px;height:1px;border-top:1px solid #bbb;margin-left:60px;"><div style="position:absolute;width:auto;height:20px;background:#fff;top: -9px;left: 312px;">以下是商家信息</div></div>
 						<div style="width:100%;height:60px;margin-top:20px;">
-							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">身份证：</span><input style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="362426199511011810"/></div>
-							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">姓名：</span><input style="text-indent:5px;margin-left:13px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="孙肇将"/></div>
+							<div style="width:50%;height:40px;float:left;"><span style="display:inline-block;float:left;margin-left:60px;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">身份证：</span><div style="margin-top:5px;float:left;text-indent:5px;width:200px;height:30px;line-height:30px;border:1px solid #bbb;border-radius:3px;background:#eee;">${user.idcard}</div></div>
+							<div style="width:50%;height:40px;float:left;"><span style="float:left;margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">姓名：</span><div style="margin-top:5px;text-indent:5px;margin-left:13px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;background:#eee;line-height:30px;float:left;">${user.realname }</div></div>
 						</div>
 						<div style="width:100%;height:60px;margin-top:10px;">
-							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">手机：</span><input style="text-indent:5px;margin-left:13px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="13616549386"/></div>
+							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">手机：</span><input id="phonenum" style="text-indent:5px;margin-left:13px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="${user.phonenum}"/></div>
 						</div>
 					</div>
-					<div class="d_submit" style="width:100%;height:40px;margin-top:20px;"><a style="display:block;width:259px;height:30px;background:#03a9f4;line-height:30px;text-align:center;float:right;margin-right:139px;" href="#">确认修改</a></div>
+					<div class="d_submit" style="width:100%;height:40px;margin-top:10px;"><a style="display:block;width:259px;height:30px;background:#03a9f4;line-height:30px;text-align:center;float:right;margin-right:139px;" href="#">确认修改</a></div>
 				</div>
 			</div>
 			<div class="clear"></div>
@@ -107,6 +102,7 @@
 
 <script type="text/javascript">
 $(function(){
+	var state = 0; // 0是不修，1是修改
 	$(window).scroll(function(){
 		var topScr=$(window).scrollTop();
 		if(topScr>70){
@@ -115,7 +111,67 @@ $(function(){
 			$("#mysugar .content .c_left").removeClass("fixed");
 		}
 	});
+	
+	var user = "${user}";
+	var username = "${user.username}";
+	var email = "${user.email}";
+	var sex = "${user.sex}";
+	var status = "${user.status}";
+	var picurl = "${user.picurl}";
+	if(user!=null){
+		var html = "<div class='info_pic'><img src='"+basePath+"/"+picurl+"'/></div>"+
+"					<div class='info_username' style='height:80px;width:auto;line-height:80px;float:left;margin-left:20px;font-size:14px;color:#333;'><span>用户名：</span>"+username+"</div>"+
+"					<div class='info_sex' style='height:80px;width:auto;line-height:80px;float:left;margin-left:60px;font-size:14px;color:#333;'><span>性别：</span>"+sexFormat(sex)+"</div>"+
+"					<div class='info_email' style='height:80px;width:auto;line-height:80px;float:left;margin-left:60px;font-size:14px;color:#333;'><span>邮箱：</span>"+email+"</div>"+
+"					<div class='info_status' style='height:80px;width:auto;line-height:80px;float:left;margin-left:60px;font-size:14px;color:#333;'><span>身份：</span>"+statusFormat(status)+"</div>";
+		$(".r_userInfo").append(html);
+		$("#sex").val(sexFormat(sex));
+	}
+	
+	// 是否展示商家信息
+	if(status == "2"){
+		$(".d_special").show();
+	}else{
+		$(".pswmodel").show();
+		$(".changepass").text("算了我不想修改密码");
+		state = "1";
+	}
+	
+	// 性别格式化
+	function sexFormat(sex){
+		if(sex == "f"){
+			return "女";
+		}else if(sex == "m"){
+			return "男";
+		}
+	}
+	
+	// 身份格式化
+	function statusFormat(status){
+		if(status == "0"){
+			return "普通会员";
+		}else if(status == "1"){
+			return "没错我就是设计师";
+		}else if(status == "2"){
+			return "没错掌柜的就是我";
+		}
+	}
+	
+	// 是否修改密码
+	$(".changepass").click(function(){
+		if(state == "0"){
+			$(".pswmodel").show();
+			$(this).text("算了我不想修改密码");
+			state = "1";
+		}else if(state == "1"){
+			$(".pswmodel").slideUp();
+			$(this).text("我想修改密码");
+			state = "0";
+		}
+	});
+	
 });
+
 </script>
 </body>
   
