@@ -1,7 +1,7 @@
 package com.jingbaba.dao;
 
 import com.jingbaba.core.dao.IBaseDao;
+import com.jingbaba.model.User;
 
-@SuppressWarnings("rawtypes")
-public interface IUserDao extends IBaseDao{
+public interface IUserDao extends IBaseDao<User, Integer>{
 }

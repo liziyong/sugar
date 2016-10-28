@@ -58,7 +58,6 @@ public class UserAction extends BaseAction implements ServletRequestAware{
 	 * 用户登录
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public String login(){
 		Object[] param = new Object[2];
 		String username = request.getParameter("username");
@@ -101,7 +100,6 @@ public class UserAction extends BaseAction implements ServletRequestAware{
 	 * 用户注册
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public String register(){
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -128,7 +126,6 @@ public class UserAction extends BaseAction implements ServletRequestAware{
 	 * 注册时检测用户名是否已经被占用
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public String checkName(){
 		Object[] param = new Object[1];
 		String sql = "FROM User u WHERE u.username=?";
@@ -177,7 +174,6 @@ public class UserAction extends BaseAction implements ServletRequestAware{
 	 * 更新用户信息
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public String updateInfo(){
 		String username = request.getParameter("username");
 		String sex = request.getParameter("sex");
@@ -185,6 +181,11 @@ public class UserAction extends BaseAction implements ServletRequestAware{
 		String newpass = request.getParameter("newpass");
 		String phonenum = request.getParameter("phonenum");
 		Integer id = ((User)request.getSession().getAttribute("user")).getId();
+		if("男".equals(sex)){
+			sex = "m";
+		}else if("女".equals(sex)){
+			sex = "f";
+		}
 		if(("").equals(newpass)){
 			newpass = null;
 		}
@@ -199,7 +200,8 @@ public class UserAction extends BaseAction implements ServletRequestAware{
 		user.setPhonenum(phonenum);
 		user.setId(id);
 		userService.updateDefault(user);
-		request.getSession().setAttribute("user", userService.get(id));
+		User u = userService.get(id);
+		ActionContext.getContext().getSession().put(TzConstanst.SESSION_USERKEY, u);
 		result = "success";
 		return AJAX_SUCCESS;
 	}

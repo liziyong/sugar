@@ -227,7 +227,7 @@ $("#oldpass").blur(function(){
 		type: 'post',
 		traditional: true,
 		success: function(data){
-			if(data.result=="fail"){
+			if(data.result=="fail"&&oldpass!=""){
 				showInfo("原密码出错了~","warning");
 				$("#oldpass").val("");
 			}

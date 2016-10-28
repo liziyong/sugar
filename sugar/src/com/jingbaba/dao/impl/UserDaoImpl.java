@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jingbaba.core.dao.BaseDaoImpl;
 import com.jingbaba.dao.IUserDao;
+import com.jingbaba.model.User;
 
 /**
  * @ClassName: UserDaoImpl
@@ -21,9 +22,8 @@ import com.jingbaba.dao.IUserDao;
  * @author: jingbaba
  * @date 2016-5-12 下午6:23:51
  */
-@SuppressWarnings("rawtypes")
 @Repository
 @Transactional
-public class UserDaoImpl extends BaseDaoImpl implements IUserDao {
+public class UserDaoImpl extends BaseDaoImpl<User, Integer> implements IUserDao {
 
 }
