@@ -18,10 +18,10 @@ public class TzAutoProjectUtil {
 	private static String dbPassword = "";
 	
 	private static String author = "jingbaba";
-	private static  String description = "超级管理员";
+	private static  String description = "商品评论模块";
 	private static  String date = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss").format(new Date());
-	private static  String entity = "Admin";
-	private static  String lowEntity = "admin";
+	private static  String entity = "CommentsList";
+	private static  String lowEntity = "commentsList";
 	
 	//定义所有模板目录
 	/**
@@ -43,10 +43,10 @@ public class TzAutoProjectUtil {
 	 * @throws IOException 
 	 */
 	public static void createDao() throws IOException{
-		String newClassName = getPath("src\\com\\"+domainName+"\\dao\\"+lowEntity)+"\\"+"I"+entity+"Dao.java";
+		String newClassName = getPath("src\\com\\"+domainName+"\\dao")+"\\"+"I"+entity+"Dao.java";
 		String actionTempContent = getPath("template\\dao.txt");
 		String fileName = "I"+entity+"Dao.java";
-		String entitypackage = getPath("src\\com\\"+domainName+"\\dao\\"+lowEntity);
+		String entitypackage = getPath("src\\com\\"+domainName+"\\dao");
 		isExitAndCreateFile(newClassName, actionTempContent, fileName, entitypackage);
 	}
 	
@@ -57,10 +57,10 @@ public class TzAutoProjectUtil {
 	 * @throws IOException 
 	 */
 	public static void createDaoImpl() throws IOException{
-		String newClassName = getPath("src\\com\\"+domainName+"\\dao\\"+lowEntity+"\\impl")+"\\"+entity+"DaoImpl.java";
+		String newClassName = getPath("src\\com\\"+domainName+"\\dao\\impl")+"\\"+entity+"DaoImpl.java";
 		String actionTempContent = getPath("template\\daoImpl.txt");
 		String fileName = entity+"DaoImpl.java";
-		String entitypackage = getPath("src\\com\\"+domainName+"\\dao\\"+lowEntity+"\\impl");
+		String entitypackage = getPath("src\\com\\"+domainName+"\\dao\\impl");
 		isExitAndCreateFile(newClassName, actionTempContent, fileName, entitypackage);
 	}
 	
@@ -70,10 +70,10 @@ public class TzAutoProjectUtil {
 	 * @throws IOException 
 	 */
 	public static void createService() throws IOException{
-		String newClassName = getPath("src\\com\\"+domainName+"\\service\\"+lowEntity)+"\\"+"I"+entity+"Service.java";
+		String newClassName = getPath("src\\com\\"+domainName+"\\service")+"\\"+"I"+entity+"Service.java";
 		String actionTempContent = getPath("template\\service.txt");
 		String fileName = "I"+entity+"Service.java";
-		String entitypackage = getPath("src\\com\\"+domainName+"\\service\\"+lowEntity);
+		String entitypackage = getPath("src\\com\\"+domainName+"\\service");
 		isExitAndCreateFile(newClassName, actionTempContent, fileName, entitypackage);
 	}
 	
@@ -83,10 +83,10 @@ public class TzAutoProjectUtil {
 	 * @throws IOException 
 	 */
 	public static void createServiceImpl() throws IOException{
-		String newClassName = getPath("src\\com\\"+domainName+"\\service\\"+lowEntity+"\\impl")+"\\"+entity+"ServiceImpl.java";
+		String newClassName = getPath("src\\com\\"+domainName+"\\service\\impl")+"\\"+entity+"ServiceImpl.java";
 		String actionTempContent = getPath("template\\serviceImpl.txt");
 		String fileName = entity+"ServiceImpl.java";
-		String entitypackage = getPath("src\\com\\"+domainName+"\\service\\"+lowEntity+"\\impl");
+		String entitypackage = getPath("src\\com\\"+domainName+"\\service\\impl");
 		isExitAndCreateFile(newClassName, actionTempContent, fileName, entitypackage);
 	}
 	
@@ -96,10 +96,10 @@ public class TzAutoProjectUtil {
 	 * @throws IOException 
 	 */
 	public static void createAction() throws IOException{
-		String newClassName = getPath("src\\com\\"+domainName+"\\web\\"+lowEntity)+"\\"+entity+"Action.java";
+		String newClassName = getPath("src\\com\\"+domainName+"\\web\\user")+"\\"+entity+"Action.java";
 		String actionTempContent = getPath("template\\action.txt");
 		String fileName = entity+"Action.java";
-		String entitypackage = getPath("src\\com\\"+domainName+"\\web\\"+lowEntity);
+		String entitypackage = getPath("src\\com\\"+domainName+"\\web\\user");
 		isExitAndCreateFile(newClassName, actionTempContent, fileName, entitypackage);
 	}
 	
@@ -321,7 +321,7 @@ public class TzAutoProjectUtil {
 //		 createDaoImpl();
 //		 createService();
 //		 createServiceImpl();
-//		 createAction();
+		 createAction();
 //		 createList();
 //		 createListTemplate();
 //		 createJs();

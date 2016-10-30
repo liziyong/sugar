@@ -48,7 +48,7 @@
 			#goodsInfo .content .c_left .l_top .t_pic .picLi ul li{width:50px;height:50px;margin-right:10px;border:2px solid #fff;float:left;}
 			#goodsInfo .content .c_left .l_top .t_pic .picLi ul li.on{border:2px solid #03a9f4;}
 			#goodsInfo .content .c_left .l_top .t_buy{width:390px;height:100%;float:right;}
-			#goodsInfo .content .c_left .l_top .t_buy .goodsName{width:100%;height:20px;font-size:14px;color:#333;font-weight:600;}
+			#goodsInfo .content .c_left .l_top .t_buy .goodsName{width:100%;height:20px;font-size:14px;color:#333;font-weight:600;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
 			#goodsInfo .content .c_left .l_top .t_buy .goodsPrice{width:100%;height:100px;background:rgba(3,169,244,.2);margin-top:20px;}
 			#goodsInfo .content .c_left .l_top .t_buy .goodsPrice .p_left{width:200px;height:100px;float:left;}
 			#goodsInfo .content .c_left .l_top .t_buy .goodsPrice .p_left .delp{width:100%;height:50px;line-height:50px;}
@@ -94,7 +94,7 @@
 		
 		<div class="m_nav">
 			<div class="n_nav">
-				<a class="logo"><img src="../images/logo.png" alt="logo" width="120" height="80" style="margin-top:10px;"/></a>
+				<a class="logo"><img src="${basePath }/images/logo.png" alt="logo" width="120" height="80" style="margin-top:10px;"/></a>
 				<div class="nav">
 					<ul>
 						<li><a href="#">家居装饰</a></li>
@@ -125,7 +125,7 @@
 			<div class="c_left">
 				<div class="l_top">
 					<div class="t_pic">
-						<div class="showPic"><img src="../images/index/l_hot/4.jpg"/></div>
+						<!-- <div class="showPic"><img src="../images/index/l_hot/4.jpg"/></div>
 						<div class="picLi">
 							<ul>
 								<li class="on"><a><img src="../images/user/pic.jpg" width="50" height="50"/></a></li>
@@ -133,18 +133,18 @@
 								<li><a><img src="../images/user/pic.jpg" width="50" height="50"/></a></li>
 								<li><a><img src="../images/user/pic.jpg" width="50" height="50"/></a></li>
 							</ul>
-						</div>
+						</div> -->
 					</div>
 					<div class="t_buy">
-						<div class="goodsName">sugar精装家居，厨房，橱柜，精美家居尽在sugar商城</div>
+						<%-- <div class="goodsName">${good.goodname }</div>
 						<div class="goodsPrice">
 							<div class="p_left">
-								<div class="delp"><span style="font-size:14px;color:#333;margin-left:10px;">原价：</span><span style="color:#000;">￥<del>270</del></span></div>
-								<div class="realp"><span style="font-size:14px;color:#333;margin-left:10px;">sugar价：</span><span style="color:red;font-size:20px;">￥150</span></div>
+								<div class="delp"><span style="font-size:14px;color:#333;margin-left:10px;">原价：</span><span style="color:#000;">￥<del>${good.goodoprice }</del></span></div>
+								<div class="realp"><span style="font-size:14px;color:#333;margin-left:10px;">sugar价：</span><span style="color:red;font-size:20px;">￥${good.goodnprice }</span></div>
 							</div>
 							<div class="p_right">
 								<div class="commentsc" style="width:69px;height:40px;padding:5px;float:left;border-right:1px dotted #bbb;margin-top:10px;">
-									<p style="font-weight:bold;">10</p>
+									<p style="font-weight:bold;">${commentsList.size() }</p>
 									<p>累计评论</p>
 								</div>
 								<div class="successc" style="width:70px;height:40px;padding:5px;float:left;margin-top:10px;">
@@ -154,8 +154,8 @@
 							</div>
 						</div>
 						<div class="goodsShop">
-							<div class="s_shopName"><span>所属店铺：</span>小mo的开心店</div>
-							<div class="s_bossName"><span>店主：</span>小mo</div>
+							<div class="s_shopName"><span>所属店铺：</span>${shop.shopname }</div>
+							<div class="s_bossName"><span>店主：</span>${shopowner.username }</div>
 						</div>
 						<div class="split" style="width:100%;height:30px;border-bottom:1px dotted #bbb;"></div>
 						<div class="goodsCount">
@@ -165,12 +165,12 @@
 									<input type="button" style="outline:none;background:#e0e0e0;border:none;width:20px;height:30px;" value="-"/><input style="width:80px;height:28px;border:1px solid #e0e0e0;outline:none;" value="1"/><input type="button" style="outline:none;width:20px;height:30px;background:#e0e0e0;border:none;" value="+"/>
 								</div>
 							</div>
-							<div class="hasc">件（库存11223件）</div>
+							<div class="hasc">件（库存${good.goodcount }件）</div>
 						</div>
 						<div class="goodsButtons">
 							<div style="width:100px;height:30px;float:left;background:#8fddfe;text-align:center;line-height:30px;color:#fff;">立即购买</div>
 							<div style="width:120px;height:30px;float:left;background:#03a9f4;margin-left:30px;text-align:center;line-height:30px;color:#fff;">加入购物车</div>
-						</div>
+						</div> --%>
 					</div>
 				</div>
 				<div class="l_bottom">
@@ -182,7 +182,7 @@
 					</div>
 					<div class="b_commentsList">
 						<ul>
-							<li>
+							<!-- <li>
 								<div class="c_userInfo">
 									<img src="../images/user/pic.jpg" width="70" height="70" style="border-radius:6px;"/>
 									<p style="color:#333;font-size:14px;margin-top:10px;">momolela</p>
@@ -192,51 +192,7 @@
 									<div class="creattime" style="margin:20px 0 20px 0;">2016-10-20 12:20:38</div>
 								</div>
 								<div class="clear"></div>
-							</li>
-							<li>
-								<div class="c_userInfo">
-									<img src="../images/user/pic.jpg" width="70" height="70" style="border-radius:6px;"/>
-									<p style="color:#333;font-size:14px;margin-top:10px;">momolela</p>
-								</div>
-								<div class="c_comments">
-									<p style="line-height:20px;margin-top:10px;">非常很漂亮，质量服橱柜，，质量也特别的好，非常的喜欢，而且店欢非常好的喜欢，而且店家的服务态很漂亮，质量也喜欢，而且店家的服亮，质量也特别的好，非常的喜欢，而且店家的服务态很漂亮，质量也特别的好，非常的喜欢非常好的橱柜，很漂亮，质量也特别的好，非常的喜欢，而且店家的服务态很漂亮，质量也特别的好，非常的喜欢非常好的橱柜，很漂亮，质量也特别的好，非常的喜欢，而且店家的服务态度非常好，下次还会过来买的</p>
-									<div class="creattime" style="margin:20px 0 20px 0;">2016-10-20 12:20:38</div>
-								</div>
-								<div class="clear"></div>
-							</li>
-							<li>
-								<div class="c_userInfo">
-									<img src="../images/user/pic.jpg" width="70" height="70" style="border-radius:6px;"/>
-									<p style="color:#333;font-size:14px;margin-top:10px;">momolela</p>
-								</div>
-								<div class="c_comments">
-									<p style="line-height:20px;margin-top:10px;">非常很漂亮，质量服橱柜，，质量也特别的好，非常的喜欢，而且店欢非常好的喜欢，而且店家的服务态很漂亮，质量也喜欢，而且店家的服亮，质量也特别的好，非常的喜欢，而且店家的服务态很漂亮，质量也特别的好，非常的喜欢非常好的橱柜，很漂亮，质量也特别的好，非常的喜欢，而且店家的服务态很漂亮，质量也特别的好，非常的喜欢非常好的橱柜，很漂亮，质量也特别的好，非常的喜欢，而且店家的服务态度非常好，下次还会过来买的</p>
-									<div class="creattime" style="margin:20px 0 20px 0;">2016-10-20 12:20:38</div>
-								</div>
-								<div class="clear"></div>
-							</li>
-							<li>
-								<div class="c_userInfo">
-									<img src="../images/user/pic.jpg" width="70" height="70" style="border-radius:6px;"/>
-									<p style="color:#333;font-size:14px;margin-top:10px;">momolela</p>
-								</div>
-								<div class="c_comments">
-									<p style="line-height:20px;margin-top:10px;">非常很漂亮，质量服橱柜，，质量也特别的好，非常的喜欢，而且店欢非常好的喜欢，而且店家的服务态很漂亮，质量也喜欢，而且店家的服亮，质量也特别的好，非常的喜欢，而且店家的服务态很漂亮，质量也特别的好，非常的喜欢非常好的橱柜，很漂亮，质量也特别的好，非常的喜欢，而且店家的服务态很漂亮，质量也特别的好，非常的喜欢非常好的橱柜，很漂亮，质量也特别的好，非常的喜欢，而且店家的服务态度非常好，下次还会过来买的</p>
-									<div class="creattime" style="margin:20px 0 20px 0;">2016-10-20 12:20:38</div>
-								</div>
-								<div class="clear"></div>
-							</li>
-							<li>
-								<div class="c_userInfo">
-									<img src="../images/user/pic.jpg" width="70" height="70" style="border-radius:6px;"/>
-									<p style="color:#333;font-size:14px;margin-top:10px;">momolela</p>
-								</div>
-								<div class="c_comments">
-									<p style="line-height:20px;margin-top:10px;">非常很漂亮，质量服橱柜，，质量也特别的好，非常的喜欢，而且店欢非常好的喜欢，而且店家的服务态很漂亮，质量也喜欢，而且店家的服亮，质量也特别的好，非常的喜欢，而且店家的服务态很漂亮，质量也特别的好，非常的喜欢非常好的橱柜，很漂亮，质量也特别的好，非常的喜欢，而且店家的服务态很漂亮，质量也特别的好，非常的喜欢非常好的橱柜，很漂亮，质量也特别的好，非常的喜欢，而且店家的服务态度非常好，下次还会过来买的</p>
-									<div class="creattime" style="margin:20px 0 20px 0;">2016-10-20 12:20:38</div>
-								</div>
-								<div class="clear"></div>
-							</li>
+							</li> -->
 						</ul>
 						<div style="width:100%;height:30px;border:1px solid #bbb;background:#fff;text-align:center;line-height:30px;margin-top:20px;border-radius:4px;box-shadow:0px 0px 2px #000;">点击加载评论...</div>
 					</div>
@@ -280,6 +236,85 @@
 				$("#goodsInfo .m_nav").removeClass("fixed");
 			}
 		});
+		
+		//	请求数据
+		if(window.location.href.indexOf("goodid")!="-1"){
+			var goodid = window.location.href.split("=")[1];
+			$.ajax({
+				url: basePath+"/good/findGoodById?goodid="+goodid,
+				success: function(data){
+					console.log(data.datamap);
+					// 商品信息html
+					var t_buy = "<div class='goodsName'>"+data.datamap.good.goodname+"</div>"+
+"						<div class='goodsPrice'>"+
+"							<div class='p_left'>"+
+"								<div class='delp'><span style='font-size:14px;color:#333;margin-left:10px;'>原价：</span><span style='color:#000;'>￥<del>"+data.datamap.good.goodoprice+"</del></span></div>"+
+"								<div class='realp'><span style='font-size:14px;color:#333;margin-left:10px;'>sugar价：</span><span style='color:red;font-size:20px;'>￥"+data.datamap.good.goodnprice+"</span></div>"+
+"							</div>"+
+"							<div class='p_right'>"+
+"								<div class='commentsc' style='width:69px;height:40px;padding:5px;float:left;border-right:1px dotted #bbb;margin-top:10px;'>"+
+"									<p style='font-weight:bold;'>"+data.datamap.commentsList.length+"</p>"+
+"									<p>累计评论</p>"+
+"								</div>"+
+"								<div class='successc' style='width:70px;height:40px;padding:5px;float:left;margin-top:10px;'>"+
+"									<p style='font-weight:bold;'>30</p>"+
+"									<p>交易成功</p>"+
+"								</div>"+
+"							</div>"+
+"						</div>"+
+"						<div class='goodsShop'>"+
+"							<div class='s_shopName'><span>所属店铺：</span>"+data.datamap.good.shopid.shopname+"</div>"+
+"							<div class='s_bossName'><span>店主：</span>"+data.datamap.good.shopid.shopowner.username+"</div>"+
+"						</div>"+
+"						<div class='split' style='width:100%;height:30px;border-bottom:1px dotted #bbb;'></div>"+
+"						<div class='goodsCount'>"+
+"							<div class='counts'>"+
+"								<span style='display:inline-block;float:left;'>购买数量：</span>"+
+"								<div class='cal'>"+
+"									<input type='button' style='outline:none;background:#e0e0e0;border:none;width:20px;height:30px;' value='-'/><input style='width:80px;height:28px;border:1px solid #e0e0e0;outline:none;' value='1'/><input type='button' style='outline:none;width:20px;height:30px;background:#e0e0e0;border:none;' value='+'/>"+
+"								</div>"+
+"							</div>"+
+"							<div class='hasc'>件（库存"+data.datamap.good.goodcount+"件）</div>"+
+"						</div>"+
+"						<div class='goodsButtons'>"+
+"							<div style='width:100px;height:30px;float:left;background:#8fddfe;text-align:center;line-height:30px;color:#fff;'>立即购买</div>"+
+"							<div style='width:120px;height:30px;float:left;background:#03a9f4;margin-left:30px;text-align:center;line-height:30px;color:#fff;'>加入购物车</div>"+
+"						</div>";
+					$(".t_buy").append(t_buy);
+					
+					// 商品图片html
+					var t_pic = "<div class='showPic'><img src='../images/index/l_hot/4.jpg'/></div>"+
+"						<div class='picLi'>"+
+"							<ul>"+
+"							</ul>"+
+"						</div>";
+					$(".t_pic").append(t_pic);
+					for(var i = 0;i<data.datamap.goodpicList.length;i++){
+						var picLi = "<li><a><img src='${basePath}/"+data.datamap.goodpicList[i].goodpicurl+"' width='50' height='50'/></a></li>";
+						$(".picLi ul").append(picLi);
+					}
+					$(".showPic img").attr("src",basePath+"/"+data.datamap.goodpicList[0].goodpicurl)
+					$(".picLi ul li").eq(0).addClass("on");
+					
+					
+					// 商品评价html
+					for(var i = 0;i<data.datamap.commentsList.length;i++){
+						var b_commentsList = "<li>"+
+	"								<div class='c_userInfo'>"+
+	"									<img src='${basePath}/"+data.datamap.commentsList[i].user.picurl+"' width='70' height='70' style='border-radius:6px;'/>"+
+	"									<p style='color:#333;font-size:14px;margin-top:10px;'>"+data.datamap.commentsList[i].user.username+"</p>"+
+	"								</div>"+
+	"								<div class='c_comments'>"+
+	"									<p style='line-height:20px;margin-top:10px;'>"+data.datamap.commentsList[i].comments+"</p>"+
+	"									<div class='creattime' style='margin:20px 0 20px 0;'>"+data.datamap.commentsList[i].createtime+"</div>"+
+	"								</div>"+
+	"								<div class='clear'></div>"+
+	"							</li>";
+						$(".b_commentsList ul").append(b_commentsList);
+					}
+				}
+			});
+		}
 	});
 	
 	// 选中搜索框，让s_a隐藏，失焦后又显示

@@ -1,4 +1,4 @@
-package com.[domainName].web.user;
+package com.jingbaba.web.user;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,21 +10,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.[domainName].core.action.BaseAction;
-import com.[domainName].service.I[entity]Service;
+import com.jingbaba.core.action.BaseAction;
+import com.jingbaba.service.ICommentsListService;
 
 /**
  * 
- * [description]
- * [entity]Action
- * 创建人:[author] 
- * 时间：[date]
+ * 商品评论模块
+ * CommentsListAction
+ * 创建人:jingbaba 
+ * 时间：2016年10月30日 21:03:03
  * @version 1.0.0
  *
  */
-@Controller("[lowEntity]Action")
+@Controller("commentsListAction")
 @Scope("prototype")
-public class [entity]Action extends BaseAction implements ServletRequestAware{
+public class CommentsListAction extends BaseAction implements ServletRequestAware{
 
 	private HttpServletRequest request;
 	private Map<String, Object> datamap = new HashMap<String, Object>();
@@ -38,7 +38,7 @@ public class [entity]Action extends BaseAction implements ServletRequestAware{
 	}
 
 	@Autowired
-	private I[entity]Service [lowEntity]Service;
+	private ICommentsListService commentsListService;
 	
 	
 	public void setServletRequest(HttpServletRequest request) {

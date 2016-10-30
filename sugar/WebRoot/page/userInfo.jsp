@@ -192,8 +192,11 @@ $(".d_submit a").click(function(){
 			traditional: true,
 			async: false,
 			success: function(data){
-				if(data.result="success"){
-					alert();
+				if(data.result == "success"){
+					window.location.reload(location);
+					if(data.message == "relogin"){
+						window.location.href=basePath+"/user/logout";
+					}
 				}
 			}
 		});

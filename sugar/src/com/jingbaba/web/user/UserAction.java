@@ -188,6 +188,8 @@ public class UserAction extends BaseAction implements ServletRequestAware{
 		}
 		if(("").equals(newpass)){
 			newpass = null;
+		}else{
+			message = "relogin";
 		}
 		if(("").equals(phonenum)){
 			phonenum = null;

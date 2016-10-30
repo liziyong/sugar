@@ -1,4 +1,4 @@
-package com.[domainName].dao.[lowEntity];
+package com.[domainName].dao;
 
 
 import java.util.List;

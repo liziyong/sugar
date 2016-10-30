@@ -1,4 +1,4 @@
-package com.[domainName].service.[lowEntity];
+package com.[domainName].service;
 
 import java.util.List;
 

@@ -42,31 +42,7 @@
 	<!-- 页面跳转包 -->
 	<package name="ToPKG" namespace="/to" extends="defaults">
 		<action name="/*/*" method="{2}" class="{1}Action">
-			<result name="musicbox">/page/musicbox.jsp</result>
-			<result name="userpsw">/page/UserPsw.jsp</result>
-			<result name="userinfo">/page/UserInfo.jsp</result>
-			<result name="usermail">/page/UserMail.jsp</result>
-			<result name="userpic">/page/UserPic.jsp</result>
-			<interceptor-ref name="loginInterceptorUser"></interceptor-ref>
-			<interceptor-ref name="defaultStack"></interceptor-ref>
-		</action>
-		<action name="musiccomments" method="toSong" class="pageAction">
-			<result name="musiccomments">/page/musiccomments.jsp</result>
-		</action>
-		<action name="pageAction" method="toMusicbox" class="pageAction">
-			<result name="musicbox">/page/musicbox.jsp</result>
-		</action>
-		<action name="uploadMusicAction" method="upload" class="uploadMusicAction">
-			<result type="chain" name="tomusicbox">pageAction</result>
-		</action>
-		<action name="sendlistAction" method="querySendlist" class="sendlistAction">
-			<result name="usersend_all">/page/usersend_all.jsp</result>
-		</action>
-		<action name="allMusicAction" method="queryAllMusic" class="allMusicAction">
-			<result name="allmusic">/page/Allmusic.jsp</result>
-		</action>
-		<action name="allMusicActionType" method="queryAllMusicByType" class="allMusicAction">
-			<result name="musicByType">/page/Allmusic.jsp</result>
+			<result name="goodsInfo">/page/goodsInfo.jsp</result>
 		</action>
 	</package>
 	

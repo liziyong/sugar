@@ -1,9 +1,11 @@
-package com.[domainName].dao.impl;
+package com.jingbaba.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Query;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -11,40 +13,40 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.[domainName].core.dao.BaseDaoImpl;
-import com.[domainName].core.dao.TmParams;
-import com.[domainName].dao.I[entity]Dao;
-import com.[domainName].model.[entity];
-import com.[domainName].util.TmPageInfo;
-import com.[domainName].util.TzStringUtils;
+import com.jingbaba.core.dao.BaseDaoImpl;
+import com.jingbaba.core.dao.TmParams;
+import com.jingbaba.dao.IGoodpicListDao;
+import com.jingbaba.model.GoodpicList;
+import com.jingbaba.util.TmPageInfo;
+import com.jingbaba.util.TzStringUtils;
 
 /**
  * 
- * [description]
- * [entity]DaoImpl
- * 创建人:[author]
- * 时间：[date] 
+ * 商品图片模块
+ * GoodpicListDaoImpl
+ * 创建人:jingbaba
+ * 时间：2016年10月30日 20:50:31 
  * @version 1.0.0
  *
  */
 @Repository
 @Transactional
-public class [entity]DaoImpl extends BaseDaoImpl<[entity],Integer> implements I[entity]Dao{
+public class GoodpicListDaoImpl extends BaseDaoImpl<GoodpicList,Integer> implements IGoodpicListDao{
 	
 	/**
 	 * 
 	 * 查询所有的内容
 	 * 求总数 sql hql qbc 
-	 * 方法名：find[entity]s
-	 * 创建人：[author] 
-	 * 时间：[date] 
+	 * 方法名：findGoodpicLists
+	 * 创建人：jingbaba 
+	 * 时间：2016年10月30日 20:50:31 
 	 * @param params
 	 * @param pageInfo
-	 * @return List<[entity]>
+	 * @return List<GoodpicList>
 	 * @exception 
 	 * @since  1.0.0
 	 */
-	public List<[entity]> find[entity]s(TmParams params,TmPageInfo pageInfo){
+	public List<GoodpicList> findGoodpicLists(TmParams params,TmPageInfo pageInfo){
 		DetachedCriteria detachedCriteria = getCurrentDetachedCriteria();
 		if(params!=null){
 			if(TzStringUtils.isNotEmpty(params.getKeyword())){
@@ -58,15 +60,15 @@ public class [entity]DaoImpl extends BaseDaoImpl<[entity],Integer> implements I[
 	
 	/**
 	 * 求总数
-	 * 方法名：count[entity]
-	 * 创建人：[author] 
-	 * 时间：[date] 
+	 * 方法名：countGoodpicList
+	 * 创建人：jingbaba 
+	 * 时间：2016年10月30日 20:50:31 
 	 * @param params
 	 * @return int
 	 * @exception 
 	 * @since  1.0.0
 	 */
-	public int count[entity](TmParams params){
+	public int countGoodpicList(TmParams params){
 		DetachedCriteria detachedCriteria = getCurrentDetachedCriteria();
 		if(params!=null){
 			if(TzStringUtils.isNotEmpty(params.getKeyword())){
@@ -77,5 +79,14 @@ public class [entity]DaoImpl extends BaseDaoImpl<[entity],Integer> implements I[
 		detachedCriteria.add(Restrictions.eq("isDelete",0));
 		Number number = (Number)detachedCriteria.getExecutableCriteria(getSession()).uniqueResult();
 		return number==null?0:number.intValue();
+	}
+
+	public List<GoodpicList> findAllGoodpicListByGoodId(Integer goodid) {
+		List<GoodpicList> goodpicList = new ArrayList<GoodpicList>();
+		String hql = "FROM GoodpicList g WHERE g.good=?";
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, goodid);
+		goodpicList = query.list();
+		return goodpicList;
 	}
 }

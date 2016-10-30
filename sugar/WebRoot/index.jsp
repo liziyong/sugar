@@ -229,7 +229,7 @@
 						<li class="bottom"><a href=""><i></i>防伪查询</a></li>
 					</ul>
 				</div>
-				<a href=""><img src="images/index/m_product/1.jpg" alt="净水器" width="316" height="170"/></a>
+				<a href="javascript:void(0)"  onclick="toGoodsInfo(this)" goodid="1"><img src="images/index/m_product/1.jpg" alt="净水器" width="316" height="170"/></a>
 				<a href=""><img src="images/index/m_product/2.jpg" alt="手机" width="316" height="170"/></a>
 				<a href=""><img src="images/index/m_product/3.jpg" alt="平板" width="316" height="170"/></a>
 			</div>
@@ -774,6 +774,14 @@
 			$(".s_a").show();
 		}
 	});
+	
+	// 点击商品进入商品信息页面购买
+	function toGoodsInfo(event){
+		// 准备数据
+		var goodid = $(event).attr("goodid");
+		// 通过get方法得到的id去后台请求商品信息
+		window.open(basePath+"/page/goodsInfo.jsp?goodid="+goodid);
+	}
 	
 </script>
 </body>

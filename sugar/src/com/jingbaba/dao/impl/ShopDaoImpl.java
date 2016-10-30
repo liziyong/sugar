@@ -1,4 +1,4 @@
-package com.[domainName].dao.impl;
+package com.jingbaba.dao.impl;
 
 import java.util.List;
 
@@ -11,40 +11,40 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.[domainName].core.dao.BaseDaoImpl;
-import com.[domainName].core.dao.TmParams;
-import com.[domainName].dao.I[entity]Dao;
-import com.[domainName].model.[entity];
-import com.[domainName].util.TmPageInfo;
-import com.[domainName].util.TzStringUtils;
+import com.jingbaba.core.dao.BaseDaoImpl;
+import com.jingbaba.core.dao.TmParams;
+import com.jingbaba.dao.IShopDao;
+import com.jingbaba.model.Shop;
+import com.jingbaba.util.TmPageInfo;
+import com.jingbaba.util.TzStringUtils;
 
 /**
  * 
- * [description]
- * [entity]DaoImpl
- * 创建人:[author]
- * 时间：[date] 
+ * 店铺模块
+ * ShopDaoImpl
+ * 创建人:jingbaba
+ * 时间：2016年10月30日 20:51:20 
  * @version 1.0.0
  *
  */
 @Repository
 @Transactional
-public class [entity]DaoImpl extends BaseDaoImpl<[entity],Integer> implements I[entity]Dao{
+public class ShopDaoImpl extends BaseDaoImpl<Shop,Integer> implements IShopDao{
 	
 	/**
 	 * 
 	 * 查询所有的内容
 	 * 求总数 sql hql qbc 
-	 * 方法名：find[entity]s
-	 * 创建人：[author] 
-	 * 时间：[date] 
+	 * 方法名：findShops
+	 * 创建人：jingbaba 
+	 * 时间：2016年10月30日 20:51:20 
 	 * @param params
 	 * @param pageInfo
-	 * @return List<[entity]>
+	 * @return List<Shop>
 	 * @exception 
 	 * @since  1.0.0
 	 */
-	public List<[entity]> find[entity]s(TmParams params,TmPageInfo pageInfo){
+	public List<Shop> findShops(TmParams params,TmPageInfo pageInfo){
 		DetachedCriteria detachedCriteria = getCurrentDetachedCriteria();
 		if(params!=null){
 			if(TzStringUtils.isNotEmpty(params.getKeyword())){
@@ -58,15 +58,15 @@ public class [entity]DaoImpl extends BaseDaoImpl<[entity],Integer> implements I[
 	
 	/**
 	 * 求总数
-	 * 方法名：count[entity]
-	 * 创建人：[author] 
-	 * 时间：[date] 
+	 * 方法名：countShop
+	 * 创建人：jingbaba 
+	 * 时间：2016年10月30日 20:51:20 
 	 * @param params
 	 * @return int
 	 * @exception 
 	 * @since  1.0.0
 	 */
-	public int count[entity](TmParams params){
+	public int countShop(TmParams params){
 		DetachedCriteria detachedCriteria = getCurrentDetachedCriteria();
 		if(params!=null){
 			if(TzStringUtils.isNotEmpty(params.getKeyword())){

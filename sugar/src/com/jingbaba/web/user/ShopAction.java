@@ -1,4 +1,4 @@
-package com.[domainName].web.user;
+package com.jingbaba.web.user;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,21 +10,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.[domainName].core.action.BaseAction;
-import com.[domainName].service.I[entity]Service;
+import com.jingbaba.core.action.BaseAction;
+import com.jingbaba.service.IShopService;
 
 /**
  * 
- * [description]
- * [entity]Action
- * 创建人:[author] 
- * 时间：[date]
+ * 店铺模块
+ * ShopAction
+ * 创建人:jingbaba 
+ * 时间：2016年10月30日 20:55:46
  * @version 1.0.0
  *
  */
-@Controller("[lowEntity]Action")
+@Controller("shopAction")
 @Scope("prototype")
-public class [entity]Action extends BaseAction implements ServletRequestAware{
+public class ShopAction extends BaseAction implements ServletRequestAware{
 
 	private HttpServletRequest request;
 	private Map<String, Object> datamap = new HashMap<String, Object>();
@@ -36,12 +36,16 @@ public class [entity]Action extends BaseAction implements ServletRequestAware{
 	public void setDatamap(Map<String, Object> datamap) {
 		this.datamap = datamap;
 	}
-
+	
 	@Autowired
-	private I[entity]Service [lowEntity]Service;
+	private IShopService shopService;
+	
+	
+	
 	
 	
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
 	}
+	
 }
