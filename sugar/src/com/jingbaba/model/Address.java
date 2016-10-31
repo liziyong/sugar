@@ -1,4 +1,4 @@
-package com.[domainName].model;
+package com.jingbaba.model;
 
 import java.util.Date;
 
@@ -11,29 +11,29 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.apache.struts2.json.annotations.JSON;
-
 /**
  * 
- * [description]
- * [entity]
- * 创建人:[author]
- * 时间：[date] 
+ * 用户地址模块
+ * Address
+ * 创建人:jingbaba
+ * 时间：2016年10月31日 22:03:57 
  * @version 1.0.0
  *
  */
 @Entity
-@Table(name = "sugar_[lowEntity]")
-public class [entity] implements java.io.Serializable {
+@Table(name = "sugar_address")
+public class Address implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer id;// 主键
-	private String name;// 名称
-	private Integer isDelete;// 删除状态0未删除1删除
+	private User user;// 地址属于哪个用户
+	private String content;// 地址内容
+	private String contentdetail;// 地址内容
+	private String phonenum;// 地址的手机
+	private String realname;// 真实姓名
 	private Integer status;// 0未发布1发布
 	private Date createTime;// 创建时间
 	private Date updateTime;// 更新时间
-	private User user;// 操作用户
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,22 +45,46 @@ public class [entity] implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "name", length = 100)
-	public String getName() {
-		return name;
+	@ManyToOne
+	@JoinColumn(name="uid")
+	public User getUser() {
+		return user;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	@Column(name = "is_delete", length = 1)
-	public Integer getIsDelete() {
-		return isDelete;
+	public String getContent() {
+		return content;
 	}
 
-	public void setIsDelete(Integer isDelete) {
-		this.isDelete = isDelete;
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getContentdetail() {
+		return contentdetail;
+	}
+
+	public void setContentdetail(String contentdetail) {
+		this.contentdetail = contentdetail;
+	}
+
+	public String getPhonenum() {
+		return phonenum;
+	}
+
+	public void setPhonenum(String phonenum) {
+		this.phonenum = phonenum;
+	}
+
+	public String getRealname() {
+		return realname;
+	}
+
+	public void setRealname(String realname) {
+		this.realname = realname;
 	}
 
 	@Column(name = "status", length = 1)
@@ -88,16 +112,5 @@ public class [entity] implements java.io.Serializable {
 
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
-	}
-
-	@JSON(serialize = false)
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 }

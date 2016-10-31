@@ -78,25 +78,10 @@
 			<!--  -->
 			<div class="c_address">
 				<div class="a_title">请选择收获地址</div>
-				<div class="a_list">
+				<div class="a_list" style="position:relative;">
 					<ul>
-						<li class="on">
-							<div class="ad_simple">浙江杭州<span style="color:#737373;">（孙肇将 收）</span></div>
-							<div class="ad_detail">浙江省杭州市西湖区五联西苑113号 13616549386</div>
-						</li>
-						<li>
-							<div class="ad_simple">浙江杭州<span style="color:#737373;">（孙肇将 收）</span></div>
-							<div class="ad_detail">浙江省杭州市西湖区五联西苑113号 13616549386</div>
-						</li>
-						<li>
-							<div class="ad_simple">浙江杭州<span style="color:#737373;">（孙肇将 收）</span></div>
-							<div class="ad_detail">浙江省杭州市西湖区五联西苑113号 13616549386</div>
-						</li>
-						<li>
-							<div class="ad_simple">浙江杭州<span style="color:#737373;">（孙肇将 收）</span></div>
-							<div class="ad_detail">浙江省杭州市西湖区五联西苑113号 13616549386</div>
-						</li>
 					</ul>
+					<div class="set" style="position:absolute;top:0px;right:0px;width:20px;height:100px;border:1px solid #bbb;text-align:center;line-height:24px;cursor:pointer;padding:0 2px 0 2px;border-radius:4px 0 0 4px;color:#333;border-right:3px solid #03a9f4;">管理地址</div>
 				</div>
 			</div>
 			<!--  -->
@@ -105,59 +90,6 @@
 			<div class="c_sure">
 				<div class="s_title">请确认订单</div>
 				<div class="s_order">
-					<div class="o_shopClass">
-						<div class="shopName"><img class="sn_img" src="../images/shop.png" width="16" height="16"/><div class="sn_name">店铺：江西师范大学</div></div>
-						<ul>
-							<li>
-								<div class="goodsInfo">
-									<img src="../images/user/pic.jpg" width="60" height="60"/>
-									<div class="goodsName">宜家家居同款家居，木质家居，精美家居。宜家家居同款家居，木质家居，精美家居。</div>
-								</div>
-								<div class="goodsPrice">
-									<p>单价：<span>250</span></p>
-								</div>
-								<div class="goodsCount">
-									<p>数量：<span>1</span></p>
-								</div>
-								<div class="goodsMoney">
-									<p>小计：<span>1000</span></p>
-								</div>
-							</li>
-							<li>
-								<div class="goodsInfo">
-									<img src="../images/user/pic.jpg" width="60" height="60"/>
-									<div class="goodsName">宜家家居同款家居，木质家居，精美家居。宜家家居同款家居，木质家居，精美家居。</div>
-								</div>
-								<div class="goodsPrice">
-									<p>单价：<span>250</span></p>
-								</div>
-								<div class="goodsCount">
-									<p>数量：<span>1</span></p>
-								</div>
-								<div class="goodsMoney">
-									<p>小计：<span>1000</span></p>
-								</div>
-							</li>
-							<li>
-								<div class="goodsInfo">
-									<img src="../images/user/pic.jpg" width="60" height="60"/>
-									<div class="goodsName">宜家家居同款家居，木质家居，精美家居。宜家家居同款家居，木质家居，精美家居。</div>
-								</div>
-								<div class="goodsPrice">
-									<p>单价：<span>250</span></p>
-								</div>
-								<div class="goodsCount">
-									<p>数量：<span>1</span></p>
-								</div>
-								<div class="goodsMoney">
-									<p>小计：<span>1000</span></p>
-								</div>
-							</li>
-						</ul>
-						<div class="shop_total">
-							<div class="t_money">店铺总计：<span style="color:red;">￥3000</span></div>
-						</div>
-					</div>
 					<div class="o_shopClass">
 						<div class="shopName"><img class="sn_img" src="../images/shop.png" width="16" height="16"/><div class="sn_name">店铺：江西师范大学</div></div>
 						<ul>
@@ -204,6 +136,30 @@
 	</div>
 
 <script type="text/javascript">
+	var allAddress = new Array();
+	$(function(){
+		// 请求用户的所有地址
+		$.ajax({
+			url: basePath+"/address/getAllAddress",
+			type: 'post',
+			async: false,
+			success: function(data){
+				allAddress = data.datamap.addressList;
+			}
+		});
+		
+		// 地址html
+		for(var i = 0;i<allAddress.length;i++){
+			var a_list = "<li>"+
+	"							<div class='ad_simple'>"+allAddress[i].content+"<span style='color:#737373;'>（"+allAddress[i].realname+" 收）</span></div>"+
+	"							<div class='ad_detail'>"+allAddress[i].contentdetail+"<br/>"+allAddress[i].phonenum+"</div>"+
+	"						</li>";
+			$(".a_list ul").append(a_list);
+			$(".a_list ul li").eq(0).addClass("on");
+		}
+		var add_li = "<li style='font-size:16px;text-align:center;line-height:80px;'><span>+</span>添加新地址</li>"
+		$(".a_list ul").append(add_li);
+	});
 </script>
 </body>
   

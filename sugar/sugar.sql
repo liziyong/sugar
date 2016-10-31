@@ -10,10 +10,35 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-10-30 23:45:35
+Date: 2016-10-31 23:55:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for sugar_address
+-- ----------------------------
+DROP TABLE IF EXISTS `sugar_address`;
+CREATE TABLE `sugar_address` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(255) DEFAULT NULL,
+  `contentdetail` varchar(255) DEFAULT NULL,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `phonenum` varchar(255) DEFAULT NULL,
+  `realname` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_2ipxlwl2pwkoqi8jw2tdjxy7k` (`uid`),
+  CONSTRAINT `FK_2ipxlwl2pwkoqi8jw2tdjxy7k` FOREIGN KEY (`uid`) REFERENCES `sugar_user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sugar_address
+-- ----------------------------
+INSERT INTO `sugar_address` VALUES ('1', '江西吉安', '江西省吉安市泰和县', '2016-10-31 22:36:05', '13616549386', '孙肇将', null, null, '1');
+INSERT INTO `sugar_address` VALUES ('2', '浙江杭州', '浙江省杭州市西湖区五联西苑113号', '2016-10-31 22:37:22', '13616549386', '孙肇将', null, null, '1');
 
 -- ----------------------------
 -- Table structure for sugar_admin
@@ -46,7 +71,7 @@ CREATE TABLE `sugar_commentslist` (
   KEY `FK_8fkbnjms0uj9wt6psq0gsy4n9` (`uid`),
   CONSTRAINT `FK_8fkbnjms0uj9wt6psq0gsy4n9` FOREIGN KEY (`uid`) REFERENCES `sugar_user` (`id`),
   CONSTRAINT `FK_jrlh10syvko6r9lnqu3xp0sch` FOREIGN KEY (`gid`) REFERENCES `sugar_good` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sugar_commentslist
@@ -55,6 +80,7 @@ INSERT INTO `sugar_commentslist` VALUES ('1', '我非常喜欢这款沙发，店
 INSERT INTO `sugar_commentslist` VALUES ('2', '我非常喜欢这款沙发，店家服务特别好，发货速度特别的快。沙发质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这款沙发，店家服务特别好，发货速度特别的快。沙发质量也是特别的好我非常喜欢这款沙发，店家服务特别好，发货速度特别的快。沙发质量也是特别的好我非常喜欢这款沙发，店家服务特别好，发货速度特别的快。沙发质量也是特别的好我非常喜欢这款沙发，店家服务特别好，发货速度特别的快。沙发质量也是特别的好啊~', '2016-10-30 21:46:05', '1', '2');
 INSERT INTO `sugar_commentslist` VALUES ('3', '质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这,质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这', '2016-10-30 23:42:35', '1', '3');
 INSERT INTO `sugar_commentslist` VALUES ('4', '质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这,质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这.质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这', '2016-10-30 23:42:51', '1', '4');
+INSERT INTO `sugar_commentslist` VALUES ('5', '非常漂亮的橱柜，放在卧室很舒心，没有异味特别的nice，而且材质特别的好，质量一级棒！！！！', '2016-10-31 20:46:36', '2', '1');
 
 -- ----------------------------
 -- Table structure for sugar_good
@@ -76,12 +102,13 @@ CREATE TABLE `sugar_good` (
   KEY `FK_li04kikvhnvfcjut8fdqdv580` (`shopid`),
   CONSTRAINT `FK_e1kc9y7l3oq2e1dkjg0swbjbo` FOREIGN KEY (`gclassid`) REFERENCES `sugar_goodclass` (`id`),
   CONSTRAINT `FK_li04kikvhnvfcjut8fdqdv580` FOREIGN KEY (`shopid`) REFERENCES `sugar_shop` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sugar_good
 -- ----------------------------
 INSERT INTO `sugar_good` VALUES ('1', '2016-10-30 20:35:44', '500', '宜家精品家居，红木沙发，哈哈哈哈哈哈，就爱啊这个家居啊怎么样', '1100', '2100', null, null, '3', '1');
+INSERT INTO `sugar_good` VALUES ('2', '2016-10-31 20:45:09', '1000', '精品家居，红木沙发精品，设计师全心打造，精美橱柜爆款。', '1200', '2600', null, null, '1', '1');
 
 -- ----------------------------
 -- Table structure for sugar_goodclass
@@ -116,7 +143,7 @@ CREATE TABLE `sugar_goodpiclist` (
   PRIMARY KEY (`id`),
   KEY `FK_arxlg5jvtt2bjo5o0xro48l79` (`gid`),
   CONSTRAINT `FK_arxlg5jvtt2bjo5o0xro48l79` FOREIGN KEY (`gid`) REFERENCES `sugar_good` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sugar_goodpiclist
@@ -126,6 +153,9 @@ INSERT INTO `sugar_goodpiclist` VALUES ('2', '2016-10-30 19:38:15', 'images/good
 INSERT INTO `sugar_goodpiclist` VALUES ('3', '2016-10-30 19:38:33', 'images/good/1/3.jpg', '1');
 INSERT INTO `sugar_goodpiclist` VALUES ('4', '2016-10-30 19:38:53', 'images/good/1/4.jpg', '1');
 INSERT INTO `sugar_goodpiclist` VALUES ('5', '2016-10-30 19:39:12', 'images/good/1/5.jpg', '1');
+INSERT INTO `sugar_goodpiclist` VALUES ('6', '2016-10-31 20:47:03', 'images/good/2/1.jpg', '2');
+INSERT INTO `sugar_goodpiclist` VALUES ('7', '2016-10-31 20:47:27', 'images/good/2/2.jpg', '2');
+INSERT INTO `sugar_goodpiclist` VALUES ('8', '2016-10-31 20:47:52', 'images/good/2/3.jpg', '2');
 
 -- ----------------------------
 -- Table structure for sugar_shop

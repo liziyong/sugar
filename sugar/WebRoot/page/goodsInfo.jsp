@@ -271,16 +271,40 @@
 "							<div class='counts'>"+
 "								<span style='display:inline-block;float:left;'>购买数量：</span>"+
 "								<div class='cal'>"+
-"									<input type='button' style='outline:none;background:#e0e0e0;border:none;width:20px;height:30px;' value='-'/><input style='width:80px;height:28px;border:1px solid #e0e0e0;outline:none;' value='1'/><input type='button' style='outline:none;width:20px;height:30px;background:#e0e0e0;border:none;' value='+'/>"+
+"									<input class='delcount' type='button' style='cursor:pointer;outline:none;background:#e0e0e0;border:none;width:20px;height:30px;' value='-'/><input class='totalcount' style='width:80px;height:28px;border:1px solid #e0e0e0;outline:none;' value='1'/><input class='addcount' type='button' style='outline:none;width:20px;height:30px;background:#e0e0e0;border:none;cursor:pointer;' value='+'/>"+
 "								</div>"+
 "							</div>"+
 "							<div class='hasc'>件（库存"+data.datamap.good.goodcount+"件）</div>"+
 "						</div>"+
 "						<div class='goodsButtons'>"+
-"							<div style='width:100px;height:30px;float:left;background:#8fddfe;text-align:center;line-height:30px;color:#fff;'>立即购买</div>"+
-"							<div style='width:120px;height:30px;float:left;background:#03a9f4;margin-left:30px;text-align:center;line-height:30px;color:#fff;'>加入购物车</div>"+
+"							<div class='buynow' style='cursor:pointer;width:100px;height:30px;float:left;background:#8fddfe;text-align:center;line-height:30px;color:#fff;'>立即购买</div>"+
+"							<div class='addshopcar' style='cursor:pointer;width:120px;height:30px;float:left;background:#03a9f4;margin-left:30px;text-align:center;line-height:30px;color:#fff;'>加入购物车</div>"+
 "						</div>";
 					$(".t_buy").append(t_buy);
+					$(".delcount").click(function(){
+						var totalcount = $(".totalcount").val();
+						if(totalcount==1){
+							return false;
+						}else{
+							totalcount = totalcount-1;
+							$(".totalcount").val(totalcount);
+						}
+					});
+					$(".addcount").click(function(){
+						var totalcount = $(".totalcount").val();
+						totalcount = Number(totalcount)+Number(1);
+						$(".totalcount").val(totalcount);
+					});
+					// 点击立即购买
+					$(".buynow").click(function(){
+						var totalcount = $(".totalcount").val();
+						alert();
+					});
+					// 点击加入购物车
+					$(".addshopcar").click(function(){
+						var totalcount = $(".totalcount").val();
+						alert();
+					});
 					
 					// 商品图片html
 					var t_pic = "<div class='showPic'><img src='../images/index/l_hot/4.jpg'/></div>"+
@@ -290,11 +314,15 @@
 "						</div>";
 					$(".t_pic").append(t_pic);
 					for(var i = 0;i<data.datamap.goodpicList.length;i++){
-						var picLi = "<li><a><img src='${basePath}/"+data.datamap.goodpicList[i].goodpicurl+"' width='50' height='50'/></a></li>";
+						var picLi = "<li style='cursor:pointer;'><a><img src='${basePath}/"+data.datamap.goodpicList[i].goodpicurl+"' width='50' height='50'/></a></li>";
 						$(".picLi ul").append(picLi);
 					}
 					$(".showPic img").attr("src",basePath+"/"+data.datamap.goodpicList[0].goodpicurl)
 					$(".picLi ul li").eq(0).addClass("on");
+					$(".t_pic .picLi ul li").on("mouseover",function(){
+						$(".showPic img").attr("src",$(this).find("img").attr("src"));
+						$(this).addClass("on").siblings().removeClass("on");
+					});
 					
 					
 					// 商品评价html

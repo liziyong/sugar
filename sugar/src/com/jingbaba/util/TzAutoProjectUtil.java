@@ -18,10 +18,10 @@ public class TzAutoProjectUtil {
 	private static String dbPassword = "";
 	
 	private static String author = "jingbaba";
-	private static  String description = "商品评论模块";
+	private static  String description = "用户地址模块";
 	private static  String date = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss").format(new Date());
-	private static  String entity = "CommentsList";
-	private static  String lowEntity = "commentsList";
+	private static  String entity = "Address";
+	private static  String lowEntity = "address";
 	
 	//定义所有模板目录
 	/**
@@ -317,10 +317,10 @@ public class TzAutoProjectUtil {
 //		 createLog4jProperties();
 //		 createStrutsProperties();
 //		 createEntity();
-//		 createDao();
-//		 createDaoImpl();
-//		 createService();
-//		 createServiceImpl();
+		 createDao();
+		 createDaoImpl();
+		 createService();
+		 createServiceImpl();
 		 createAction();
 //		 createList();
 //		 createListTemplate();
