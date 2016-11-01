@@ -51,6 +51,22 @@ public class AddressAction extends BaseAction implements ServletRequestAware{
 		return AJAX_SUCCESS;
 	}
 	
+	public String addAddress(){
+		String content = request.getParameter("content");
+		String contentdetail = request.getParameter("contentdetail");
+		String phonenum = request.getParameter("phonenum");
+		String realname = request.getParameter("realname");
+		User user = (User)request.getSession().getAttribute("user");
+		Address address = new Address();
+		address.setContent(content);
+		address.setContentdetail(contentdetail);
+		address.setPhonenum(phonenum);
+		address.setRealname(realname);
+		address.setUser(user);
+		addressService.save(address);
+		return AJAX_SUCCESS;
+	}
+	
 	
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;

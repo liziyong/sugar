@@ -298,7 +298,14 @@
 					// 点击立即购买
 					$(".buynow").click(function(){
 						var totalcount = $(".totalcount").val();
-						alert();
+						var goodid = (window.location.href).split("=")[1];
+						$.ajax({
+							url: basePath+"/to/userPage/toBuyProcess",
+							data: {"totalcount":totalcount,"goodid":goodid},
+							type: 'post',
+							success: function(data){
+							}
+						});
 					});
 					// 点击加入购物车
 					$(".addshopcar").click(function(){

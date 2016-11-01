@@ -24,10 +24,10 @@
 			#buyProcess .content .c_logo .l_logo{float:left;width:120px;height:80px;}
 			#buyProcess .content .c_logo .l_title{float:left;height:80px;line-height: 80px;margin-left: 6px;font-size: 22px;font-family: '\5FAE\8F6F\96C5\9ED1','\534E\6587\7EC6\9ED1','\9ED1\4F53',arial;font-weight: 400;color: #000;}
 			
-			#buyProcess .content .c_address{width:100%;height:145px;margin-top:40px;}
+			#buyProcess .content .c_address{width:100%;margin-top:40px;}
 			#buyProcess .content .a_title{width:100%;height:40px;color:#333;font-weight:bold;font-size:14px;}
-			#buyProcess .content .a_list{width:100%;height:105px;}
-			#buyProcess .content .a_list ul li{padding:10px;background:url('../images/address_not.png');width:217px;height:85px;cursor:pointer;float:left;margin-right:28px;}
+			#buyProcess .content .a_list{width:100%;}
+			#buyProcess .content .a_list ul li{padding:10px;background:url('../images/address_not.png');width:217px;height:85px;cursor:pointer;float:left;margin-right:28px;margin-bottom:20px;}
 			#buyProcess .content .a_list ul li.on{background:url('../images/address_yes.png');}
 			#buyProcess .content .a_list ul li .ad_simple{color:#333;border-bottom:1px solid #bbb;width:100%;height:26px;}
 			#buyProcess .content .a_list ul li .ad_detail{color:#333;width:100%;margin-top:8px;}
@@ -81,7 +81,17 @@
 				<div class="a_list" style="position:relative;">
 					<ul>
 					</ul>
-					<div class="set" style="position:absolute;top:0px;right:0px;width:20px;height:100px;border:1px solid #bbb;text-align:center;line-height:24px;cursor:pointer;padding:0 2px 0 2px;border-radius:4px 0 0 4px;color:#333;border-right:3px solid #03a9f4;">管理地址</div>
+					<div class="delAddress" style="position:absolute;top:0px;right:0px;width:20px;height:100px;border:1px solid #bbb;text-align:center;line-height:24px;cursor:pointer;padding:0 2px 0 2px;border-radius:4px 0 0 4px;color:#333;border-right:3px solid #03a9f4;">管理地址</div>
+					<div class="addwindow" style="display:none;position:fixed;top:50%;left:50%;width:600px;height:400px;background:#fff;z-index:10000;margin-top:-200px;margin-left:-300px;border-radius:4px;">
+						<div class="a_title" style="width:100%;height:30px;color:#333;line-height:30px;text-indent:10px;border-bottom:1px solid #bbb;">添加新的地址</div>
+						<div class="a_content" style="margin:30px 0 20px 130px;font-size:14px;color:#333;"><span style="margin-right:19px;">省市/区：</span><input id="content" style="outline:none;text-indent:5px;width:240px;height:30px;"/></div>
+						<div class="a_contentdetail" style="margin:30px 0 20px 130px;font-size:14px;color:#333;"><span style="margin-right:10px;">详细地址：</span><input id="contentdetail" style="outline:none;text-indent:5px;width:240px;height:30px;"/></div>
+						<div class="a_phonenum" style="margin:30px 0 20px 130px;font-size:14px;color:#333;"><span style="margin-right:10px;">手机号码：</span><input id="phonenum" style="outline:none;text-indent:5px;width:240px;height:30px;"/></div>
+						<div class="a_realname" style="margin:30px 0 20px 130px;font-size:14px;color:#333;"><span style="margin-right:10px;">收货姓名：</span><input id="realname" style="outline:none;text-indent:5px;width:240px;height:30px;"/></div>
+						<div class="okbutton" style="width:120px;height:30px;background:#fff;color:#333;border:1px solid #03a9f4;cursor:pointer;text-align:center;line-height:30px;float:left;margin:10px 0 0 150px;">确认</div>
+						<div class="canclebutton" style="width:120px;height:30px;background:#03a9f4;color:#fff;text-align:center;cursor:pointer;line-height:30px;float:left;margin:10px 0 0 30px;">取消</div>
+					</div>
+					<div class="addmask" style="display:none;width:100%;height:100%;position:fixed;background:rgba(0,0,0,.4);top:0;left:0;z-index:9999;"></div>
 				</div>
 			</div>
 			<!--  -->
@@ -157,8 +167,79 @@
 			$(".a_list ul").append(a_list);
 			$(".a_list ul li").eq(0).addClass("on");
 		}
-		var add_li = "<li style='font-size:16px;text-align:center;line-height:80px;'><span>+</span>添加新地址</li>"
+		var add_li = "<li class='addAddress' style='font-size:16px;text-align:center;line-height:80px;'><span>+</span>添加新地址</li>"+
+					"<div class='clear'></div>"
 		$(".a_list ul").append(add_li);
+		// 点击添加地址
+		$(".addAddress").on("click",function(){
+			$(".addwindow").show();
+			$(".addmask").show();
+		});
+		$(".a_list ul li:not(.addAddress)").on("click",function(){
+			$(this).addClass("on").siblings().removeClass("on");
+		});
+		// 点击取消
+		$(".canclebutton").click(function(){
+			$(".addwindow").hide();
+			$(".addmask").hide();
+		});
+		// 点击确认
+		$(".okbutton").click(function(){
+			var content = $("#content").val();
+			var contentdetail = $("#contentdetail").val();
+			var phonenum = $("#phonenum").val();
+			var realname = $("#realname").val();
+			if(content==""||contentdetail==""||phonenum==""||realname==""){
+				showInfo("字段不能为空~","warning");
+			}else{
+				$.ajax({
+					url: basePath+"/address/addAddress",
+					data: {"content":content,"contentdetail":contentdetail,"phonenum":phonenum,"realname":realname},
+					type: 'post',
+					success: function(data){
+						showInfo("地址添加成功~","success");
+						$(".addwindow").hide();
+						$(".addmask").hide();
+						// 先清除所有的li
+						$(".a_list ul li").remove();
+						// 请求用户的所有地址
+						$.ajax({
+							url: basePath+"/address/getAllAddress",
+							type: 'post',
+							async: false,
+							success: function(data){
+								allAddress = data.datamap.addressList;
+							}
+						});
+						
+						// 地址html
+						for(var i = 0;i<allAddress.length;i++){
+							var a_list = "<li>"+
+					"							<div class='ad_simple'>"+allAddress[i].content+"<span style='color:#737373;'>（"+allAddress[i].realname+" 收）</span></div>"+
+					"							<div class='ad_detail'>"+allAddress[i].contentdetail+"<br/>"+allAddress[i].phonenum+"</div>"+
+					"						</li>";
+							$(".a_list ul").append(a_list);
+							$(".a_list ul li").eq(0).addClass("on");
+						}
+						var add_li = "<li class='addAddress' style='font-size:16px;text-align:center;line-height:80px;'><span>+</span>添加新地址</li>"+
+									"<div class='clear'></div>"
+						$(".a_list ul").append(add_li);
+						$(".addAddress").on("click",function(){
+							$(".addwindow").show();
+							$(".addmask").show();
+						});
+						$(".a_list ul li:not(.addAddress)").on("click",function(){
+							$(this).addClass("on").siblings().removeClass("on");
+						});
+					}
+				});
+			}
+		});
+	});
+	
+	// 点击管理地址
+	$(".a_list .delAddress").click(function(){
+		alert("del");
 	});
 </script>
 </body>

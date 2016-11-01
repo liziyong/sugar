@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-10-31 23:55:20
+Date: 2016-11-01 23:51:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,13 +32,18 @@ CREATE TABLE `sugar_address` (
   PRIMARY KEY (`id`),
   KEY `FK_2ipxlwl2pwkoqi8jw2tdjxy7k` (`uid`),
   CONSTRAINT `FK_2ipxlwl2pwkoqi8jw2tdjxy7k` FOREIGN KEY (`uid`) REFERENCES `sugar_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sugar_address
 -- ----------------------------
 INSERT INTO `sugar_address` VALUES ('1', '江西吉安', '江西省吉安市泰和县', '2016-10-31 22:36:05', '13616549386', '孙肇将', null, null, '1');
 INSERT INTO `sugar_address` VALUES ('2', '浙江杭州', '浙江省杭州市西湖区五联西苑113号', '2016-10-31 22:37:22', '13616549386', '孙肇将', null, null, '1');
+INSERT INTO `sugar_address` VALUES ('3', '浙江杭州', '浙江省杭州市西湖区五联西苑113号', '2016-11-01 19:49:02', '13616549386', '孙肇将', null, null, '1');
+INSERT INTO `sugar_address` VALUES ('5', '浙江杭州', '浙江省杭州市西湖区五联西苑113号', '2016-11-01 21:24:26', '18146718316', '孙肇将', null, null, '1');
+INSERT INTO `sugar_address` VALUES ('7', '贵州毕节', '贵州省毕节市哪里哪里不知道', '2016-11-01 21:28:30', '13616549386', '刘静', null, null, '1');
+INSERT INTO `sugar_address` VALUES ('15', '浙江杭州', '浙江省杭州市西湖区', '2016-11-01 21:50:52', '13616549386', '孙肇将', null, null, '1');
+INSERT INTO `sugar_address` VALUES ('16', '浙江杭州', '浙江省杭州市西湖区', '2016-11-01 21:53:11', '124434434532334', '孙肇将', null, null, '1');
 
 -- ----------------------------
 -- Table structure for sugar_admin
