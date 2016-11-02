@@ -27,8 +27,8 @@
 			#buyProcess .content .c_address{width:100%;margin-top:40px;}
 			#buyProcess .content .a_title{width:100%;height:40px;color:#333;font-weight:bold;font-size:14px;}
 			#buyProcess .content .a_list{width:100%;}
-			#buyProcess .content .a_list ul li{padding:10px;background:url('../images/address_not.png');width:217px;height:85px;cursor:pointer;float:left;margin-right:28px;margin-bottom:20px;}
-			#buyProcess .content .a_list ul li.on{background:url('../images/address_yes.png');}
+			#buyProcess .content .a_list ul li{padding:10px;background:url('${basePath}/images/address_not.png');width:217px;height:85px;cursor:pointer;float:left;margin-right:28px;margin-bottom:20px;}
+			#buyProcess .content .a_list ul li.on{background:url('${basePath}/images/address_yes.png');}
 			#buyProcess .content .a_list ul li .ad_simple{color:#333;border-bottom:1px solid #bbb;width:100%;height:26px;}
 			#buyProcess .content .a_list ul li .ad_detail{color:#333;width:100%;margin-top:8px;}
 			
@@ -70,7 +70,7 @@
 		<div class="content">
 			<div class="c_logo">
 				<div class="l_logo">
-					<img src="../images/logo.png" width="120" height="80"/>
+					<img src="${basePath }/images/logo.png" width="120" height="80"/>
 				</div>
 				<div class="l_title">购买家居</div>
 			</div>
@@ -101,7 +101,7 @@
 				<div class="s_title">请确认订单</div>
 				<div class="s_order">
 					<div class="o_shopClass">
-						<div class="shopName"><img class="sn_img" src="../images/shop.png" width="16" height="16"/><div class="sn_name">店铺：江西师范大学</div></div>
+						<div class="shopName"><img class="sn_img" src="${basePath}/images/shop.png" width="16" height="16"/><div class="sn_name">店铺：江西师范大学</div></div>
 						<ul>
 							<li>
 								<div class="goodsInfo">
@@ -148,6 +148,9 @@
 <script type="text/javascript">
 	var allAddress = new Array();
 	$(function(){
+		var haha = "${shopgoodList}";
+		console.log(haha);
+		console.log("hahah");
 		// 请求用户的所有地址
 		$.ajax({
 			url: basePath+"/address/getAllAddress",
@@ -168,7 +171,7 @@
 			$(".a_list ul li").eq(0).addClass("on");
 		}
 		var add_li = "<li class='addAddress' style='font-size:16px;text-align:center;line-height:80px;'><span>+</span>添加新地址</li>"+
-					"<div class='clear'></div>"
+					"<div class='clear'></div>";
 		$(".a_list ul").append(add_li);
 		// 点击添加地址
 		$(".addAddress").on("click",function(){
@@ -222,7 +225,7 @@
 							$(".a_list ul li").eq(0).addClass("on");
 						}
 						var add_li = "<li class='addAddress' style='font-size:16px;text-align:center;line-height:80px;'><span>+</span>添加新地址</li>"+
-									"<div class='clear'></div>"
+									"<div class='clear'></div>";
 						$(".a_list ul").append(add_li);
 						$(".addAddress").on("click",function(){
 							$(".addwindow").show();

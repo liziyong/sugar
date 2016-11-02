@@ -299,13 +299,7 @@
 					$(".buynow").click(function(){
 						var totalcount = $(".totalcount").val();
 						var goodid = (window.location.href).split("=")[1];
-						$.ajax({
-							url: basePath+"/to/userPage/toBuyProcess",
-							data: {"totalcount":totalcount,"goodid":goodid},
-							type: 'post',
-							success: function(data){
-							}
-						});
+						window.location.href=basePath+"/to/userPage/oneToBuyProcess?totalcount="+totalcount+"&goodid="+goodid;
 					});
 					// 点击加入购物车
 					$(".addshopcar").click(function(){

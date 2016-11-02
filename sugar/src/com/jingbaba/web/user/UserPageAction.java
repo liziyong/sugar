@@ -41,15 +41,39 @@ public class UserPageAction extends BaseAction implements ServletRequestAware{
 	@Autowired
 	private IGoodService goodService;
 	
-	public String toBuyProcess(){
+	public String oneToBuyProcess(){
 		String goodid = request.getParameter("goodid");
 		String totalcount = request.getParameter("totalcount");
 		Good good = goodService.get(Integer.parseInt(goodid));
 		Shop shop = good.getShopid();
 		List<Map<String, Object>> shopgoodList = new ArrayList<Map<String, Object>>();
+		List<Map<String, Object>> goodList = new ArrayList<Map<String, Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("shopid",shop.getId());
-		map.put(good.getId().toString(),totalcount);
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("good", good);
+		map2.put("totalcount", totalcount);
+		goodList.add(map2);
+		map.put("shop",shop);
+		map.put("shopid",goodList);
+		shopgoodList.add(map);
+		request.setAttribute("shopgoodList", shopgoodList);
+		return "buyProcess";
+	}
+	
+	public String carToBuyProcess(){
+		String goodid = request.getParameter("goodid");
+		String totalcount = request.getParameter("totalcount");
+		Good good = goodService.get(Integer.parseInt(goodid));
+		Shop shop = good.getShopid();
+		List<Map<String, Object>> shopgoodList = new ArrayList<Map<String, Object>>();
+		List<Map<String, Object>> goodList = new ArrayList<Map<String, Object>>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("good", good);
+		map2.put("totalcount", totalcount);
+		goodList.add(map2);
+		map.put("shop",shop);
+		map.put("shopid",goodList);
 		shopgoodList.add(map);
 		request.setAttribute("shopgoodList", shopgoodList);
 		return "buyProcess";

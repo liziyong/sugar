@@ -43,6 +43,7 @@
 	<package name="ToPKG" namespace="/to" extends="defaults">
 		<action name="/*/*" method="{2}" class="{1}Action">
 			<result name="goodsInfo">/page/goodsInfo.jsp</result>
+			<result name="buyProcess">/page/buyProcess.jsp</result>
 		</action>
 	</package>
 	
