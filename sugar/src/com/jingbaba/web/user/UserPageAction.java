@@ -61,6 +61,7 @@ public class UserPageAction extends BaseAction implements ServletRequestAware{
 	}
 	
 	public String carToBuyProcess(){
+		String shopgood[] = request.getParameterValues("shopgoodList");
 		String goodid = request.getParameter("goodid");
 		String totalcount = request.getParameter("totalcount");
 		Good good = goodService.get(Integer.parseInt(goodid));

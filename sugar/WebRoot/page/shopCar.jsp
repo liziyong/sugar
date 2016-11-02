@@ -187,7 +187,7 @@
 					<div class="s_delAll" style="float:left;height:50px;line-height:50px;"><a href="#" style="color:#333;font-size:14px;">删除</a></div>
 					<div class="s_checkOut" style="width:260px;height:50px;float:right;">
 						<div style="line-height:50px;float:left;color:#333;">合计：<span style="color:red;font-size:14px;">￥3000</span></div>
-						<div style="float:right;width:120px;height:50px;line-height:50px;text-align:center;background:#03a9f4;color:#fff;">去结算</div>
+						<div class="goCheckOut" style="float:right;width:120px;height:50px;line-height:50px;text-align:center;background:#03a9f4;color:#fff;">去结算</div>
 					</div>
 				</div>
 			</div>
@@ -210,6 +210,39 @@ $(function(){
 			$("#mysugar .content .c_left").removeClass("fixed");
 		}
 	});
+});
+
+var shopgoodList = new Array();
+var map = {
+	"shop":"1",
+	"shopid":[{
+		"good":1,
+		"totalcount":1
+	},{
+		"good":2,
+		"totalcount":2
+	}]
+};
+shopgoodList.push(map);
+
+
+
+$(".goCheckOut").click(function(){
+	/* var html = "<form action='${basePath}/to/userPage/carToBuyProcess' method='post'>"+
+	"<input type='hidden' name='shopcar' value='"+shopgoodList+"'>"+
+	"<input type='submit' class=submit/>"+
+	"</form>";
+	$("body").append(html);
+	$("form").submit(); */
+	$.ajax({
+	url: basePath+"/to/userPage/carToBuyProcess",
+	data: {"shopgoodList":shopgoodList},
+	type: 'post',
+	traditional: true,
+	async: false,
+	success: function(data){
+	}
+});
 });
 </script>
 </body>

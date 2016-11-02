@@ -100,29 +100,33 @@
 			<div class="c_sure">
 				<div class="s_title">请确认订单</div>
 				<div class="s_order">
+				<c:forEach items="${shopgoodList }" var="item">
 					<div class="o_shopClass">
-						<div class="shopName"><img class="sn_img" src="${basePath}/images/shop.png" width="16" height="16"/><div class="sn_name">店铺：江西师范大学</div></div>
+						<div class="shopName"><img class="sn_img" src="${basePath}/images/shop.png" width="16" height="16"/><div class="sn_name">店铺：${item.shop.shopname }</div></div>
 						<ul>
+						<c:forEach items="${item.shopid }" var="its">
 							<li>
 								<div class="goodsInfo">
-									<img src="../images/user/pic.jpg" width="60" height="60"/>
-									<div class="goodsName">宜家家居同款家居，木质家居，精美家居。宜家家居同款家居，木质家居，精美家居。</div>
+									<img src="${basePath }/images/user/pic.jpg" width="60" height="60"/>
+									<div class="goodsName">${its.good.goodname }</div>
 								</div>
 								<div class="goodsPrice">
-									<p>单价：<span>250</span></p>
+									<p>单价：<span>${its.good.goodnprice}</span></p>
 								</div>
 								<div class="goodsCount">
-									<p>数量：<span>1</span></p>
+									<p>数量：<span>${its.totalcount}</span></p>
 								</div>
 								<div class="goodsMoney">
-									<p>小计：<span>1000</span></p>
+									<p>小计：<span></span></p>
 								</div>
 							</li>
+						</c:forEach>
 						</ul>
 						<div class="shop_total">
-							<div class="t_money">店铺总计：<span style="color:red;">￥1000</span></div>
+							<div class="t_money">店铺总计：￥<span style="color:red;"></span></div>
 						</div>
 					</div>
+				</c:forEach>
 				</div>
 			</div>
 			<!--  -->
@@ -148,9 +152,15 @@
 <script type="text/javascript">
 	var allAddress = new Array();
 	$(function(){
-		var haha = "${shopgoodList}";
-		console.log(haha);
-		console.log("hahah");
+		var totalmoney = 0;
+		for(var i = 0;i< $(".o_shopClass ul li").length;i++){
+			var allmoney = $(".o_shopClass ul li").eq(i).find(".goodsPrice span").text()*$(".o_shopClass ul li").eq(i).find(".goodsCount span").text();
+			$(".o_shopClass ul li").eq(i).find(".goodsMoney span").text(allmoney);
+			
+			totalmoney = Number(totalmoney) + Number($(".o_shopClass ul li").eq(i).find(".goodsMoney span").text());
+			$(".shop_total .t_money span").text(totalmoney);
+		}
+		
 		// 请求用户的所有地址
 		$.ajax({
 			url: basePath+"/address/getAllAddress",
@@ -238,6 +248,8 @@
 				});
 			}
 		});
+		
+		
 	});
 	
 	// 点击管理地址
