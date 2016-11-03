@@ -20,7 +20,7 @@
 		<global-results>
 			<result name="error" type="redirect">/404.jsp</result>
 			<result name="toIndex" type="redirect">/index.jsp</result>
-			<result name="toLogin" type="redirect">/login.jsp</result>
+			<result name="toLogin" type="redirect">/page/login.jsp</result>
 		</global-results>
 	</package>
 	
@@ -43,7 +43,18 @@
 	<package name="ToPKG" namespace="/to" extends="defaults">
 		<action name="/*/*" method="{2}" class="{1}Action">
 			<result name="goodsInfo">/page/goodsInfo.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 页面跳转包 -->
+	<package name="ToLoginPKG" namespace="/tologin" extends="defaults">
+		<action name="/*/*" method="{2}" class="{1}Action">
 			<result name="buyProcess">/page/buyProcess.jsp</result>
+			<result name="shopcar">/page/shopCar.jsp</result>
+			<result name="allorder">/page/allOrder.jsp</result>
+			
+			<interceptor-ref name="loginInterceptorUser"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 	</package>
 	

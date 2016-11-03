@@ -24,7 +24,7 @@
 			#mysugar .content .c_left.fixed{position:fixed;top:10px;left:62px;}
 			#mysugar .content .c_left ul li{width:100%;height:40px;position:relative;}
 			#mysugar .content .c_left ul .set{margin-top:260px;}
-			#mysugar .content .c_left ul .set i{width:20px;height:20px;background:url("../images/icon1.png") no-repeat;background-position:-688px -406px;display:inline-block;margin:8px auto;line-height:35px;}
+			#mysugar .content .c_left ul .set i{width:20px;height:20px;background:url("${basePath}/images/icon1.png") no-repeat;background-position:-688px -406px;display:inline-block;margin:8px auto;line-height:35px;}
 			#mysugar .content .c_left ul li.on{background:#adb0b1;}
 			#mysugar .content .c_left ul li:hover{background:#adb0b1;}
 			#mysugar .content .c_left ul li a{display:block;width:100%;height:40px;text-align:center;line-height:40px;color:#fff;font-size:14px;}
@@ -81,9 +81,9 @@
 		<div class="content">
 			<div class="c_left">
 				<ul>
-					<li><a href="#">账号设置</a></li>
-					<li><a href="#">我的购物车</a></li>
-					<li class="on"><a href="#">我的交易记录</a><span></span></li>
+					<li><a href="${basePath }/page/userInfo.jsp">账号设置</a></li>
+					<li><a href="${basePath }/tologin/userPage/toMyShopCar">我的购物车</a></li>
+					<li class="on"><a href="javascript:void(0)">我的交易记录</a><span></span></li>
 					<li><a href="#">我的设计</a></li>
 					<li><a href="#">我的商店</a></li>
 					<li class="set"><a href="#"><i></i></a></li>
@@ -91,105 +91,45 @@
 			</div>
 			<div class="c_right">
 				<div class="r_logo">
-					<div class="logo"><img src="../images/logo.png" width="120" height="80px"/></div>
+					<div class="logo"><img src="${basePath}/images/logo.png" width="120" height="80px"/></div>
 					<div class="title">我的交易记录</div>
 				</div>
 				<div class="r_class">
 					<ul>
-						<li class="on"><a class="on" href="#">所有订单</a><i></i></li>
-						<li><a href="#">待发货<span>2</span></a><i></i></li>
-						<li><a href="#">待收货<span>3</span></a><i></i></li>
-						<li><a href="#">带评价<span>4</span></a></li>
+						<li class="on"><a class="on" href="${basePath }/tologin/userPage/toAllOrder?pn=1">所有订单</a><i></i></li>
+						<li><a href="${basePath }/tologin/userPage/toAllOrder?st=1&pn=1">待发货</a><i></i></li>
+						<li><a href="${basePath }/tologin/userPage/toAllOrder?st=2&pn=1">待收货</a><i></i></li>
+						<li><a href="${basePath }/tologin/userPage/toAllOrder?st=3&pn=1">待评价</a></li>
 					</ul>
 				</div>
 				<div class="r_order">
+					<%if(request.getAttribute("mapList") == null){%>
+						<div style="width:100%;height:200px;text-align:center;line-height:200px;font-size:14px;color:#333;">没有相关订单...</div>
+					<%}else{%>
+					<c:forEach items="${mapList }" var="item">
 					<div class="shopClass"> 
 						<div class="s_shopTop">
 							<div class="s_shopName">
-								<img class="sn_img" src="../images/shop.png" width="16" height="16"/><div class="sn_name">店铺：江西师范大学</div>
+								<img class="sn_img" src="${basePath }/images/shop.png" width="16" height="16"/><div class="sn_name">店铺：${item.shop.shopname }</div>
 							</div>
 							<div class="s_orderId">
-								<div class="sn_name">订单号：52631335263</div>
+								<div class="sn_name">订单号：${item.shoporder.ordernum }</div>
 							</div>
 						</div>
 						<div class="s_shopList">
 							<ul>
+								<c:forEach items="${item.shopid }" var="its">
 								<li>
 									<div class="goodsInfo" style="">
-										<img class="g_goodsPic" src="../images/user/pic.jpg" width="60" height="60"/>
-										<div class="g_goodsDetail">解放军斯蒂芬金斯基fis时间的覅哦打费尽口fis时间的覅哦打费尽口舌</div>
+										<img class="g_goodsPic" src="${basePath }/images/good/${its.good.id}/1.jpg" width="60" height="60"/>
+										<div class="g_goodsDetail">${its.good.goodname }</div>
 									</div>
-									<div class="goodsPrice">单价：<span style="color:red;">230</span></div>
+									<div class="goodsPrice">单价：<span style="color:red;">${its.good.goodnprice }</span></div>
 									<div class="goodsCount">数量：1</div>
-									<div class="goodsTotal">合计：<span style="color:red;">230</span></div>
-									<div class="goodsStatus">状态：<span style="color:red;">待收货</span></div>
+									<div class="goodsTotal">合计：<span style="color:red;">${item.shoporder.allmoney }</span></div>
+									<div class="goodsStatus">状态：<span style="color:red;">${its.status }</span></div>
 								</li>
-								<li>
-									<div class="goodsInfo" style="">
-										<img class="g_goodsPic" src="../images/user/pic.jpg" width="60" height="60"/>
-										<div class="g_goodsDetail">解放军斯蒂芬金斯基fis时间的覅哦打费尽口fis时间的覅哦打费尽口舌</div>
-									</div>
-									<div class="goodsPrice">单价：<span style="color:red;">230</span></div>
-									<div class="goodsCount">数量：2</div>
-									<div class="goodsTotal">合计：<span style="color:red;">460</span></div>
-									<div class="goodsStatus">状态：<span style="color:red;">待收货</span></div>
-								</li>
-							</ul>
-							<div class="deal_sure" style="width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">确认收货</a></div>
-							<div class="deal_comment" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">评价</a></div>
-							<div class="deal_buy" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">再次购买</a></div>
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="shopClass"> 
-						<div class="s_shopTop">
-							<div class="s_shopName">
-								<img class="sn_img" src="../images/shop.png" width="16" height="16"/><div class="sn_name">店铺：江西师范大学</div>
-							</div>
-							<div class="s_orderId">
-								<div class="sn_name">订单号：52631335263</div>
-							</div>
-						</div>
-						<div class="s_shopList">
-							<ul>
-								<li>
-									<div class="goodsInfo" style="">
-										<img class="g_goodsPic" src="../images/user/pic.jpg" width="60" height="60"/>
-										<div class="g_goodsDetail">解放军斯蒂芬金斯基fis时间的覅哦打费尽口fis时间的覅哦打费尽口舌</div>
-									</div>
-									<div class="goodsPrice">单价：<span style="color:red;">230</span></div>
-									<div class="goodsCount">数量：1</div>
-									<div class="goodsTotal">合计：<span style="color:red;">230</span></div>
-									<div class="goodsStatus">状态：<span style="color:red;">待收货</span></div>
-								</li>
-							</ul>
-							<div class="deal_sure" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">确认收货</a></div>
-							<div class="deal_comment" style="width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">评价</a></div>
-							<div class="deal_buy" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">再次购买</a></div>
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="shopClass"> 
-						<div class="s_shopTop">
-							<div class="s_shopName">
-								<img class="sn_img" src="../images/shop.png" width="16" height="16"/><div class="sn_name">店铺：江西师范大学</div>
-							</div>
-							<div class="s_orderId">
-								<div class="sn_name">订单号：52631335263</div>
-							</div>
-						</div>
-						<div class="s_shopList">
-							<ul>
-								<li>
-									<div class="goodsInfo" style="">
-										<img class="g_goodsPic" src="../images/user/pic.jpg" width="60" height="60"/>
-										<div class="g_goodsDetail">解放军斯蒂芬金斯基fis时间的覅哦打费尽口fis时间的覅哦打费尽口舌</div>
-									</div>
-									<div class="goodsPrice">单价：<span style="color:red;">230</span></div>
-									<div class="goodsCount">数量：1</div>
-									<div class="goodsTotal">合计：<span style="color:red;">230</span></div>
-									<div class="goodsStatus">状态：<span style="color:red;">待收货</span></div>
-								</li>
+								</c:forEach>
 							</ul>
 							<div class="deal_sure" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">确认收货</a></div>
 							<div class="deal_comment" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">评价</a></div>
@@ -197,146 +137,8 @@
 							<div class="clear"></div>
 						</div>
 					</div>
-					<div class="shopClass"> 
-						<div class="s_shopTop">
-							<div class="s_shopName">
-								<img class="sn_img" src="../images/shop.png" width="16" height="16"/><div class="sn_name">店铺：江西师范大学</div>
-							</div>
-							<div class="s_orderId">
-								<div class="sn_name">订单号：52631335263</div>
-							</div>
-						</div>
-						<div class="s_shopList">
-							<ul>
-								<li>
-									<div class="goodsInfo" style="">
-										<img class="g_goodsPic" src="../images/user/pic.jpg" width="60" height="60"/>
-										<div class="g_goodsDetail">解放军斯蒂芬金斯基fis时间的覅哦打费尽口fis时间的覅哦打费尽口舌</div>
-									</div>
-									<div class="goodsPrice">单价：<span style="color:red;">230</span></div>
-									<div class="goodsCount">数量：1</div>
-									<div class="goodsTotal">合计：<span style="color:red;">230</span></div>
-									<div class="goodsStatus">状态：<span style="color:red;">待收货</span></div>
-								</li>
-							</ul>
-							<div class="deal_sure" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">确认收货</a></div>
-							<div class="deal_comment" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">评价</a></div>
-							<div class="deal_buy" style="width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">再次购买</a></div>
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="shopClass"> 
-						<div class="s_shopTop">
-							<div class="s_shopName">
-								<img class="sn_img" src="../images/shop.png" width="16" height="16"/><div class="sn_name">店铺：江西师范大学</div>
-							</div>
-							<div class="s_orderId">
-								<div class="sn_name">订单号：52631335263</div>
-							</div>
-						</div>
-						<div class="s_shopList">
-							<ul>
-								<li>
-									<div class="goodsInfo" style="">
-										<img class="g_goodsPic" src="../images/user/pic.jpg" width="60" height="60"/>
-										<div class="g_goodsDetail">解放军斯蒂芬金斯基fis时间的覅哦打费尽口fis时间的覅哦打费尽口舌</div>
-									</div>
-									<div class="goodsPrice">单价：<span style="color:red;">230</span></div>
-									<div class="goodsCount">数量：1</div>
-									<div class="goodsTotal">合计：<span style="color:red;">230</span></div>
-									<div class="goodsStatus">状态：<span style="color:red;">待收货</span></div>
-								</li>
-							</ul>
-							<div class="deal_sure" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">确认收货</a></div>
-							<div class="deal_comment" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">评价</a></div>
-							<div class="deal_buy" style="width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">再次购买</a></div>
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="shopClass"> 
-						<div class="s_shopTop">
-							<div class="s_shopName">
-								<img class="sn_img" src="../images/shop.png" width="16" height="16"/><div class="sn_name">店铺：江西师范大学</div>
-							</div>
-							<div class="s_orderId">
-								<div class="sn_name">订单号：52631335263</div>
-							</div>
-						</div>
-						<div class="s_shopList">
-							<ul>
-								<li>
-									<div class="goodsInfo" style="">
-										<img class="g_goodsPic" src="../images/user/pic.jpg" width="60" height="60"/>
-										<div class="g_goodsDetail">解放军斯蒂芬金斯基fis时间的覅哦打费尽口fis时间的覅哦打费尽口舌</div>
-									</div>
-									<div class="goodsPrice">单价：<span style="color:red;">230</span></div>
-									<div class="goodsCount">数量：1</div>
-									<div class="goodsTotal">合计：<span style="color:red;">230</span></div>
-									<div class="goodsStatus">状态：<span style="color:red;">待收货</span></div>
-								</li>
-							</ul>
-							<div class="deal_sure" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">确认收货</a></div>
-							<div class="deal_comment" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">评价</a></div>
-							<div class="deal_buy" style="width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">再次购买</a></div>
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="shopClass"> 
-						<div class="s_shopTop">
-							<div class="s_shopName">
-								<img class="sn_img" src="../images/shop.png" width="16" height="16"/><div class="sn_name">店铺：江西师范大学</div>
-							</div>
-							<div class="s_orderId">
-								<div class="sn_name">订单号：52631335263</div>
-							</div>
-						</div>
-						<div class="s_shopList">
-							<ul>
-								<li>
-									<div class="goodsInfo" style="">
-										<img class="g_goodsPic" src="../images/user/pic.jpg" width="60" height="60"/>
-										<div class="g_goodsDetail">解放军斯蒂芬金斯基fis时间的覅哦打费尽口fis时间的覅哦打费尽口舌</div>
-									</div>
-									<div class="goodsPrice">单价：<span style="color:red;">230</span></div>
-									<div class="goodsCount">数量：1</div>
-									<div class="goodsTotal">合计：<span style="color:red;">230</span></div>
-									<div class="goodsStatus">状态：<span style="color:red;">待收货</span></div>
-								</li>
-							</ul>
-							<div class="deal_sure" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">确认收货</a></div>
-							<div class="deal_comment" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">评价</a></div>
-							<div class="deal_buy" style="width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">再次购买</a></div>
-							<div class="clear"></div>
-						</div>
-					</div>
-					<div class="shopClass"> 
-						<div class="s_shopTop">
-							<div class="s_shopName">
-								<img class="sn_img" src="../images/shop.png" width="16" height="16"/><div class="sn_name">店铺：江西师范大学</div>
-							</div>
-							<div class="s_orderId">
-								<div class="sn_name">订单号：52631335263</div>
-							</div>
-						</div>
-						<div class="s_shopList">
-							<ul>
-								<li>
-									<div class="goodsInfo" style="">
-										<img class="g_goodsPic" src="../images/user/pic.jpg" width="60" height="60"/>
-										<div class="g_goodsDetail">解放军斯蒂芬金斯基fis时间的覅哦打费尽口fis时间的覅哦打费尽口舌</div>
-									</div>
-									<div class="goodsPrice">单价：<span style="color:red;">230</span></div>
-									<div class="goodsCount">数量：1</div>
-									<div class="goodsTotal">合计：<span style="color:red;">230</span></div>
-									<div class="goodsStatus">状态：<span style="color:red;">待收货</span></div>
-								</li>
-							</ul>
-							<div class="deal_sure" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">确认收货</a></div>
-							<div class="deal_comment" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">评价</a></div>
-							<div class="deal_buy" style="width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">再次购买</a></div>
-							<div class="clear"></div>
-						</div>
-					</div>
+					</c:forEach>
+					<%}%>
 				</div>
 				<div class="r_pagecount">
 					<div class="p_content">

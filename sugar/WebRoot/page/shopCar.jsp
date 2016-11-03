@@ -80,9 +80,9 @@
 		<div class="content">
 			<div class="c_left">
 				<ul>
-					<li><a href="#">账号设置</a></li>
-					<li class="on"><a href="#">我的购物车</a><span></span></li>
-					<li><a href="#">我的交易记录</a></li>
+					<li><a href="${basePath }/page/userInfo.jsp">账号设置</a></li>
+					<li class="on"><a href="javascript:void(0)">我的购物车</a><span></span></li>
+					<li><a href="${basePath }/tologin/userPage/toAllOrder?pn=1">我的交易记录</a></li>
 					<li><a href="#">我的设计</a></li>
 					<li><a href="#">我的商店</a></li>
 					<li class="set"><a href="#"><i></i></a></li>
@@ -90,91 +90,35 @@
 			</div>
 			<div class="c_right">
 				<div class="r_logo">
-					<div class="logo"><img src="../images/logo.png" width="120" height="80px"/></div>
+					<div class="logo"><img src="${basePath }/images/logo.png" width="120" height="80px"/></div>
 					<div class="title">我的购物车</div>
 				</div>
 				<div class="r_toptoal">
 					<div class="t_choose"><input class="chooseAllTop" type="checkbox"/>选中所有的商品</div>
 					<div class="t_allMoney">已经选择商品：<span style="color:red;">￥320</span><div class="goCheckOut">去结算</div></div>
 				</div>
+				<c:forEach items="${mapList }" var="item">
 				<div class="r_shopClass">
 					<div class="shopClass"> 
 						<div class="s_shopName">
-							<input class="shopAll" type="checkbox" style="float:left;margin:4px 5px 0 0;"/><img class="sn_img" src="../images/shop.png" width="16" height="16"/><div class="sn_name">店铺：江西师范大学</div>
+							<input class="shopAll" type="checkbox" style="float:left;margin:4px 5px 0 0;"/><img class="sn_img" src="${basePath }/images/shop.png" width="16" height="16"/><div class="sn_name">店铺：${item.shop.shopname }</div>
 						</div>
 						<div class="s_shopTop"></div>
 						<div class="s_shopList">
 							<ul>
+								<c:forEach items="${item.shopid }" var="its">
 								<li>
 									<input class="goodsCheck" type="checkbox" style=""/>
 									<div class="goodsInfo" style="">
-										<img class="g_goodsPic" src="../images/user/pic.jpg" width="60" height="60"/>
-										<div class="g_goodsDetail">解放军斯蒂芬金斯基fis时间的覅哦打费尽口fis时间的覅哦打费尽口舌</div>
+										<img class="g_goodsPic" src="${basePath }/images/good/${its.good.id }/1.jpg" width="60" height="60"/>
+										<div class="g_goodsDetail">${its.good.goodname }</div>
 									</div>
-									<div class="goodsPrice">单价：<span style="color:red;">230</span></div>
-									<div class="goodsCount">数量：<input type="button" value="-"/><input type="text" value="1" style="width:80px;"/><input type="button" value="+"/></div>
+									<div class="goodsPrice">单价：<span style="color:red;">${its.good.goodnprice }</span></div>
+									<div class="goodsCount">数量：<input type="button" value="-"/><input type="text" value="${its.goodcount }" style="width:80px;"/><input type="button" value="+"/></div>
 									<div class="goodsTotal">合计：<span style="color:red;">230</span></div>
 									<div class="goodsDel"><a href="#">删除商品</a></div>
 								</li>
-								<li>
-									<input class="goodsCheck" type="checkbox" style=""/>
-									<div class="goodsInfo" style="">
-										<img class="g_goodsPic" src="../images/user/pic.jpg" width="60" height="60"/>
-										<div class="g_goodsDetail">解放军斯蒂芬金斯基fis时间的覅哦打费尽口fis时间的覅哦打费尽口舌</div>
-									</div>
-									<div class="goodsPrice">单价：<span style="color:red;">230</span></div>
-									<div class="goodsCount">数量：<input type="button" value="-"/><input type="text" value="1" style="width:80px;"/><input type="button" value="+"/></div>
-									<div class="goodsTotal">合计：<span style="color:red;">230</span></div>
-									<div class="goodsDel"><a href="#">删除商品</a></div>
-								</li>
-							</ul>
-						</div>
-						<div class="s_shopBottom">
-							<div class="totalshop">店铺合计：<span style="color:red;">￥1000</span></div>
-						</div>
-					</div>
-					<div class="shopClass"> 
-						<div class="s_shopName">
-							<input class="shopAll" type="checkbox" style="float:left;margin:4px 5px 0 0;"/><img class="sn_img" src="../images/shop.png" width="16" height="16"/><div class="sn_name">店铺：江西师范大学</div>
-						</div>
-						<div class="s_shopTop"></div>
-						<div class="s_shopList">
-							<ul>
-								<li>
-									<input class="goodsCheck" type="checkbox" style=""/>
-									<div class="goodsInfo" style="">
-										<img class="g_goodsPic" src="../images/user/pic.jpg" width="60" height="60"/>
-										<div class="g_goodsDetail">解放军斯蒂芬金斯基fis时间的覅哦打费尽口fis时间的覅哦打费尽口舌</div>
-									</div>
-									<div class="goodsPrice">单价：<span style="color:red;">230</span></div>
-									<div class="goodsCount">数量：<input type="button" value="-"/><input type="text" value="1" style="width:80px;"/><input type="button" value="+"/></div>
-									<div class="goodsTotal">合计：<span style="color:red;">230</span></div>
-									<div class="goodsDel"><a href="#">删除商品</a></div>
-								</li>
-							</ul>
-						</div>
-						<div class="s_shopBottom">
-							<div class="totalshop">店铺合计：<span style="color:red;">￥1000</span></div>
-						</div>
-					</div>
-					<div class="shopClass"> 
-						<div class="s_shopName">
-							<input class="shopAll" type="checkbox" style="float:left;margin:4px 5px 0 0;"/><img class="sn_img" src="../images/shop.png" width="16" height="16"/><div class="sn_name">店铺：江西师范大学</div>
-						</div>
-						<div class="s_shopTop"></div>
-						<div class="s_shopList">
-							<ul>
-								<li>
-									<input class="goodsCheck" type="checkbox" style=""/>
-									<div class="goodsInfo" style="">
-										<img class="g_goodsPic" src="../images/user/pic.jpg" width="60" height="60"/>
-										<div class="g_goodsDetail">解放军斯蒂芬金斯基fis时间的覅哦打费尽口fis时间的覅哦打费尽口舌</div>
-									</div>
-									<div class="goodsPrice">单价：<span style="color:red;">230</span></div>
-									<div class="goodsCount">数量：<input type="button" value="-"/><input type="text" value="1" style="width:80px;"/><input type="button" value="+"/></div>
-									<div class="goodsTotal">合计：<span style="color:red;">230</span></div>
-									<div class="goodsDel"><a href="#">删除商品</a></div>
-								</li>
+								</c:forEach>
 							</ul>
 						</div>
 						<div class="s_shopBottom">
@@ -182,6 +126,7 @@
 						</div>
 					</div>
 				</div>
+				</c:forEach>
 				<div class="r_shoptotal">
 					<div class="s_choose"><input class="chooseAllBottom" type="checkbox"/>全选</div>
 					<div class="s_delAll" style="float:left;height:50px;line-height:50px;"><a href="#" style="color:#333;font-size:14px;">删除</a></div>
@@ -201,6 +146,7 @@
 	</div>
 
 <script type="text/javascript">
+var localdata;
 $(function(){
 	$(window).scroll(function(){
 		var topScr=$(window).scrollTop();

@@ -32,7 +32,7 @@ public class LoginInterceptorUser extends AbstractInterceptor{
 		if(user!=null){
 			return invocation.invoke();
 		}else{
-			return "toIndex";
+			return "toLogin";
 		}
 	}
 }

@@ -52,9 +52,9 @@
 		<div class="content">
 			<div class="c_left">
 				<ul>
-					<li class="on"><a href="#">账号设置</a><span></span></li>
-					<li><a href="#">我的购物车</a></li>
-					<li><a href="#">我的交易记录</a></li>
+					<li class="on"><a href="javascript:void(0)">账号设置</a><span></span></li>
+					<li><a href="${basePath }/to/userPage/toMyShopCar">我的购物车</a></li>
+					<li><a href="${basePath }/to/userPage/toAllOrder?pn=1">我的交易记录</a></li>
 					<li><a href="#">我的设计</a></li>
 					<li><a href="#">我的商店</a></li>
 					<li class="set"><a href="#"><i></i></a></li>
