@@ -107,7 +107,7 @@
 						<c:forEach items="${item.shopid }" var="its">
 							<li>
 								<div class="goodsInfo">
-									<img src="${basePath }/images/user/pic.jpg" width="60" height="60"/>
+									<img src="${basePath }/images/good/${its.good.id }/1.jpg" width="60" height="60"/>
 									<div class="goodsName">${its.good.goodname }</div>
 								</div>
 								<div class="goodsPrice">

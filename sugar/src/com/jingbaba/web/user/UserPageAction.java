@@ -119,16 +119,14 @@ public class UserPageAction extends BaseAction implements ServletRequestAware{
 	
 	public String toAllOrder(){
 		String status = request.getParameter("st");
-		String pn = request.getParameter("pn");
 		User user = (User)request.getSession().getAttribute("user");
 		List<Shoporder> shoporderList = new ArrayList<Shoporder>();
 		if(status==null||"".equals(status)){
-			shoporderList = shoporderService.findAllOrderByUserId(user.getId(), Integer.parseInt(pn));
+			shoporderList = shoporderService.findAllOrderByUserId(user.getId());
 		}else{
-			shoporderList = shoporderService.findAllOrderByUserIdAndStatus(user.getId(),Integer.parseInt(status), Integer.parseInt(pn));
+			shoporderList = shoporderService.findAllOrderByUserIdAndStatus(user.getId(),Integer.parseInt(status));
 		}
 		List<Shop> shopList = shoporderService.findAllShop(user.getId());
-		Double i = (double) shopList.size();
 		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
 		Map<String, Object> map = null;
 		List<Map<String, Object>> goodList = null;
@@ -154,11 +152,6 @@ public class UserPageAction extends BaseAction implements ServletRequestAware{
 			}
 			request.setAttribute("mapList", mapList);
 		}
-		Integer[] curPage = new Integer[2];
-		curPage[1] = (int) Math.ceil(i/5);
-		System.out.println(curPage[1]);
-		curPage[0] = Integer.parseInt(pn);
-		request.setAttribute("curPage", curPage);
 		return "allorder";
 	}
 	public String statusFormat(Integer status){

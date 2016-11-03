@@ -83,26 +83,22 @@ public class ShoporderDaoImpl extends BaseDaoImpl<Shoporder,Integer> implements 
 		return number==null?0:number.intValue();
 	}
 
-	public List<Shoporder> findAllOrderByUserId(Integer id, Integer pn) {
+	public List<Shoporder> findAllOrderByUserId(Integer id) {
 		List<Shoporder> shoporderList = new ArrayList<Shoporder>();
 		String hql = "FROM Shoporder s WHERE s.user=?";
 		Query query = getSession().createQuery(hql);
 		query.setInteger(0, id);
-		query.setFirstResult(pn);
-		query.setMaxResults(5);
 		shoporderList = query.list();
 		return shoporderList;
 	}
 
 	public List<Shoporder> findAllOrderByUserIdAndStatus(Integer id,
-			Integer status, Integer pn) {
+			Integer status) {
 		List<Shoporder> shoporderList = new ArrayList<Shoporder>();
 		String hql = "FROM Shoporder s WHERE s.user=? AND s.status=?";
 		Query query = getSession().createQuery(hql);
 		query.setInteger(0, id);
 		query.setInteger(1, status);
-		query.setFirstResult(pn);
-		query.setMaxResults(5);
 		shoporderList = query.list();
 		return shoporderList;
 	}

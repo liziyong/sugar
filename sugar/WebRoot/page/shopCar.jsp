@@ -24,7 +24,7 @@
 			#mysugar .content .c_left.fixed{position:fixed;top:10px;left:62px;}
 			#mysugar .content .c_left ul li{width:100%;height:40px;position:relative;}
 			#mysugar .content .c_left ul .set{margin-top:260px;}
-			#mysugar .content .c_left ul .set i{width:20px;height:20px;background:url("../images/icon1.png") no-repeat;background-position:-688px -406px;display:inline-block;margin:8px auto;line-height:35px;}
+			#mysugar .content .c_left ul .set i{width:20px;height:20px;background:url("${basePath}/images/icon1.png") no-repeat;background-position:-688px -406px;display:inline-block;margin:8px auto;line-height:35px;}
 			#mysugar .content .c_left ul li.on{background:#adb0b1;}
 			#mysugar .content .c_left ul li:hover{background:#adb0b1;}
 			#mysugar .content .c_left ul li a{display:block;width:100%;height:40px;text-align:center;line-height:40px;color:#fff;font-size:14px;}
@@ -82,7 +82,7 @@
 				<ul>
 					<li><a href="${basePath }/page/userInfo.jsp">账号设置</a></li>
 					<li class="on"><a href="javascript:void(0)">我的购物车</a><span></span></li>
-					<li><a href="${basePath }/tologin/userPage/toAllOrder?pn=1">我的交易记录</a></li>
+					<li><a href="${basePath }/tologin/userPage/toAllOrder">我的交易记录</a></li>
 					<li><a href="#">我的设计</a></li>
 					<li><a href="#">我的商店</a></li>
 					<li class="set"><a href="#"><i></i></a></li>
@@ -146,7 +146,6 @@
 	</div>
 
 <script type="text/javascript">
-var localdata;
 $(function(){
 	$(window).scroll(function(){
 		var topScr=$(window).scrollTop();
@@ -158,37 +157,39 @@ $(function(){
 	});
 });
 
-var shopgoodList = new Array();
-var map = {
-	"shop":"1",
-	"shopid":[{
-		"good":1,
-		"totalcount":1
-	},{
-		"good":2,
-		"totalcount":2
-	}]
-};
-shopgoodList.push(map);
-
-
-
 $(".goCheckOut").click(function(){
-	/* var html = "<form action='${basePath}/to/userPage/carToBuyProcess' method='post'>"+
-	"<input type='hidden' name='shopcar' value='"+shopgoodList+"'>"+
-	"<input type='submit' class=submit/>"+
-	"</form>";
-	$("body").append(html);
-	$("form").submit(); */
-	$.ajax({
-	url: basePath+"/to/userPage/carToBuyProcess",
-	data: {"shopgoodList":shopgoodList},
-	type: 'post',
-	traditional: true,
-	async: false,
-	success: function(data){
+});
+
+// 全部勾选
+$(".chooseAllTop").click(function(){
+	if($(this).prop("checked")) {
+		$(".shopAll").trigger("click");
+		$(".shopAll").prop('checked', true);
+		$(".goodsCheck").prop('checked', true);
+	}else{
+		$(".shopAll").trigger("click");
+		$(".shopAll").prop('checked', false);
+		$(".goodsCheck").prop('checked', false);
 	}
 });
+$(".chooseAllBottom").click(function(){
+	if($(this).prop("checked")) {
+		$(".shopAll").trigger("click");
+		$(".shopAll").prop('checked', true);
+		$(".goodsCheck").prop('checked', true);
+	}else{
+		$(".shopAll").trigger("click");
+		$(".shopAll").prop('checked', false);
+		$(".goodsCheck").prop('checked', false);
+	}
+});
+// 勾选店铺
+$(".shopAll").click(function(){
+	if($(this).prop("checked")) {
+		$(this).parent().siblings(".s_shopList").find(".goodsCheck").prop('checked', true);
+    }else{
+        $(this).parent().siblings(".s_shopList").find(".goodsCheck").prop('checked', false);
+    }
 });
 </script>
 </body>

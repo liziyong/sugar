@@ -96,10 +96,10 @@
 				</div>
 				<div class="r_class">
 					<ul>
-						<li class="on"><a class="on" href="${basePath }/tologin/userPage/toAllOrder?pn=1">所有订单</a><i></i></li>
-						<li><a href="${basePath }/tologin/userPage/toAllOrder?st=1&pn=1">待发货</a><i></i></li>
-						<li><a href="${basePath }/tologin/userPage/toAllOrder?st=2&pn=1">待收货</a><i></i></li>
-						<li><a href="${basePath }/tologin/userPage/toAllOrder?st=3&pn=1">待评价</a></li>
+						<li class="on"><a class="on" href="${basePath }/tologin/userPage/toAllOrder">所有订单</a><i></i></li>
+						<li><a href="${basePath }/tologin/userPage/toAllOrder?st=1">待发货</a><i></i></li>
+						<li><a href="${basePath }/tologin/userPage/toAllOrder?st=2">待收货</a><i></i></li>
+						<li><a href="${basePath }/tologin/userPage/toAllOrder?st=3">待评价</a></li>
 					</ul>
 				</div>
 				<div class="r_order">
@@ -139,51 +139,6 @@
 					</div>
 					</c:forEach>
 					<%}%>
-				</div>
-				<div class="r_pagecount">
-					<div class="p_content">
-						<c:if test="${curPage[0]>1 }">
-							<a style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:60px;height:30px;color:#333;" href="<c:url value='/to/sendlistAction.do?pn=${curPage[0]-1 }'/>">上一页</a>
-						</c:if>
-						<%--计算begin,end --%>
-						<c:choose>
-							<%--如果页面不足10页，就全部显示 --%>
-							<c:when test="${curPage[1]<=10 }">
-								<c:set var="begin" value="1"></c:set>
-								<c:set var="end" value="${curPage[1] }"></c:set>
-							</c:when>
-							<c:otherwise>
-								<%--如果页面>10页，就用公式计算 --%>
-								<c:set var="begin" value="${curPage[0]-5 }"></c:set>
-								<c:set var="end" value="${curPage[0]+4 }"></c:set>
-								<%--头溢出 --%>
-								<c:if test="${begin < 1 }">
-									<c:set var="begin" value="1"/>
-									<c:set var="end" value="10"/>
-								</c:if>
-								<%--尾溢出 --%>
-								<c:if test="${end > curPage[1] }">
-									<c:set var="begin" value="${curPage[1] - 9 }"/>
-									<c:set var="end" value="${curPage[1] }"/>
-								</c:if>
-							</c:otherwise>
-						</c:choose>
-						<%--循环遍历页面列表 --%>
-						<c:forEach var="i" begin="${begin }" end="${end }">
-							<c:choose>
-								<c:when test="${i eq curPage[0] }">
-									<span style="background:rgba(39,213,191,0.5);line-height:30px;text-align:center;display:inline-block;width:30px;height:30px;color:#fff;">${i }</span>
-								</c:when>
-								<c:otherwise>
-									<a style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:30px;height:30px;color:#333;" href="<c:url value='/to/sendlistAction.do?pn=${i }'/>">${i }</a>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-						
-						<c:if test="${curPage[0]<curPage[1] }">
-							<a  style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:60px;height:30px;color:#333;" href="<c:url value='/to/sendlistAction.do?pn=${curPage[0]+1 }'/>">下一页</a>
-						</c:if>
-					</div>
 				</div>
 			</div>
 			<div class="clear"></div>

@@ -45,10 +45,10 @@ public interface IShoporderDao extends IBaseDao<Shoporder,Integer> {
 	 */
 	public int countShoporder(TmParams params);
 
-	public List<Shoporder> findAllOrderByUserId(Integer id, Integer pn);
+	public List<Shoporder> findAllOrderByUserId(Integer id);
 
 	public List<Shoporder> findAllOrderByUserIdAndStatus(Integer id,
-			Integer status, Integer pn);
+			Integer status);
 
 	public List<Shop> findAllShop(Integer id);
 	

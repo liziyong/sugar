@@ -64,13 +64,13 @@ public class ShoporderServiceImpl extends BaseServiceImpl<Shoporder,Integer>  im
 		return getShoporderDao().countShoporder(params);
 	}
 
-	public List<Shoporder> findAllOrderByUserId(Integer id, Integer pn) {
-		return getShoporderDao().findAllOrderByUserId(id, pn);
+	public List<Shoporder> findAllOrderByUserId(Integer id) {
+		return getShoporderDao().findAllOrderByUserId(id);
 	}
 
 	public List<Shoporder> findAllOrderByUserIdAndStatus(Integer id,
-			Integer status, Integer pn) {
-		return getShoporderDao().findAllOrderByUserIdAndStatus(id, status, pn);
+			Integer status) {
+		return getShoporderDao().findAllOrderByUserIdAndStatus(id, status);
 	}
 
 	public List<Shop> findAllShop(Integer id) {
