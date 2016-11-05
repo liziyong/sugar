@@ -48,5 +48,11 @@ public interface IShopcarDao extends IBaseDao<Shopcar,Integer> {
 	public List<Shopcar> findAllGoodByUserId(Integer id);
 
 	public List<Shop> findAllShopId(Integer id);
+
+	public List<Shopcar> getAllShopcarByUserId(Integer id);
+
+	public Shopcar findAllByUserIdAndGoodId(Integer userid, Integer goodid);
+
+	public Shopcar findShopcarBuyUserIdAndGoodId(Integer userid, Integer goodid);
 	
 }

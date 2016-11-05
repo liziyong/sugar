@@ -99,4 +99,33 @@ public class ShopcarDaoImpl extends BaseDaoImpl<Shopcar,Integer> implements ISho
 		shopidList = query.list();
 		return shopidList;
 	}
+
+	public List<Shopcar> getAllShopcarByUserId(Integer id) {
+		List<Shopcar> shopcarList = new ArrayList<Shopcar>();
+		String hql = "FROM Shopcar s WHERE s.user=?";
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, id);
+		shopcarList = query.list();
+		return shopcarList;
+	}
+
+	public Shopcar findAllByUserIdAndGoodId(Integer userid, Integer goodid) {
+		Shopcar shopcar = new Shopcar();
+		String hql = "FROM Shopcar s WHERE s.user=? AND s.good=?";
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, userid);
+		query.setInteger(1, goodid);
+		shopcar = (Shopcar) query.uniqueResult();
+		return shopcar;
+	}
+
+	public Shopcar findShopcarBuyUserIdAndGoodId(Integer userid, Integer goodid) {
+		Shopcar shopcar = new Shopcar();
+		String hql = "FROM Shopcar s WHERE s.user=? AND s.good=?";
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, userid);
+		query.setInteger(1, goodid);
+		shopcar = (Shopcar) query.uniqueResult();
+		return shopcar;
+	}
 }

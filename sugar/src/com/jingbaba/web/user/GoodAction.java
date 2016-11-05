@@ -61,6 +61,13 @@ public class GoodAction extends BaseAction implements ServletRequestAware{
 		return AJAX_SUCCESS;
 	}
 	
+	public String findAllGood(){
+		String sql = "FROM Good";
+		List<Good> goodList = goodService.findAll(sql);
+		datamap.put("goodList", goodList);
+		return AJAX_SUCCESS;
+	}
+	
 	
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;

@@ -54,7 +54,7 @@
 			#buyProcess .content .c_total .tmoney{width:300px;height:120px;float:right;border:1px solid #03a9f4;}
 			#buyProcess .content .c_total .tmoney .all{width:160px;height:40px;color:#333;font-size:14px;margin:10px 0 0 120px;text-align:center;line-height:40px;}
 			#buyProcess .content .c_total .tmoney .all span{color:red;font-size:18px;}
-			#buyProcess .content .c_total .tmoney .submit{width:160px;height:40px;background:#03a9f4;color:#fff;text-align:center;line-height:40px;margin:16px 0 0 120px;}
+			#buyProcess .content .c_total .tmoney .submit{width:160px;height:40px;background:#03a9f4;color:#fff;text-align:center;line-height:40px;margin:16px 0 0 120px;cursor:pointer;}
 			
 			.clear{clear:both;}
 		
@@ -101,11 +101,11 @@
 				<div class="s_title">请确认订单</div>
 				<div class="s_order">
 				<c:forEach items="${shopgoodList }" var="item">
-					<div class="o_shopClass">
+					<div class="o_shopClass" shopid="${item.shop.id }">
 						<div class="shopName"><img class="sn_img" src="${basePath}/images/shop.png" width="16" height="16"/><div class="sn_name">店铺：${item.shop.shopname }</div></div>
 						<ul>
 						<c:forEach items="${item.shopid }" var="its">
-							<li>
+							<li goodid="${its.good.id }">
 								<div class="goodsInfo">
 									<img src="${basePath }/images/good/${its.good.id }/1.jpg" width="60" height="60"/>
 									<div class="goodsName">${its.good.goodname }</div>
@@ -151,15 +151,23 @@
 
 <script type="text/javascript">
 	var allAddress = new Array();
+	var goodidarray = "${goodidarray}";
 	$(function(){
-		var totalmoney = 0;
-		for(var i = 0;i< $(".o_shopClass ul li").length;i++){
-			var allmoney = $(".o_shopClass ul li").eq(i).find(".goodsPrice span").text()*$(".o_shopClass ul li").eq(i).find(".goodsCount span").text();
-			$(".o_shopClass ul li").eq(i).find(".goodsMoney span").text(allmoney);
-			
-			totalmoney = Number(totalmoney) + Number($(".o_shopClass ul li").eq(i).find(".goodsMoney span").text());
-			$(".shop_total .t_money span").text(totalmoney);
+		var alltotalmoney = 0;
+		var length = $(".o_shopClass").length;
+		for(var j = 0;j<length;j++){
+			var totalmoney = 0;
+			for(var i = 0;i< $(".o_shopClass ul li").length;i++){
+				var allmoney = $(".o_shopClass ul li").eq(i).find(".goodsPrice span").text()*$(".o_shopClass ul li").eq(i).find(".goodsCount span").text();
+				$(".o_shopClass ul li").eq(i).find(".goodsMoney span").text(allmoney);
+				totalmoney = Number(totalmoney) + Number($(".o_shopClass").eq(j).find("ul li").eq(i).find(".goodsMoney span").text());
+				$(".o_shopClass").eq(j).find(".shop_total .t_money span").text(totalmoney);
+			}
+			alltotalmoney = alltotalmoney+totalmoney;
 		}
+		
+		//
+		$("#buyProcess .content .c_total .tmoney .all").find("span").text(alltotalmoney);
 		
 		// 请求用户的所有地址
 		$.ajax({
@@ -173,7 +181,7 @@
 		
 		// 地址html
 		for(var i = 0;i<allAddress.length;i++){
-			var a_list = "<li>"+
+			var a_list = "<li addressid='"+allAddress[i].id+"'>"+
 	"							<div class='ad_simple'>"+allAddress[i].content+"<span style='color:#737373;'>（"+allAddress[i].realname+" 收）</span></div>"+
 	"							<div class='ad_detail'>"+allAddress[i].contentdetail+"<br/>"+allAddress[i].phonenum+"</div>"+
 	"						</li>";
@@ -227,7 +235,7 @@
 						
 						// 地址html
 						for(var i = 0;i<allAddress.length;i++){
-							var a_list = "<li>"+
+							var a_list = "<li addressid='"+allAddress[i].id+"'>"+
 					"							<div class='ad_simple'>"+allAddress[i].content+"<span style='color:#737373;'>（"+allAddress[i].realname+" 收）</span></div>"+
 					"							<div class='ad_detail'>"+allAddress[i].contentdetail+"<br/>"+allAddress[i].phonenum+"</div>"+
 					"						</li>";
@@ -256,6 +264,47 @@
 	$(".a_list .delAddress").click(function(){
 		alert("del");
 	});
+	
+	// 点击确认购买
+	$(".c_total .submit").click(function(){
+		delete_confirm("你确定要购买嘛？", callback);
+	});
+	function callback(){
+		// 获取地址
+		var addressid = $(".a_list ul li.on").attr("addressid");
+		// 获取订单数据
+		var length = $(".o_shopClass").length;
+		for(var i = 0;i<length;i++){
+			var shopid = $(".o_shopClass").eq(i).attr("shopid");
+			var liLength = $(".o_shopClass").eq(i).find("ul li").length;
+			var goodInfo = new Array();
+			for(var j = 0;j<liLength;j++){
+				var goodid = $(".o_shopClass").eq(i).find("ul li").eq(j).attr("goodid");
+				var goodcount = $(".o_shopClass").eq(i).find("ul li").eq(j).find(".goodsCount p span").text();
+				goodInfo.push(goodid+"="+goodcount);
+			}
+			$.ajax({
+				url: basePath+"/shoporder/addOrder",
+				data: {"shopid":shopid,"goodInfo":goodInfo,"addressid":addressid},
+				type: 'post',
+				traditional: true,
+				success: function(data){
+					//
+					/* var bycar = "${bycar}";
+					if(bycar!=""){
+						$.ajax({
+							url: basePath+"/shopcar/delShopcar",
+							data: {"goodid":goodidarray},
+							type: 'post',
+							success: function(data){ */
+								window.location.href=basePath+"/tologin/userPage/toAllOrder";
+							/* }
+						}); 
+					}*/
+				}
+			});
+		}
+	}
 </script>
 </body>
   

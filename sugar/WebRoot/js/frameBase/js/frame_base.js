@@ -67,7 +67,7 @@ function delete_confirm(info, callback){
 	var ww = $("#windowConfirm");
 	if (ww.length == 0) {
 		var windowDiv = $("<DIV id='windowConfirm'><div style='float:left'>" +
-				"<img style='float:left;padding-left: 2px; margin-top: 1px;' src='"+basePath+"/commons/css/images/help.png'/>" +
+				"<img style='float:left;padding-left: 2px; margin-top: 1px;' src='"+basePath+"/js/frameBase/css/images/help.png'/>" +
 				"&nbsp;<div style='float:left' id='confirmTitle'>确认</div></div>" +
 				"<div style='position:relative;'><div id='confirmContent' style='margin-top: 15px;padding-left:18px;'></div>" +
 				"<div style='position: absolute;bottom: 10px;right: 10px;'>" +
@@ -82,6 +82,7 @@ function delete_confirm(info, callback){
             resizable: false, 
             isModal: true, 
             modalOpacity: 0.3,
+            position: { x: 550, y: 500 },
             cancelButton: $('#confirmcancel'),
             initContent: function () {
                 $('#confirmok').jqxButton({ theme:theme, width: '65px' });

@@ -27,12 +27,10 @@ public class Shoporder implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer status;
-	private String ordernum; // 根据日期生成的订单号
+	private String ordernum; // 根据日期加id生成的订单号
 	private User user;
 	private Shop shop;
-	private Good good;
-	private Integer goodcount;
-	private String allmoney;
+	private Address address;
 	private Date createTime; // 创建时间
 	private Date updateTime; // 更新时间
 
@@ -66,11 +64,6 @@ public class Shoporder implements java.io.Serializable {
 		this.shop = shop;
 	}
 
-	@Column(name = "status", length = 1)
-	public Integer getStatus() {
-		return status;
-	}
-
 	public String getOrdernum() {
 		return ordernum;
 	}
@@ -80,29 +73,18 @@ public class Shoporder implements java.io.Serializable {
 	}
 
 	@ManyToOne
-	@JoinColumn(name="gid")
-	public Good getGood() {
-		return good;
+	@JoinColumn(name="address_id")
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setGood(Good good) {
-		this.good = good;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
-	public Integer getGoodcount() {
-		return goodcount;
-	}
-
-	public void setGoodcount(Integer goodcount) {
-		this.goodcount = goodcount;
-	}
-
-	public String getAllmoney() {
-		return allmoney;
-	}
-
-	public void setAllmoney(String allmoney) {
-		this.allmoney = allmoney;
+	@Column(name = "status", length = 1)
+	public Integer getStatus() {
+		return status;
 	}
 
 	public void setStatus(Integer status) {

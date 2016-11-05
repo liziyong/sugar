@@ -11,7 +11,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.jingbaba.core.action.BaseAction;
+import com.jingbaba.model.CommentsList;
+import com.jingbaba.model.Good;
+import com.jingbaba.model.User;
 import com.jingbaba.service.ICommentsListService;
+import com.jingbaba.service.IGoodService;
 
 /**
  * 
@@ -39,7 +43,23 @@ public class CommentsListAction extends BaseAction implements ServletRequestAwar
 
 	@Autowired
 	private ICommentsListService commentsListService;
+	@Autowired
+	private IGoodService goodService;
 	
+	public String add(){
+		String[] goodidarray = request.getParameterValues("goodidarray");
+		String comments = request.getParameter("comments");
+		User user = (User)request.getSession().getAttribute("user");
+		for(String gid:goodidarray){
+			CommentsList commentsList = new CommentsList();
+			Good good = goodService.get(Integer.parseInt(gid));
+			commentsList.setComments(comments);
+			commentsList.setGood(good);
+			commentsList.setUser(user);
+			commentsListService.save(commentsList);
+		}
+		return AJAX_SUCCESS;
+	}
 	
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;

@@ -73,7 +73,23 @@ public class ShoporderServiceImpl extends BaseServiceImpl<Shoporder,Integer>  im
 		return getShoporderDao().findAllOrderByUserIdAndStatus(id, status);
 	}
 
-	public List<Shop> findAllShop(Integer id) {
-		return getShoporderDao().findAllShop(id);
+	public List<Shop> findAllShopByUserId(Integer id) {
+		return getShoporderDao().findAllShopByUserId(id);
+	}
+	
+	public List<Shop> findAllShopByUserIdAndStatus(Integer id, Integer status) {
+		return getShoporderDao().findAllShopByUserIdAndStatus(id, status);
+	}
+
+	public List<Shoporder> findAllOrderByUserIdNotZero(Integer id) {
+		return getShoporderDao().findAllOrderByUserIdNotZero(id);
+	}
+
+	public List<Shop> findAllShopByUserIdNotZero(Integer id) {
+		return getShoporderDao().findAllShopByUserIdNotZero(id);
+	}
+
+	public Shoporder addShoporder(Shoporder shoporder) {
+		return getShoporderDao().addShoporder(shoporder);
 	}
 }

@@ -48,5 +48,14 @@ public interface IShoporderService extends IBaseService<Shoporder,Integer> {
 	public List<Shoporder> findAllOrderByUserIdAndStatus(Integer id,
 			Integer status);
 
-	public List<Shop> findAllShop(Integer id);
+	public List<Shop> findAllShopByUserId(Integer id);
+	
+	public List<Shop> findAllShopByUserIdAndStatus(Integer id,Integer status);
+
+	public List<Shoporder> findAllOrderByUserIdNotZero(Integer id);
+
+	public List<Shop> findAllShopByUserIdNotZero(Integer id);
+
+	public com.jingbaba.model.Shoporder addShoporder(Shoporder shoporder);
+
 }

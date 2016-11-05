@@ -71,4 +71,16 @@ public class ShopcarServiceImpl extends BaseServiceImpl<Shopcar,Integer>  implem
 	public List<Shop> findAllShopId(Integer id) {
 		return getShopcarDao().findAllShopId(id);
 	}
+
+	public List<Shopcar> getAllShopcarByUserId(Integer id) {
+		return getShopcarDao().getAllShopcarByUserId(id);
+	}
+
+	public Shopcar findAllByUserIdAndGoodId(Integer userid, Integer goodid) {
+		return getShopcarDao().findAllByUserIdAndGoodId(userid, goodid);
+	}
+
+	public Shopcar findShopcarBuyUserIdAndGoodId(Integer userid, Integer goodid) {
+		return getShopcarDao().findShopcarBuyUserIdAndGoodId(userid, goodid);
+	}
 }

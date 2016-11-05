@@ -22,7 +22,7 @@
 			<%}else{%>
 			<div class="t_Islogin">
 				<div>
-					<span>${user.username }</span>
+					<span class="name">${user.username }</span>
 					<i></i>
 				</div>
 				<div class="info_xiala">
@@ -56,4 +56,20 @@
 	function toMySugar(){
 		window.location.href = basePath+"/page/userInfo.jsp";
 	}
+	// 点击购物车
+	$(".t_shop").click(function(){
+		if($(".t_Islogin").find(".name").text()==""){
+			window.location.href=basePath+"/page/login.jsp"
+		}else{
+			window.location.href=basePath+"/tologin/userPage/toMyShopCar";
+		}
+	});
+	// 加载购物车的数量
+	$.ajax({
+		url: basePath+"/shopcar/getCount",
+		type: 'post',
+		success: function(data){
+			$(".t_shop").find("span").text(data.datamap.count);
+		}
+	});
 </script>

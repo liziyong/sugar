@@ -29,7 +29,7 @@
 			#showGoods .content .m_nav .n_nav .nav a{height:100px;display:block;font-size:16px;color:#000;}
 			#showGoods .content .m_nav .n_nav .search{width:320px;height:75px;float:right;padding-top:25px;position:relative;}
 			#showGoods .content .m_nav .n_nav .search input{width:235px;height:50px;float:right;outline:none;padding-left:10px;}
-			#showGoods .content .m_nav .n_nav .search .s_icon{width:52px;height:52px;display:block;border:1px solid #bbb;float:right;border-left:0;}
+			#showGoods .content .m_nav .n_nav .search .s_icon{line-height: 52px;text-align: center;color: #333;width:52px;height:52px;display:block;border:1px solid #bbb;float:right;border-left:0;}
 			#showGoods .content .m_nav .n_nav .search .s_a{position:absolute;top:42px;right:64px;line-height:18px;}
 			#showGoods .content .m_nav .n_nav .search .s_a a:hover{background:#03a9f4;color:#fff;}
 			#showGoods .content .m_nav .n_nav .search .s_a .ex_s1{text-align:center;color:#757575;width:auto;height:18px;display:block;background:#eee;float:left;padding:0 5px 0 5px;}
@@ -61,6 +61,7 @@
 			#showGoods .content .c_body .b_hotBuy .h_list ul li{width:100%;height:200px;background:#eee;margin-bottom:20px;}
 			
 			.clear{clear:both;}
+			.margin{margin-right:0 !important;}
 		
 		</style>
 	</head>
@@ -88,7 +89,7 @@
 						</ul>
 					</div>
 					<div class="search">
-						<a class="s_icon" href="#"></a>
+						<a class="s_icon" href="#">搜索</a>
 						<input type="text"/>
 						<div class="s_a">
 							<a class="ex_s1" href="#">卧室储物</a>
@@ -115,101 +116,8 @@
 					</div>
 					<div class="g_list">
 						<ul>
-							<li>
-								<a href="#"><img src="../images/user/pic.jpg" width="200" height="210"/></a>
-								<div style="line-height:30px;width:100%;height:30px;"><span style="color:red;margin:0px 0 0 10px;font-size:18px;font-weight:bold;">￥1200</span><span style="margin:0 0 0 60px;">320人付款</span></div>
-								<div style="color:#333;width:180px;padding:0 10px 0 10px;height:30px;">条例哈哈哈哈橱哈哈橱柜橱窗哈哈哈哈哈橱柜橱窗哈哈哈哈</div>
-								<div style="margin:5px 0 0 10px;"><img src="../images/shop.png" width="14" height="14px"/><a href="#" style="margin-left:5px;color:#bbb;">江西师范大学</a></div>
-							</li>
-							<li>
-								<a href="#"><img src="../images/user/pic.jpg" width="200" height="210"/></a>
-								<div style="line-height:30px;width:100%;height:30px;"><span style="color:red;margin:0px 0 0 10px;font-size:18px;font-weight:bold;">￥1200</span><span style="margin:0 0 0 60px;">320人付款</span></div>
-								<div style="color:#333;width:180px;padding:0 10px 0 10px;height:30px;">条例哈哈哈哈橱哈哈橱柜橱窗哈哈哈哈哈橱柜橱窗哈哈哈哈</div>
-								<div style="margin:5px 0 0 10px;"><img src="../images/shop.png" width="14" height="14px"/><a href="#" style="margin-left:5px;color:#bbb;">江西师范大学</a></div>
-							</li>
-							<li>
-								<a href="#"><img src="../images/user/pic.jpg" width="200" height="210"/></a>
-								<div style="line-height:30px;width:100%;height:30px;"><span style="color:red;margin:0px 0 0 10px;font-size:18px;font-weight:bold;">￥1200</span><span style="margin:0 0 0 60px;">320人付款</span></div>
-								<div style="color:#333;width:180px;padding:0 10px 0 10px;height:30px;">条例哈哈哈哈橱哈哈橱柜橱窗哈哈哈哈哈橱柜橱窗哈哈哈哈</div>
-								<div style="margin:5px 0 0 10px;"><img src="../images/shop.png" width="14" height="14px"/><a href="#" style="margin-left:5px;color:#bbb;">江西师范大学</a></div>
-							</li>
-							<li style="margin-right:0;">
-								<a href="#"><img src="../images/user/pic.jpg" width="200" height="210"/></a>
-								<div style="line-height:30px;width:100%;height:30px;"><span style="color:red;margin:0px 0 0 10px;font-size:18px;font-weight:bold;">￥1200</span><span style="margin:0 0 0 60px;">320人付款</span></div>
-								<div style="color:#333;width:180px;padding:0 10px 0 10px;height:30px;">条例哈哈哈哈橱哈哈橱柜橱窗哈哈哈哈哈橱柜橱窗哈哈哈哈</div>
-								<div style="margin:5px 0 0 10px;"><img src="../images/shop.png" width="14" height="14px"/><a href="#" style="margin-left:5px;color:#bbb;">江西师范大学</a></div>
-							</li>
-							<li>
-								<a href="#"><img src="../images/user/pic.jpg" width="200" height="210"/></a>
-								<div style="line-height:30px;width:100%;height:30px;"><span style="color:red;margin:0px 0 0 10px;font-size:18px;font-weight:bold;">￥1200</span><span style="margin:0 0 0 60px;">320人付款</span></div>
-								<div style="color:#333;width:180px;padding:0 10px 0 10px;height:30px;">条例哈哈哈哈橱哈哈橱柜橱窗哈哈哈哈哈橱柜橱窗哈哈哈哈</div>
-								<div style="margin:5px 0 0 10px;"><img src="../images/shop.png" width="14" height="14px"/><a href="#" style="margin-left:5px;color:#bbb;">江西师范大学</a></div>
-							</li>
-							<li>
-								<a href="#"><img src="../images/user/pic.jpg" width="200" height="210"/></a>
-								<div style="line-height:30px;width:100%;height:30px;"><span style="color:red;margin:0px 0 0 10px;font-size:18px;font-weight:bold;">￥1200</span><span style="margin:0 0 0 60px;">320人付款</span></div>
-								<div style="color:#333;width:180px;padding:0 10px 0 10px;height:30px;">条例哈哈哈哈橱哈哈橱柜橱窗哈哈哈哈哈橱柜橱窗哈哈哈哈</div>
-								<div style="margin:5px 0 0 10px;"><img src="../images/shop.png" width="14" height="14px"/><a href="#" style="margin-left:5px;color:#bbb;">江西师范大学</a></div>
-							</li>
-							<li>
-								<a href="#"><img src="../images/user/pic.jpg" width="200" height="210"/></a>
-								<div style="line-height:30px;width:100%;height:30px;"><span style="color:red;margin:0px 0 0 10px;font-size:18px;font-weight:bold;">￥1200</span><span style="margin:0 0 0 60px;">320人付款</span></div>
-								<div style="color:#333;width:180px;padding:0 10px 0 10px;height:30px;">条例哈哈哈哈橱哈哈橱柜橱窗哈哈哈哈哈橱柜橱窗哈哈哈哈</div>
-								<div style="margin:5px 0 0 10px;"><img src="../images/shop.png" width="14" height="14px"/><a href="#" style="margin-left:5px;color:#bbb;">江西师范大学</a></div>
-							</li>
-							<li style="margin-right:0;">
-								<a href="#"><img src="../images/user/pic.jpg" width="200" height="210"/></a>
-								<div style="line-height:30px;width:100%;height:30px;"><span style="color:red;margin:0px 0 0 10px;font-size:18px;font-weight:bold;">￥1200</span><span style="margin:0 0 0 60px;">320人付款</span></div>
-								<div style="color:#333;width:180px;padding:0 10px 0 10px;height:30px;">条例哈哈哈哈橱哈哈橱柜橱窗哈哈哈哈哈橱柜橱窗哈哈哈哈</div>
-								<div style="margin:5px 0 0 10px;"><img src="../images/shop.png" width="14" height="14px"/><a href="#" style="margin-left:5px;color:#bbb;">江西师范大学</a></div>
-							</li>
 						</ul>
 						<div class="clear"></div>
-					</div>
-					<div class="g_pagecount">
-						<div class="p_content">
-							<c:if test="${curPage[0]>1 }">
-								<a style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:60px;height:30px;color:#333;" href="<c:url value='/to/sendlistAction.do?pn=${curPage[0]-1 }'/>">上一页</a>
-							</c:if>
-							<%--计算begin,end --%>
-							<c:choose>
-								<%--如果页面不足10页，就全部显示 --%>
-								<c:when test="${curPage[1]<=10 }">
-									<c:set var="begin" value="1"></c:set>
-									<c:set var="end" value="${curPage[1] }"></c:set>
-								</c:when>
-								<c:otherwise>
-									<%--如果页面>10页，就用公式计算 --%>
-									<c:set var="begin" value="${curPage[0]-5 }"></c:set>
-									<c:set var="end" value="${curPage[0]+4 }"></c:set>
-									<%--头溢出 --%>
-									<c:if test="${begin < 1 }">
-										<c:set var="begin" value="1"/>
-										<c:set var="end" value="10"/>
-									</c:if>
-									<%--尾溢出 --%>
-									<c:if test="${end > curPage[1] }">
-										<c:set var="begin" value="${curPage[1] - 9 }"/>
-										<c:set var="end" value="${curPage[1] }"/>
-									</c:if>
-								</c:otherwise>
-							</c:choose>
-							<%--循环遍历页面列表 --%>
-							<c:forEach var="i" begin="${begin }" end="${end }">
-								<c:choose>
-									<c:when test="${i eq curPage[0] }">
-										<span style="background:rgba(39,213,191,0.5);line-height:30px;text-align:center;display:inline-block;width:30px;height:30px;color:#fff;">${i }</span>
-									</c:when>
-									<c:otherwise>
-										<a style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:30px;height:30px;color:#333;" href="<c:url value='/to/sendlistAction.do?pn=${i }'/>">${i }</a>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-							
-							<c:if test="${curPage[0]<curPage[1] }">
-								<a  style="background:rgba(255,255,255,0.6);line-height:30px;text-align:center;display:inline-block;width:60px;height:30px;color:#333;" href="<c:url value='/to/sendlistAction.do?pn=${curPage[0]+1 }'/>">下一页</a>
-							</c:if>
-						</div>
 					</div>
 					<div class="g_title">
 						<ul>
@@ -258,6 +166,7 @@
 	</div>
 
 <script type="text/javascript">
+	var localdata;
 	$(function(){
 		//滚动屏幕的时候nav固定
 		$(window).scroll(function(){
@@ -268,6 +177,41 @@
 				$("#showGoods .content .m_nav").removeClass("fixed");
 			}
 		});
+		
+		// 加载所有的商品
+		var newValue = new Array();
+		$.ajax({
+			url: basePath+"/good/findAllGood",
+			type: 'post',
+			success: function(data){
+				localdata = data.datamap.goodList;
+				// 过滤商品
+				var href = window.location.href;
+				var value;
+				if(href.indexOf("=")!=-1){
+					value = href.split("=")[1];
+					value = decodeURI(value);
+				}
+				for(var j = 0;j<localdata.length;j++){
+					if((localdata[j].goodname).indexOf(value)!=-1){
+						newValue.push(localdata[j]);
+					}
+				}
+				for(var i = 0;i<newValue.length;i++){
+					var html = "<li>"+
+		"								<a href='${basePath}/page/goodsInfo.jsp?goodid="+newValue[i].id+"'><img src='${basePath}/images/good/"+newValue[i].id+"/1.jpg' width='200' height='210'/></a>"+
+		"								<div style='line-height:30px;width:100%;height:30px;'><span style='color:red;margin:0px 0 0 10px;font-size:18px;font-weight:bold;'>￥"+newValue[i].goodnprice+"</span><span style='margin:0 0 0 60px;'>320人付款</span></div>"+
+		"								<div style='color:#333;width:180px;padding:0 10px 0 10px;height:30px;'>"+newValue[i].goodname+"</div>"+
+		"								<div style='margin:5px 0 0 10px;'><img src='../images/shop.png' width='14' height='14px'/><a href='#' style='margin-left:5px;color:#bbb;'>"+newValue[i].shopid.shopname+"</a></div>"+
+		"							</li>";
+					$(".g_list ul").append(html);
+					for(var k = 1;k<=$(".g_list ul li").length;k++){
+						$(".g_list ul li").eq(k*4-1).addClass("margin");
+					}
+				}
+			}
+		});
+		
 	});
 
 	// 用户登录

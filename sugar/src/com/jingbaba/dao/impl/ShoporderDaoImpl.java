@@ -17,7 +17,6 @@ import com.jingbaba.core.dao.BaseDaoImpl;
 import com.jingbaba.core.dao.TmParams;
 import com.jingbaba.dao.IShoporderDao;
 import com.jingbaba.model.Shop;
-import com.jingbaba.model.Shopcar;
 import com.jingbaba.model.Shoporder;
 import com.jingbaba.util.TmPageInfo;
 import com.jingbaba.util.TzStringUtils;
@@ -85,7 +84,7 @@ public class ShoporderDaoImpl extends BaseDaoImpl<Shoporder,Integer> implements 
 
 	public List<Shoporder> findAllOrderByUserId(Integer id) {
 		List<Shoporder> shoporderList = new ArrayList<Shoporder>();
-		String hql = "FROM Shoporder s WHERE s.user=?";
+		String hql = "FROM Shoporder s WHERE s.user=? ORDER BY s.id DESC";
 		Query query = getSession().createQuery(hql);
 		query.setInteger(0, id);
 		shoporderList = query.list();
@@ -95,7 +94,7 @@ public class ShoporderDaoImpl extends BaseDaoImpl<Shoporder,Integer> implements 
 	public List<Shoporder> findAllOrderByUserIdAndStatus(Integer id,
 			Integer status) {
 		List<Shoporder> shoporderList = new ArrayList<Shoporder>();
-		String hql = "FROM Shoporder s WHERE s.user=? AND s.status=?";
+		String hql = "FROM Shoporder s WHERE s.user=? AND s.status=? ORDER BY s.id DESC";
 		Query query = getSession().createQuery(hql);
 		query.setInteger(0, id);
 		query.setInteger(1, status);
@@ -103,12 +102,47 @@ public class ShoporderDaoImpl extends BaseDaoImpl<Shoporder,Integer> implements 
 		return shoporderList;
 	}
 
-	public List<Shop> findAllShop(Integer id) {
+	public List<Shop> findAllShopByUserId(Integer id) {
 		List<Shop> shopList = new ArrayList<Shop>();
-		String hql = "SELECT s.shop FROM Shoporder s WHERE s.user=? GROUP BY s.shop";
+		String hql = "SELECT s.shop FROM Shoporder s WHERE s.user=? GROUP BY s.shop ORDER BY s.id ASC";
 		Query query = getSession().createQuery(hql);
 		query.setInteger(0, id);
 		shopList = query.list();
 		return shopList;
+	}
+	
+	public List<Shop> findAllShopByUserIdAndStatus(Integer id,Integer status) {
+		List<Shop> shopList = new ArrayList<Shop>();
+		String hql = "SELECT s.shop FROM Shoporder s WHERE s.user=? AND s.status=? GROUP BY s.shop ORDER BY s.id ASC";
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, id);
+		query.setInteger(1, status);
+		shopList = query.list();
+		return shopList;
+	}
+
+	public List<Shoporder> findAllOrderByUserIdNotZero(Integer id) {
+		List<Shoporder> shoporderList = new ArrayList<Shoporder>();
+		String hql = "FROM Shoporder s WHERE s.user=? AND s.status!='0' ORDER BY s.id ASC";
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, id);
+		shoporderList = query.list();
+		return shoporderList;
+	}
+
+	public List<Shop> findAllShopByUserIdNotZero(Integer id) {
+		List<Shop> shopList = new ArrayList<Shop>();
+		String hql = "SELECT s.shop FROM Shoporder s WHERE s.user=? AND s.status!='0' GROUP BY s.shop  ORDER BY s.id ASC";
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, id);
+		shopList = query.list();
+		return shopList;
+	}
+
+	public Shoporder addShoporder(Shoporder shoporder) {
+		Shoporder shoporderBack = new Shoporder();
+		getSession().save(shoporder);
+		shoporderBack = (Shoporder) getSession().get(Shoporder.class, shoporder.getId());
+		return shoporderBack;
 	}
 }

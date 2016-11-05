@@ -10,8 +10,10 @@ package com.jingbaba.web.user;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,11 +24,14 @@ import org.springframework.stereotype.Controller;
 
 import com.jingbaba.core.action.BaseAction;
 import com.jingbaba.model.Good;
+import com.jingbaba.model.Ordergood;
 import com.jingbaba.model.Shop;
 import com.jingbaba.model.Shopcar;
 import com.jingbaba.model.Shoporder;
 import com.jingbaba.model.User;
 import com.jingbaba.service.IGoodService;
+import com.jingbaba.service.IOrdergoodService;
+import com.jingbaba.service.IShopService;
 import com.jingbaba.service.IShopcarService;
 import com.jingbaba.service.IShoporderService;
 
@@ -49,6 +54,10 @@ public class UserPageAction extends BaseAction implements ServletRequestAware{
 	private IShopcarService shopcarService;
 	@Autowired
 	private IShoporderService shoporderService;
+	@Autowired
+	private IOrdergoodService ordergoodService;
+	@Autowired
+	private IShopService shopService;
 	
 	public String oneToBuyProcess(){
 		String goodid = request.getParameter("goodid");
@@ -70,27 +79,44 @@ public class UserPageAction extends BaseAction implements ServletRequestAware{
 	}
 	
 	public String carToBuyProcess(){
-		String shopgood[] = request.getParameterValues("shopgoodList");
-		String goodid = request.getParameter("goodid");
-		String totalcount = request.getParameter("totalcount");
-		Good good = goodService.get(Integer.parseInt(goodid));
-		Shop shop = good.getShopid();
+		String[] shop = request.getParameterValues("shop");
+		Set<String> shopidList = new HashSet<String>();
 		List<Map<String, Object>> shopgoodList = new ArrayList<Map<String, Object>>();
-		List<Map<String, Object>> goodList = new ArrayList<Map<String, Object>>();
-		Map<String, Object> map = new HashMap<String, Object>();
-		Map<String, Object> map2 = new HashMap<String, Object>();
-		map2.put("good", good);
-		map2.put("totalcount", totalcount);
-		goodList.add(map2);
-		map.put("shop",shop);
-		map.put("shopid",goodList);
-		shopgoodList.add(map);
+		List<Map<String, Object>> goodListF = null;
+		Map<String, Object> shopmapF = null;
+		Map<String, Object> goodmapF = null;
+		List<String> goodidarray = new ArrayList<String>();
+		// 得到所有的店铺分类
+		for(int i = 0;i<shop.length;i++){
+			String shopid = shop[i].split(":")[0];
+			shopidList.add(shopid);
+		}
+		for(String shopid:shopidList){
+			shopmapF = new HashMap<String, Object>();
+			shopmapF.put("shop", shopService.get(Integer.parseInt(shopid)));
+			goodListF = new ArrayList<Map<String, Object>>();
+			for(int i = 0;i<shop.length;i++){
+				if(shopid.equals(shop[i].split(":")[0])){
+					goodmapF = new HashMap<String, Object>();
+					String goodInfo = shop[i].split(":")[1];
+					String goodid = goodInfo.split("=")[0];
+					goodidarray.add(goodid);
+					String goodcount = goodInfo.split("=")[1];
+					goodmapF.put("good", goodService.get(Integer.parseInt(goodid)));
+					goodmapF.put("totalcount", goodcount);
+					goodListF.add(goodmapF);
+				}
+			}
+			shopmapF.put("shopid", goodListF);
+			shopgoodList.add(shopmapF);
+		}
 		request.setAttribute("shopgoodList", shopgoodList);
+		request.setAttribute("bycar", request.getParameter("bycar"));
+		request.setAttribute("goodidarray", goodidarray);
 		return "buyProcess";
 	}
 	
 	public String toMyShopCar(){
-		
 		User user = (User)request.getSession().getAttribute("user");
 		List<Shopcar> shopcarList = shopcarService.findAllGoodByUserId(user.getId());
 		List<Shop> shopList = shopcarService.findAllShopId(user.getId());
@@ -118,40 +144,42 @@ public class UserPageAction extends BaseAction implements ServletRequestAware{
 	}
 	
 	public String toAllOrder(){
-		String status = request.getParameter("st");
 		User user = (User)request.getSession().getAttribute("user");
-		List<Shoporder> shoporderList = new ArrayList<Shoporder>();
-		if(status==null||"".equals(status)){
-			shoporderList = shoporderService.findAllOrderByUserId(user.getId());
-		}else{
-			shoporderList = shoporderService.findAllOrderByUserIdAndStatus(user.getId(),Integer.parseInt(status));
-		}
-		List<Shop> shopList = shoporderService.findAllShop(user.getId());
-		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
-		Map<String, Object> map = null;
+		String status = request.getParameter("st");
+		List<Map<String, Object>> mapList = null;
 		List<Map<String, Object>> goodList = null;
-		// 通过shopid分类
+		Map<String, Object> map = null;
+		Map<String, Object> map2 = null;
+		List<Shoporder> shoporderList = null;
+		if(status!=null&&!"".equals(status)){
+			shoporderList = shoporderService.findAllOrderByUserIdAndStatus(user.getId(),Integer.parseInt(status));
+		}else{
+			shoporderList = shoporderService.findAllOrderByUserId(user.getId());
+		}
 		if(shoporderList.size()!=0){
-			
-			for(Shop sl:shopList){
+			mapList = new ArrayList<Map<String, Object>>();
+			for(Shoporder so:shoporderList){
 				map = new HashMap<String, Object>();
+				map.put("shop", so.getShop());
+				map.put("status", statusFormat(so.getStatus()));
+				map.put("shoporder", so);
+				List<Ordergood> ordergoodList = ordergoodService.findAllOrdergoodByShoporderId(so.getId());
 				goodList = new ArrayList<Map<String, Object>>();
-				for(Shoporder so:shoporderList){
-					if(so.getShop().getId().toString().equals(sl.getId().toString())){
-						Map<String, Object> map2 = new HashMap<String, Object>();
-						map2.put("good", so.getGood());
-						map2.put("goodcount", so.getGoodcount());
-						map2.put("status", statusFormat(so.getStatus()));
-						goodList.add(map2);
-						map.put("shop", so.getShop());
-						map.put("shoporder", so);
-					}
-					map.put("shopid", goodList);
+				for(Ordergood og:ordergoodList){
+					map2 = new HashMap<String, Object>();
+					String allmoney = og.getAllmoney();
+					Good good = og.getGood();
+					Integer goodcount = og.getGoodcount();
+					map2.put("good", good);
+					map2.put("goodcount", goodcount);
+					map2.put("allmoney", allmoney);
+					goodList.add(map2);
 				}
+				map.put("shopid", goodList);
 				mapList.add(map);
 			}
-			request.setAttribute("mapList", mapList);
 		}
+		request.setAttribute("mapList", mapList);
 		return "allorder";
 	}
 	public String statusFormat(Integer status){
@@ -165,7 +193,6 @@ public class UserPageAction extends BaseAction implements ServletRequestAware{
 			return "待评价";
 		}
 	}
-	
 	
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;

@@ -29,7 +29,7 @@
 			#sugar .middle .m_nav .n_nav .nav a{height:100px;display:block;font-size:16px;color:#000;}
 			#sugar .middle .m_nav .n_nav .search{width:320px;height:75px;float:right;padding-top:25px;position:relative;}
 			#sugar .middle .m_nav .n_nav .search input{width:235px;height:50px;float:right;outline:none;padding-left:10px;}
-			#sugar .middle .m_nav .n_nav .search .s_icon{width:52px;height:52px;display:block;border:1px solid #bbb;float:right;border-left:0;}
+			#sugar .middle .m_nav .n_nav .search .s_icon{line-height: 52px;text-align: center;color: #333;width:52px;height:52px;display:block;border:1px solid #bbb;float:right;border-left:0;}
 			#sugar .middle .m_nav .n_nav .search .s_a{position:absolute;top:42px;right:64px;line-height:18px;}
 			#sugar .middle .m_nav .n_nav .search .s_a a:hover{background:#03a9f4;color:#fff;}
 			#sugar .middle .m_nav .n_nav .search .s_a .ex_s1{text-align:center;color:#757575;width:auto;height:18px;display:block;background:#eee;float:left;padding:0 5px 0 5px;}
@@ -166,7 +166,7 @@
 						</ul>
 					</div>
 					<div class="search">
-						<a class="s_icon" href="#"></a>
+						<a class="s_icon" href="#">搜索</a>
 						<input type="text"/>
 						<div class="s_a">
 							<a class="ex_s1" href="#">卧室储物</a>
@@ -782,6 +782,16 @@
 		// 通过get方法得到的id去后台请求商品信息
 		window.open(basePath+"/page/goodsInfo.jsp?goodid="+goodid);
 	}
+	
+	// 
+	$(".search .s_icon").click(function(){
+		var value = $(".search input").val();
+		if(value==""){
+			$(".search input").focus();
+		}else{
+			window.location.href=basePath+"/page/showGoods.jsp?value="+value;
+		}
+	});
 	
 </script>
 </body>

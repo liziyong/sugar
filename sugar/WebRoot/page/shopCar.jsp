@@ -39,7 +39,7 @@
 			#mysugar .content .c_right .r_toptoal .t_choose{width:300px;height:40px;float:left;line-height:40px;color:#333;font-size:14px;}
 			#mysugar .content .c_right .r_toptoal .t_choose input.chooseAllTop{vertical-align: middle;width: 16px;height: 16px;display: inline-block;margin-right:10px;}
 			#mysugar .content .c_right .r_toptoal .t_allMoney{width:240px;height:40px;float:right;line-height:40px;color:#333;font-size:14px;}
-			#mysugar .content .c_right .r_toptoal .t_allMoney .goCheckOut{width:80px;height:30px;background:#03a9f4;float:right;margin-top:5px;line-height:30px;text-align:center;color:#fff;}
+			#mysugar .content .c_right .r_toptoal .t_allMoney .goCheckOut{cursor:pointer;width:80px;height:30px;background:#03a9f4;float:right;margin-top:5px;line-height:30px;text-align:center;color:#fff;}
 			
 			#mysugar .content .c_right .r_shopClass{width:100%;height:auto;margin-top:10px;}
 			#mysugar .content .c_right .r_shopClass .shopClass{width:100%;height:auto;margin-top:30px;}
@@ -95,10 +95,10 @@
 				</div>
 				<div class="r_toptoal">
 					<div class="t_choose"><input class="chooseAllTop" type="checkbox"/>选中所有的商品</div>
-					<div class="t_allMoney">已经选择商品：<span style="color:red;">￥320</span><div class="goCheckOut">去结算</div></div>
+					<div class="t_allMoney"><div class="goCheckOut">去结算</div></div>
 				</div>
 				<c:forEach items="${mapList }" var="item">
-				<div class="r_shopClass">
+				<div class="r_shopClass" shopid="${item.shop.id }">
 					<div class="shopClass"> 
 						<div class="s_shopName">
 							<input class="shopAll" type="checkbox" style="float:left;margin:4px 5px 0 0;"/><img class="sn_img" src="${basePath }/images/shop.png" width="16" height="16"/><div class="sn_name">店铺：${item.shop.shopname }</div>
@@ -107,14 +107,14 @@
 						<div class="s_shopList">
 							<ul>
 								<c:forEach items="${item.shopid }" var="its">
-								<li>
+								<li goodid="${its.good.id}">
 									<input class="goodsCheck" type="checkbox" style=""/>
 									<div class="goodsInfo" style="">
 										<img class="g_goodsPic" src="${basePath }/images/good/${its.good.id }/1.jpg" width="60" height="60"/>
 										<div class="g_goodsDetail">${its.good.goodname }</div>
 									</div>
 									<div class="goodsPrice">单价：<span style="color:red;">${its.good.goodnprice }</span></div>
-									<div class="goodsCount">数量：<input type="button" value="-"/><input type="text" value="${its.goodcount }" style="width:80px;"/><input type="button" value="+"/></div>
+									<div class="goodsCount">数量：<input class="delcount" type="button" value="-"/><input type="text" class="count" value="${its.goodcount }" style="width:80px;"/><input class="addcount" type="button" value="+"/></div>
 									<div class="goodsTotal">合计：<span style="color:red;">230</span></div>
 									<div class="goodsDel"><a href="#">删除商品</a></div>
 								</li>
@@ -131,8 +131,7 @@
 					<div class="s_choose"><input class="chooseAllBottom" type="checkbox"/>全选</div>
 					<div class="s_delAll" style="float:left;height:50px;line-height:50px;"><a href="#" style="color:#333;font-size:14px;">删除</a></div>
 					<div class="s_checkOut" style="width:260px;height:50px;float:right;">
-						<div style="line-height:50px;float:left;color:#333;">合计：<span style="color:red;font-size:14px;">￥3000</span></div>
-						<div class="goCheckOut" style="float:right;width:120px;height:50px;line-height:50px;text-align:center;background:#03a9f4;color:#fff;">去结算</div>
+						<div class="goCheckOut" style="float:right;width:120px;height:50px;line-height:50px;text-align:center;background:#03a9f4;color:#fff;cursor:pointer;">去结算</div>
 					</div>
 				</div>
 			</div>
@@ -155,9 +154,54 @@ $(function(){
 			$("#mysugar .content .c_left").removeClass("fixed");
 		}
 	});
+	
+	//
+	var length = $(".r_shopClass").find(".s_shopList ul li").length;
+	for(var i = 0;i<length;i++){
+		var goodcount = $(".r_shopClass").find(".s_shopList ul li").eq(i).find(".goodsCount .count").val();
+		var goodprice = $(".r_shopClass").find(".s_shopList ul li").eq(i).find(".goodsPrice span").text();
+		var money = Number(goodcount)*Number(goodprice)
+		$(".r_shopClass").find(".s_shopList ul li").eq(i).find(".goodsTotal span").text(money);
+	}
+	var shoplength = $(".r_shopClass").length;
+	var lilength = $(".r_shopClass").find(".s_shopList ul li").length;
+	for(var i = 0;i<shoplength;i++){
+		var totalmoney = 0;
+		for(var j = 0;j<lilength;j++){
+			var money = $(".r_shopClass").eq(i).find(".s_shopList ul li").eq(j).find(".goodsTotal span").text();
+			totalmoney = Number(totalmoney)+Number(money);
+			$(".r_shopClass").eq(i).find(".totalshop span").text(totalmoney);
+		}
+	}
 });
 
 $(".goCheckOut").click(function(){
+	var input = "";
+	var inputAll = "";
+	// 准备数据
+	for(var i = 0;i<$(".r_shopClass").length;i++){
+		for(var j = 0;j<$(".r_shopClass").eq(i).find(".s_shopList ul li").length;j++){
+			var check = $(".r_shopClass").eq(i).find(".s_shopList ul li").eq(j).find(".goodsCheck").prop("checked");
+			if(check==true){
+				var shopid = $(".r_shopClass").eq(i).attr("shopid");
+				var goodid = $(".r_shopClass").eq(i).find(".s_shopList ul li").eq(j).attr("goodid");
+				var goodcount = $(".r_shopClass").eq(i).find(".s_shopList ul li").eq(j).find(".goodsCount input.count").val();
+				value = shopid+":"+goodid+"="+goodcount;
+				input = "<input name='shop' value='"+value+"' type='hidden'/>"
+				inputAll = inputAll+input;
+			}
+		}
+	}
+	var html = "<form action='${basePath}/tologin/userPage/carToBuyProcess' method='post'>"+
+					"<input name='bycar' value='bycar' type='hidden'/>"+
+					inputAll+
+			   "</form>";
+	$("body").append(html);
+	if(inputAll!=""){
+		$("form").submit();
+	}else{
+		showInfo("请选择商品~","warning");
+	}
 });
 
 // 全部勾选
@@ -190,6 +234,72 @@ $(".shopAll").click(function(){
     }else{
         $(this).parent().siblings(".s_shopList").find(".goodsCheck").prop('checked', false);
     }
+});
+
+$(".delcount").click(function(){
+	var totalcount = $(this).parent().find(".count").val();
+	if(totalcount==1){
+		return false;
+	}else{
+		totalcount = totalcount-1;
+		$(this).parent().find(".count").val(totalcount);
+		var length = $(".r_shopClass").find(".s_shopList ul li").length;
+		for(var i = 0;i<length;i++){
+			var goodcount = $(".r_shopClass").find(".s_shopList ul li").eq(i).find(".goodsCount .count").val();
+			var goodprice = $(".r_shopClass").find(".s_shopList ul li").eq(i).find(".goodsPrice span").text();
+			var money = Number(goodcount)*Number(goodprice)
+			$(".r_shopClass").find(".s_shopList ul li").eq(i).find(".goodsTotal span").text(money);
+		}
+		var shoplength = $(".r_shopClass").length;
+		var lilength = $(".r_shopClass").find(".s_shopList ul li").length;
+		for(var i = 0;i<shoplength;i++){
+			var totalmoney = 0;
+			for(var j = 0;j<lilength;j++){
+				var money = $(".r_shopClass").eq(i).find(".s_shopList ul li").eq(j).find(".goodsTotal span").text();
+				totalmoney = Number(totalmoney)+Number(money);
+				$(".r_shopClass").eq(i).find(".totalshop span").text(totalmoney);
+			}
+		}
+	}
+});
+$(".addcount").click(function(){
+	var totalcount = $(this).parent().find(".count").val();
+	totalcount = Number(totalcount)+Number(1);
+	$(this).parent().find(".count").val(totalcount);
+	var length = $(".r_shopClass").find(".s_shopList ul li").length;
+	for(var i = 0;i<length;i++){
+		var goodcount = $(".r_shopClass").find(".s_shopList ul li").eq(i).find(".goodsCount .count").val();
+		var goodprice = $(".r_shopClass").find(".s_shopList ul li").eq(i).find(".goodsPrice span").text();
+		var money = Number(goodcount)*Number(goodprice)
+		$(".r_shopClass").find(".s_shopList ul li").eq(i).find(".goodsTotal span").text(money);
+	}
+	var shoplength = $(".r_shopClass").length;
+	var lilength = $(".r_shopClass").find(".s_shopList ul li").length;
+	for(var i = 0;i<shoplength;i++){
+		var totalmoney = 0;
+		for(var j = 0;j<lilength;j++){
+			var money = $(".r_shopClass").eq(i).find(".s_shopList ul li").eq(j).find(".goodsTotal span").text();
+			totalmoney = Number(totalmoney)+Number(money);
+			$(".r_shopClass").eq(i).find(".totalshop span").text(totalmoney);
+		}
+	}
+});
+
+// 删除购物车商品
+$(".goodsDel a").click(function(){
+	var goodid = new Array();
+	goodid.push($(this).parent().parent().attr("goodid"));
+	var _this = $(this).parent().parent().parent().parent().parent().parent();
+	$.ajax({
+		url: basePath+"/shopcar/delShopcar",
+		data: {"goodid":goodid},
+		type: 'post',
+		traditional: true,
+		success: function(data){
+			_this.remove();
+			showInfo("删除成功~","success");
+		}
+	});
 });
 </script>
 </body>

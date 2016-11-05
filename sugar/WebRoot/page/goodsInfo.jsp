@@ -27,7 +27,7 @@
 			#goodsInfo .m_nav .n_nav .nav a{height:100px;display:block;font-size:16px;color:#000;}
 			#goodsInfo .m_nav .n_nav .search{width:320px;height:75px;float:right;padding-top:25px;position:relative;}
 			#goodsInfo .m_nav .n_nav .search input{width:235px;height:50px;float:right;outline:none;padding-left:10px;}
-			#goodsInfo .m_nav .n_nav .search .s_icon{width:52px;height:52px;display:block;border:1px solid #bbb;float:right;border-left:0;}
+			#goodsInfo .m_nav .n_nav .search .s_icon{line-height: 52px;text-align: center;color: #333;width:52px;height:52px;display:block;border:1px solid #bbb;float:right;border-left:0;}
 			#goodsInfo .m_nav .n_nav .search .s_a{position:absolute;top:42px;right:64px;line-height:18px;}
 			#goodsInfo .m_nav .n_nav .search .s_a a:hover{background:#03a9f4;color:#fff;}
 			#goodsInfo .m_nav .n_nav .search .s_a .ex_s1{text-align:center;color:#757575;width:auto;height:18px;display:block;background:#eee;float:left;padding:0 5px 0 5px;}
@@ -108,7 +108,7 @@
 					</ul>
 				</div>
 				<div class="search">
-					<a class="s_icon" href="#"></a>
+					<a class="s_icon" href="#">搜索</a>
 					<input type="text"/>
 					<div class="s_a">
 						<a class="ex_s1" href="#">卧室储物</a>
@@ -303,8 +303,22 @@
 					});
 					// 点击加入购物车
 					$(".addshopcar").click(function(){
-						var totalcount = $(".totalcount").val();
-						alert();
+						if($(".t_Islogin").find(".name").text()==""){
+							window.location.href=basePath+"/page/login.jsp"
+						}else{
+							var totalcount = $(".totalcount").val();
+							var goodid = (window.location.href).split("=")[1];
+							$.ajax({
+								url: basePath+"/shopcar/addShopcar",
+								data: {"totalcount":totalcount,"goodid":goodid},
+								type: 'post',
+								success: function(data){
+									showInfo("商品添加成功，快去结算吧~","success");
+									var newvalue = Number($(".t_shop").find("span").text())+Number(1);
+									$(".t_shop").find("span").text(newvalue);
+								}
+							});
+						}
 					});
 					
 					// 商品图片html

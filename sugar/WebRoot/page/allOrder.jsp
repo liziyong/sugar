@@ -107,7 +107,7 @@
 						<div style="width:100%;height:200px;text-align:center;line-height:200px;font-size:14px;color:#333;">没有相关订单...</div>
 					<%}else{%>
 					<c:forEach items="${mapList }" var="item">
-					<div class="shopClass"> 
+					<div class="shopClass" shoporderid="${item.shoporder.id }"> 
 						<div class="s_shopTop">
 							<div class="s_shopName">
 								<img class="sn_img" src="${basePath }/images/shop.png" width="16" height="16"/><div class="sn_name">店铺：${item.shop.shopname }</div>
@@ -119,21 +119,21 @@
 						<div class="s_shopList">
 							<ul>
 								<c:forEach items="${item.shopid }" var="its">
-								<li>
+								<li goodid="${its.good.id}">
 									<div class="goodsInfo" style="">
 										<img class="g_goodsPic" src="${basePath }/images/good/${its.good.id}/1.jpg" width="60" height="60"/>
 										<div class="g_goodsDetail">${its.good.goodname }</div>
 									</div>
 									<div class="goodsPrice">单价：<span style="color:red;">${its.good.goodnprice }</span></div>
-									<div class="goodsCount">数量：1</div>
-									<div class="goodsTotal">合计：<span style="color:red;">${item.shoporder.allmoney }</span></div>
-									<div class="goodsStatus">状态：<span style="color:red;">${its.status }</span></div>
+									<div class="goodsCount">数量：${its.goodcount }</div>
+									<div class="goodsTotal">合计：<span style="color:red;">${its.allmoney }</span></div>
+									<div class="goodsStatus">状态：<span style="color:red;">${item.status }</span></div>
 								</li>
 								</c:forEach>
 							</ul>
 							<div class="deal_sure" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">确认收货</a></div>
 							<div class="deal_comment" style="display:none;width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">评价</a></div>
-							<div class="deal_buy" style="width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">再次购买</a></div>
+							<div class="deal_buy" style="width:10%;float:left;height:80px;text-align:center;"><a href="#" style="display:block;width:80px;height:30px;background:#03a9f4;color:#fff;line-height:30px;margin:10px 0 0 10px;">删除订单</a></div>
 							<div class="clear"></div>
 						</div>
 					</div>
@@ -142,6 +142,13 @@
 				</div>
 			</div>
 			<div class="clear"></div>
+			<div class="addcommentswindow" style="display:none;position:fixed;width:500px;height:200px;z-index:10000;top:50%;left:50%;background:#fff;border-radius:4px;margin-top:-100px;margin-left:-250px;">
+				<span style="display:inline-block;width:100%;hieght:30px;text-indent:5px;line-height:30px;">评价</span>
+				<div class="comments" contenteditable="true" style="margin-left:1px;width:496px;height:130px;border:1px solid #bbb;"></div>
+				<div class="okbutton" style="width:120px;height:30px;background:#fff;color:#333;border:1px solid #03a9f4;cursor:pointer;text-align:center;line-height:30px;float:left;margin:4px 0 0 115px;">确认</div>
+				<div class="canclebutton" style="width:120px;height:30px;background:#03a9f4;color:#fff;text-align:center;cursor:pointer;line-height:30px;float:left;margin:4px 0 0 30px;">取消</div>
+			</div>
+			<div class="addcommentswindowmask" style="display:none;position:fixed;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:9999;top:0;left:0;"></div>
 		</div>
 		<!-- content end -->
 
@@ -152,6 +159,7 @@
 
 <script type="text/javascript">
 $(function(){
+	var goodidarray = new Array();
 	$(window).scroll(function(){
 		var topScr=$(window).scrollTop();
 		if(topScr>70){
@@ -160,7 +168,128 @@ $(function(){
 			$("#mysugar .content .c_left").removeClass("fixed");
 		}
 	});
+	
+	//
+	var href = window.location.href;
+	if(href.indexOf("=")!=-1){
+		var status = href.split("=")[1];
+		if(status=="1"){
+			$(".r_class ul").find("li").eq(1).addClass("on").siblings().removeClass("on");
+			$(".r_class ul").find("li").eq(1).find("a").addClass("on");
+			$(".r_class ul").find("li").eq(1).siblings().find("a").removeClass("on");
+		}else if(status=="2"){
+			$(".r_class ul").find("li").eq(2).addClass("on").siblings().removeClass("on");
+			$(".r_class ul").find("li").eq(2).find("a").addClass("on");
+			$(".r_class ul").find("li").eq(2).siblings().find("a").removeClass("on");
+		}else if(status=="3"){
+			$(".r_class ul").find("li").eq(3).addClass("on").siblings().removeClass("on");
+			$(".r_class ul").find("li").eq(3).find("a").addClass("on");
+			$(".r_class ul").find("li").eq(3).siblings().find("a").removeClass("on");
+		}else{
+			$(".r_class ul").find("li").eq(0).addClass("on").siblings().removeClass("on");
+			$(".r_class ul").find("li").eq(0).find("a").addClass("on");
+			$(".r_class ul").find("li").eq(0).siblings().find("a").removeClass("on");
+		}
+	}
+	
+	//
+	var array = $(".goodsStatus");
+	for(var i = 0;i<array.length;i++){
+		
+		if($(array[i]).find("span").text()=="已关闭"){
+			$(array[i]).find("span").parent().parent().parent().siblings(".deal_buy").show();
+			$(array[i]).find("span").parent().parent().parent().siblings(".deal_sure").hide();
+			$(array[i]).find("span").parent().parent().parent().siblings(".deal_comment").hide();
+		}
+		if($(array[i]).find("span").text()=="待发货"){
+			$(array[i]).find("span").parent().parent().parent().siblings(".deal_buy").hide();
+			$(array[i]).find("span").parent().parent().parent().siblings(".deal_sure").show();
+			$(array[i]).find("span").parent().parent().parent().siblings(".deal_comment").hide();
+		}
+		if($(array[i]).find("span").text()=="待收货"){
+			$(array[i]).find("span").parent().parent().parent().siblings(".deal_buy").hide();
+			$(array[i]).find("span").parent().parent().parent().siblings(".deal_sure").show();
+			$(array[i]).find("span").parent().parent().parent().siblings(".deal_comment").hide();
+		}
+		if($(array[i]).find("span").text()=="待评价"){
+			$(array[i]).find("span").parent().parent().parent().siblings(".deal_buy").hide();
+			$(array[i]).find("span").parent().parent().parent().siblings(".deal_sure").hide();
+			$(array[i]).find("span").parent().parent().parent().siblings(".deal_comment").show();
+		}
+	}
+	
+	$(".deal_buy").click(function(){
+		var shoporderid = $(this).parent().parent().attr("shoporderid");
+		$.ajax({
+			url: basePath+"/shoporder/del",
+			data: {"shoporderid":shoporderid},
+			type: 'post',
+			success: function(data){
+				showInfo("订单删除成功","success");
+				$(this).parent().parent().remove();
+			}
+		});
+	});
+	
+	$(".deal_sure").click(function(){
+		var shoporderid = $(this).parent().parent().attr("shoporderid");
+		$.ajax({
+			url: basePath+"/shoporder/updatestatus",
+			data: {"shoporderid":shoporderid,"status":"3"},
+			type: 'post',
+			success: function(data){
+				showInfo("已经收货，可以评价了~","success");
+			}
+		});
+	});
+	
+	$(".deal_comment").click(function(){
+		var _length = $(this).parent().find("ul li").length;
+		for(var j = 0;j<_length;j++){
+			var _goodid = $(this).parent().find("ul li").eq(j).attr("goodid");
+			goodidarray.push(_goodid);
+		}
+		//打开窗口
+		$(".addcommentswindow").show();
+		$(".addcommentswindowmask").show();
+		
+		// 点击取消
+		$(".canclebutton").click(function(){
+			$(".addcommentswindow").hide();
+			$(".addcommentswindowmask").hide();
+		});
+		
+		// 点击确认
+		$(".okbutton").click(function(){
+			//准备数据
+			var comments = $(".addcommentswindow .comments").text();
+			$.ajax({
+				url: basePath+"/commentsList/add",
+				data: {"goodidarray":goodidarray,"comments":comments},
+				type: 'post',
+				traditional: true,
+				async: false,
+				success: function(data){
+					showInfo("添加评论成功~","success");
+					var shoporderid = $(this).parent().parent().attr("shoporderid");
+					var status = "0";
+					$.ajax({
+						url: basePath+"/shoporder/updatestatus",
+						data: {"shoporderid":shoporderid,"status":status},
+						type: 'post',
+						success: function(data){
+							showInfo("已经收货，可以评价了~","success");
+						}
+					});
+				}
+			});
+			$(".addcommentswindow").hide();
+			$(".addcommentswindowmask").hide();
+		});
+	});
+	
 });
+
 </script>
 </body>
   
