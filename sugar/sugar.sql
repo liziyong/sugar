@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-11-04 00:21:21
+Date: 2016-11-06 09:40:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,7 @@ CREATE TABLE `sugar_address` (
   PRIMARY KEY (`id`),
   KEY `FK_2ipxlwl2pwkoqi8jw2tdjxy7k` (`uid`),
   CONSTRAINT `FK_2ipxlwl2pwkoqi8jw2tdjxy7k` FOREIGN KEY (`uid`) REFERENCES `sugar_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sugar_address
@@ -44,6 +44,7 @@ INSERT INTO `sugar_address` VALUES ('5', '浙江杭州', '浙江省杭州市西�
 INSERT INTO `sugar_address` VALUES ('7', '贵州毕节', '贵州省毕节市哪里哪里不知道', '2016-11-01 21:28:30', '13616549386', '刘静', null, null, '1');
 INSERT INTO `sugar_address` VALUES ('15', '浙江杭州', '浙江省杭州市西湖区', '2016-11-01 21:50:52', '13616549386', '孙肇将', null, null, '1');
 INSERT INTO `sugar_address` VALUES ('16', '浙江杭州', '浙江省杭州市西湖区', '2016-11-01 21:53:11', '124434434532334', '孙肇将', null, null, '1');
+INSERT INTO `sugar_address` VALUES ('17', '四川重庆', '四川省重庆市青羊区', '2016-11-05 01:05:43', '13616549386', '刘静', null, null, '2');
 
 -- ----------------------------
 -- Table structure for sugar_admin
@@ -76,7 +77,7 @@ CREATE TABLE `sugar_commentslist` (
   KEY `FK_8fkbnjms0uj9wt6psq0gsy4n9` (`uid`),
   CONSTRAINT `FK_8fkbnjms0uj9wt6psq0gsy4n9` FOREIGN KEY (`uid`) REFERENCES `sugar_user` (`id`),
   CONSTRAINT `FK_jrlh10syvko6r9lnqu3xp0sch` FOREIGN KEY (`gid`) REFERENCES `sugar_good` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sugar_commentslist
@@ -86,6 +87,7 @@ INSERT INTO `sugar_commentslist` VALUES ('2', '我非常喜欢这款沙发，店
 INSERT INTO `sugar_commentslist` VALUES ('3', '质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这,质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这', '2016-10-30 23:42:35', '1', '3');
 INSERT INTO `sugar_commentslist` VALUES ('4', '质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这,质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这.质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这质量也是特别的好我非常喜欢这', '2016-10-30 23:42:51', '1', '4');
 INSERT INTO `sugar_commentslist` VALUES ('5', '非常漂亮的橱柜，放在卧室很舒心，没有异味特别的nice，而且材质特别的好，质量一级棒！！！！', '2016-10-31 20:46:36', '2', '1');
+INSERT INTO `sugar_commentslist` VALUES ('6', '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', '2016-11-06 01:26:54', '1', '1');
 
 -- ----------------------------
 -- Table structure for sugar_good
@@ -184,6 +186,34 @@ INSERT INTO `sugar_goodpiclist` VALUES ('23', '2016-11-03 22:19:57', 'images/goo
 INSERT INTO `sugar_goodpiclist` VALUES ('24', '2016-11-03 22:20:13', 'images/good/7/3.jpg', '7');
 
 -- ----------------------------
+-- Table structure for sugar_ordergood
+-- ----------------------------
+DROP TABLE IF EXISTS `sugar_ordergood`;
+CREATE TABLE `sugar_ordergood` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `allmoney` varchar(255) DEFAULT NULL,
+  `goodcount` int(11) DEFAULT NULL,
+  `gid` int(11) DEFAULT NULL,
+  `shoporder_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_19j8s7h9vmd4adoadnt977tut` (`gid`),
+  KEY `FK_lb9x5wn1sad11bbn1o464nk8c` (`shoporder_id`),
+  CONSTRAINT `FK_19j8s7h9vmd4adoadnt977tut` FOREIGN KEY (`gid`) REFERENCES `sugar_good` (`id`),
+  CONSTRAINT `FK_lb9x5wn1sad11bbn1o464nk8c` FOREIGN KEY (`shoporder_id`) REFERENCES `sugar_shoporder` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sugar_ordergood
+-- ----------------------------
+INSERT INTO `sugar_ordergood` VALUES ('3', '600', '1', '3', '2');
+INSERT INTO `sugar_ordergood` VALUES ('6', '1100', '1', '1', '3');
+INSERT INTO `sugar_ordergood` VALUES ('7', '1300', '1', '4', '4');
+INSERT INTO `sugar_ordergood` VALUES ('8', '150', '1', '6', '5');
+INSERT INTO `sugar_ordergood` VALUES ('9', '600', '2', '7', '6');
+INSERT INTO `sugar_ordergood` VALUES ('10', '600', '2', '7', '7');
+INSERT INTO `sugar_ordergood` VALUES ('11', '1100', '1', '1', '8');
+
+-- ----------------------------
 -- Table structure for sugar_shop
 -- ----------------------------
 DROP TABLE IF EXISTS `sugar_shop`;
@@ -225,14 +255,18 @@ CREATE TABLE `sugar_shopcar` (
   CONSTRAINT `FK_49hf1vptg18q7bscf7w3gxqg7` FOREIGN KEY (`uid`) REFERENCES `sugar_user` (`id`),
   CONSTRAINT `FK_d6798a9lcbfys3nyfss1khnvv` FOREIGN KEY (`sid`) REFERENCES `sugar_shop` (`id`),
   CONSTRAINT `FK_r660l85ffs8ejkjyeo7wa0lki` FOREIGN KEY (`gid`) REFERENCES `sugar_good` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sugar_shopcar
 -- ----------------------------
-INSERT INTO `sugar_shopcar` VALUES ('1', '2016-11-03 22:31:55', '1', null, null, '1', '1', '1');
-INSERT INTO `sugar_shopcar` VALUES ('2', '2016-11-03 22:32:10', '1', null, null, '2', '1', '1');
-INSERT INTO `sugar_shopcar` VALUES ('3', '2016-11-03 22:33:04', '1', null, null, '3', '2', '1');
+INSERT INTO `sugar_shopcar` VALUES ('4', '2016-11-05 00:57:19', '1', null, null, '1', '1', '2');
+INSERT INTO `sugar_shopcar` VALUES ('5', '2016-11-05 00:58:48', '1', null, null, '2', '1', '2');
+INSERT INTO `sugar_shopcar` VALUES ('6', '2016-11-05 01:02:01', '1', null, null, '3', '2', '2');
+INSERT INTO `sugar_shopcar` VALUES ('7', '2016-11-05 01:04:03', '1', null, null, '4', '1', '2');
+INSERT INTO `sugar_shopcar` VALUES ('8', '2016-11-05 21:49:03', '1', null, null, '1', '1', '1');
+INSERT INTO `sugar_shopcar` VALUES ('9', '2016-11-05 21:57:55', '1', null, null, '2', '1', '1');
+INSERT INTO `sugar_shopcar` VALUES ('10', '2016-11-05 21:58:51', '1', null, null, '3', '2', '1');
 
 -- ----------------------------
 -- Table structure for sugar_shoporder
@@ -240,30 +274,32 @@ INSERT INTO `sugar_shopcar` VALUES ('3', '2016-11-03 22:33:04', '1', null, null,
 DROP TABLE IF EXISTS `sugar_shoporder`;
 CREATE TABLE `sugar_shoporder` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `allmoney` varchar(255) DEFAULT NULL,
   `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `goodcount` int(11) DEFAULT NULL,
-  `ordernum` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `updatetime` datetime DEFAULT NULL,
-  `gid` int(11) DEFAULT NULL,
   `sid` int(11) DEFAULT NULL,
   `uid` int(11) DEFAULT NULL,
+  `ordernum` varchar(255) DEFAULT NULL,
+  `address_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_i63x414ohrc4itc3daq6p9rko` (`gid`),
   KEY `FK_gkar29p11wqd408rxwjwswwl5` (`sid`),
   KEY `FK_pa2e52ysen9pyuupmyr2atjj1` (`uid`),
+  KEY `FK_iesxv8n57atw5x72kqf58prdp` (`address_id`),
   CONSTRAINT `FK_gkar29p11wqd408rxwjwswwl5` FOREIGN KEY (`sid`) REFERENCES `sugar_shop` (`id`),
-  CONSTRAINT `FK_i63x414ohrc4itc3daq6p9rko` FOREIGN KEY (`gid`) REFERENCES `sugar_good` (`id`),
+  CONSTRAINT `FK_iesxv8n57atw5x72kqf58prdp` FOREIGN KEY (`address_id`) REFERENCES `sugar_address` (`id`),
   CONSTRAINT `FK_pa2e52ysen9pyuupmyr2atjj1` FOREIGN KEY (`uid`) REFERENCES `sugar_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sugar_shoporder
 -- ----------------------------
-INSERT INTO `sugar_shoporder` VALUES ('1', '1100', '2016-11-03 22:34:56', '1', '201611032234', '0', null, '1', '1', '1');
-INSERT INTO `sugar_shoporder` VALUES ('2', '1200', '2016-11-03 22:35:38', '1', '201611032234', '0', null, '2', '1', '1');
-INSERT INTO `sugar_shoporder` VALUES ('3', '600', '2016-11-03 22:36:43', '1', '201611032236', '0', null, '3', '2', '1');
+INSERT INTO `sugar_shoporder` VALUES ('2', '2016-11-04 22:04:04', '1', null, '2', '1', '2016110421082', '2');
+INSERT INTO `sugar_shoporder` VALUES ('3', '2016-11-04 22:04:08', '2', null, '1', '1', '2016110421523', '3');
+INSERT INTO `sugar_shoporder` VALUES ('4', '2016-11-04 22:04:11', '3', null, '1', '1', '2016110421534', '5');
+INSERT INTO `sugar_shoporder` VALUES ('5', '2016-11-04 23:52:48', '1', null, '1', '1', '20161104235248', '2');
+INSERT INTO `sugar_shoporder` VALUES ('6', '2016-11-04 23:55:50', '1', null, '1', '1', '20161104235550', '3');
+INSERT INTO `sugar_shoporder` VALUES ('7', '2016-11-05 01:05:56', '1', null, '1', '2', '20161105010556', '17');
+INSERT INTO `sugar_shoporder` VALUES ('8', '2016-11-05 21:52:24', '3', null, '1', '1', '20161105215224', '7');
 
 -- ----------------------------
 -- Table structure for sugar_user
