@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-11-06 09:40:43
+Date: 2016-11-07 07:31:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -200,7 +200,7 @@ CREATE TABLE `sugar_ordergood` (
   KEY `FK_lb9x5wn1sad11bbn1o464nk8c` (`shoporder_id`),
   CONSTRAINT `FK_19j8s7h9vmd4adoadnt977tut` FOREIGN KEY (`gid`) REFERENCES `sugar_good` (`id`),
   CONSTRAINT `FK_lb9x5wn1sad11bbn1o464nk8c` FOREIGN KEY (`shoporder_id`) REFERENCES `sugar_shoporder` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sugar_ordergood
@@ -288,7 +288,7 @@ CREATE TABLE `sugar_shoporder` (
   CONSTRAINT `FK_gkar29p11wqd408rxwjwswwl5` FOREIGN KEY (`sid`) REFERENCES `sugar_shop` (`id`),
   CONSTRAINT `FK_iesxv8n57atw5x72kqf58prdp` FOREIGN KEY (`address_id`) REFERENCES `sugar_address` (`id`),
   CONSTRAINT `FK_pa2e52ysen9pyuupmyr2atjj1` FOREIGN KEY (`uid`) REFERENCES `sugar_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sugar_shoporder
