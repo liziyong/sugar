@@ -62,4 +62,12 @@ public class GoodServiceImpl extends BaseServiceImpl<Good,Integer>  implements I
 	public int countGood(TmParams params){
 		return getGoodDao().countGood(params);
 	}
+
+	public List<Good> findAllGoodByShopId(Integer shopid) {
+		return getGoodDao().findAllGoodByShopId(shopid);
+	}
+
+	public List<Good> findAllHotGoodByShopIdAndStatus(Integer shopid,Integer status) {
+		return getGoodDao().findAllHotGoodByShopIdAndStatus(shopid,status);
+	}
 }

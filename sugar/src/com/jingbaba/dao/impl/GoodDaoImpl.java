@@ -1,9 +1,11 @@
 package com.jingbaba.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Query;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -77,5 +79,24 @@ public class GoodDaoImpl extends BaseDaoImpl<Good,Integer> implements IGoodDao{
 		detachedCriteria.add(Restrictions.eq("isDelete",0));
 		Number number = (Number)detachedCriteria.getExecutableCriteria(getSession()).uniqueResult();
 		return number==null?0:number.intValue();
+	}
+
+	public List<Good> findAllGoodByShopId(Integer shopid) {
+		List<Good> goodList = new ArrayList<Good>();
+		String hql = "FROM Good g WHERE g.shopid=?";
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, shopid);
+		goodList = query.list();
+		return goodList;
+	}
+
+	public List<Good> findAllHotGoodByShopIdAndStatus(Integer shopid,Integer status) {
+		List<Good> hotgoodList = new ArrayList<Good>();
+		String hql = "FROM Good g WHERE g.shopid=? AND g.status=?";
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, shopid);
+		query.setInteger(1, status);
+		hotgoodList = query.list();
+		return hotgoodList;
 	}
 }

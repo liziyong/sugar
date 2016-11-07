@@ -41,4 +41,8 @@ public interface IGoodService extends IBaseService<Good,Integer> {
 	 * @since  1.0.0
 	 */
 	public int countGood(TmParams params);
+
+	public List<Good> findAllGoodByShopId(Integer shopid);
+
+	public List<Good> findAllHotGoodByShopIdAndStatus(Integer shopid,Integer status);
 }

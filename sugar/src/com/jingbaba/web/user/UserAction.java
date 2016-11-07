@@ -208,6 +208,19 @@ public class UserAction extends BaseAction implements ServletRequestAware{
 		return AJAX_SUCCESS;
 	}
 	
+	/**
+	 * 改变用户的身份即是状态值
+	 */
+	public String changeStatus(){
+		Integer status = Integer.parseInt(request.getParameter("status"));
+		User user = (User)request.getSession().getAttribute("user");
+		User us = new User();
+		us.setStatus(status);
+		us.setId(user.getId());
+		userService.updateDefault(us);
+		return AJAX_SUCCESS;
+	}
+	
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
 	}

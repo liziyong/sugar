@@ -62,4 +62,8 @@ public class ShopServiceImpl extends BaseServiceImpl<Shop,Integer>  implements I
 	public int countShop(TmParams params){
 		return getShopDao().countShop(params);
 	}
+
+	public Shop findShopByUserId(Integer id) {
+		return getShopDao().findShopByUserId(id);
+	}
 }

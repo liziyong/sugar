@@ -32,7 +32,8 @@ public class Good implements java.io.Serializable {
 	private Integer goodcount; // 库存
 	private GoodClass goodclass; // 商品分类
 	private Shop shopid;
-	private Integer status;
+	private Integer status; // 0上架，1下架,2热拼
+	private Integer hotcount; // 热拼剩余数量
 	private Date createtime;
 	private Date updatetime;
 
@@ -105,6 +106,14 @@ public class Good implements java.io.Serializable {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public Integer getHotcount() {
+		return hotcount;
+	}
+
+	public void setHotcount(Integer hotcount) {
+		this.hotcount = hotcount;
 	}
 
 	@Column(name = "createtime", columnDefinition = "timestamp")

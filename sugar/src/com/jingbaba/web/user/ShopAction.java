@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.jingbaba.core.action.BaseAction;
+import com.jingbaba.model.Shop;
+import com.jingbaba.model.User;
 import com.jingbaba.service.IShopService;
 
 /**
@@ -40,9 +42,26 @@ public class ShopAction extends BaseAction implements ServletRequestAware{
 	@Autowired
 	private IShopService shopService;
 	
+	public String addShop(){
+		String shopName = request.getParameter("shopName");
+		User user = (User)request.getSession().getAttribute("user");
+		Shop shop = new Shop();
+		shop.setShopowner(user);
+		shop.setShopname(shopName);
+		shopService.save(shop);
+		return AJAX_SUCCESS;
+	}
 	
-	
-	
+	public String hasShop(){
+		User user = (User)request.getSession().getAttribute("user");
+		Shop shop = shopService.findShopByUserId(user.getId());
+		if(shop!=null){
+			result = "yes";
+		}else{
+			result = "no";
+		}
+		return AJAX_SUCCESS;
+	}
 	
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;

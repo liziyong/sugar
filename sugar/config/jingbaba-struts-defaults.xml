@@ -52,6 +52,7 @@
 			<result name="buyProcess">/page/buyProcess.jsp</result>
 			<result name="shopcar">/page/shopCar.jsp</result>
 			<result name="allorder">/page/allOrder.jsp</result>
+			<result name="myshop">/page/myShop.jsp</result>
 			
 			<interceptor-ref name="loginInterceptorUser"></interceptor-ref>
 			<interceptor-ref name="defaultStack"></interceptor-ref>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Query;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -77,5 +78,14 @@ public class ShopDaoImpl extends BaseDaoImpl<Shop,Integer> implements IShopDao{
 		detachedCriteria.add(Restrictions.eq("isDelete",0));
 		Number number = (Number)detachedCriteria.getExecutableCriteria(getSession()).uniqueResult();
 		return number==null?0:number.intValue();
+	}
+
+	public Shop findShopByUserId(Integer id) {
+		Shop shop = new Shop();
+		String hql = "FROM Shop s WHERE s.shopowner=?";
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, id);
+		shop = (Shop) query.uniqueResult();
+		return shop;
 	}
 }

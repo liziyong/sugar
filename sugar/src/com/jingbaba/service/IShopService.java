@@ -41,4 +41,6 @@ public interface IShopService extends IBaseService<Shop,Integer> {
 	 * @since  1.0.0
 	 */
 	public int countShop(TmParams params);
+
+	public Shop findShopByUserId(Integer id);
 }

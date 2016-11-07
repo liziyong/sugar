@@ -85,7 +85,7 @@
 					<li><a href="${basePath }/tologin/userPage/toMyShopCar">我的购物车</a></li>
 					<li class="on"><a href="javascript:void(0)">我的交易记录</a><span></span></li>
 					<li><a href="#">我的设计</a></li>
-					<li><a href="#">我的商店</a></li>
+					<li><a href="javascript:void(0)" onclick="hasShop()">我的商店</a></li>
 					<li class="set"><a href="#"><i></i></a></li>
 				</ul>
 			</div>
@@ -290,6 +290,19 @@ $(function(){
 	
 });
 
+function hasShop(){
+	$.ajax({
+		url: basePath+"/shop/hasShop",
+		type: 'post',
+		success: function(data){
+			if(data.result=="yes"){
+				window.location.href=basePath+"/tologin/userPage/toMyShop";
+			}else{
+				window.location.href=basePath+"/page/createShop.jsp";
+			}
+		}
+	});
+}
 </script>
 </body>
   

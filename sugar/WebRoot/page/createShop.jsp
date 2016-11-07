@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>sugar userInfo</title>
+		<title>sugar createShop</title>
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta http-equiv="expires" content="0">
@@ -52,46 +52,39 @@
 		<div class="content">
 			<div class="c_left">
 				<ul>
-					<li class="on"><a href="javascript:void(0)">账号设置</a><span></span></li>
+					<li><a href="${basePath }/page/userInfo.jsp">账号设置</a></li>
 					<li><a href="${basePath }/tologin/userPage/toMyShopCar">我的购物车</a></li>
 					<li><a href="${basePath }/tologin/userPage/toAllOrder">我的交易记录</a></li>
-					<li><a href="#">我的设计</a></li>
-					<li><a href="javascript:void(0)" onclick="hasShop()">我的商店</a></li>
+					<li><a href="javascript:void(0)">我的设计</a></li>
+					<li class="on"><a href="javascript:void(0)">我的商店</a><span></span></li>
 					<li class="set"><a href="#"><i></i></a></li>
 				</ul>
 			</div>
 			<div class="c_right">
 				<div class="r_userInfo">
 				</div>
-				<div class="r_dataForm">
-					<div class="d_base">
-						<div style="width:100%;height:60px;margin-top:20px;">
-							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">用户名：</span><input id="username" style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="${user.username }"/></div>
-							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">性别：</span><input id="sex" style="text-indent:5px;margin-left:13px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value=""/></div>
-						</div>
-						<div style="width:100%;height:60px;margin-top:10px;">
-							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">邮箱：</span><input id="email" style="text-indent:5px;margin-left:13px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="${user.email}"/></div>
-							<div class="changepass" style="cursor:pointer;float:right;width:259px;height:30px;color:#fff;margin-right:139px;margin-top:5px;line-height:30px;text-align:center;background:#46df8e;border-radius:2px;">我想修改密码</div>
-						</div>
-						<div class="pswmodel animated fadeInDown" style=" display:none;width:100%;height:60px;margin-top:10px;">
-							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">旧密码：</span><input id="oldpass" style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="password"/></div>
-							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">新密码：</span><input id="newpass" style="text-indent:5px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="password"/></div>
-						</div>
-					</div>
-					<div class="d_special" style="display:none;width:100%;height:auto;margin-top:20px;">
-						<div style="position:relative;width:720px;height:1px;border-top:1px solid #bbb;margin-left:60px;"><div style="position:absolute;width:auto;height:20px;background:#fff;top: -9px;left: 312px;">以下是商家信息</div></div>
-						<div style="width:100%;height:60px;margin-top:20px;">
-							<div style="width:50%;height:40px;float:left;"><span style="display:inline-block;float:left;margin-left:60px;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">身份证：</span><div style="margin-top:5px;float:left;text-indent:5px;width:200px;height:30px;line-height:30px;border:1px solid #bbb;border-radius:3px;background:#eee;">${user.idcard}</div></div>
-							<div style="width:50%;height:40px;float:left;"><span style="float:left;margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">姓名：</span><div style="margin-top:5px;text-indent:5px;margin-left:13px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;background:#eee;line-height:30px;float:left;">${user.realname }</div></div>
-						</div>
-						<div style="width:100%;height:60px;margin-top:10px;">
-							<div style="width:50%;height:40px;float:left;"><span style="margin-left:60px;display:inline-block;width:auto;height:40px;line-height:40px;color:#333;font-size:14px;">手机：</span><input id="phonenum" style="text-indent:5px;margin-left:13px;width:200px;height:30px;border:1px solid #bbb;border-radius:3px;outline:none;" type="text" value="${user.phonenum}"/></div>
-						</div>
-					</div>
-					<div class="d_submit" style="width:100%;height:40px;margin-top:10px;"><a style="display:block;width:259px;height:30px;background:#03a9f4;line-height:30px;text-align:center;float:right;margin-right:139px;" href="#">确认修改</a></div>
-				</div>
+				<div style="width:100%;height:300px;text-align:center;font-size:14px;color:#333;line-height:300px;">您还没有注册商店！现在去<a href="javascript:void(0)" class="showWindow" style="color:#03a9f4;">注册商店，成为掌柜的。</a></div>
 			</div>
 			<div class="clear"></div>
+			
+			<!-- createShopWindow start -->
+			<div class="createShopWindow">
+				<div id="createShopWindowHeader">
+					<span id="configContainer" style="float: left">注册商店</span>
+				</div>
+				<div id="createShopWindowContent" style="overflow: hidden;position:relative;">
+					<div class="errormsg" style="display:none;position:absolute;top:8px;left:102px;color:red;font-size:13px;">该店铺名已经存在~</div>
+					<div class="input" style="width:330px;height:60%;margin:20px auto 0 auto;">
+						<span style="display:inline-block;width:70px;height:38px;font-size:15px;line-height:38px;float:left;margin-left:20px;">店铺名：</span><input type="text" style="float:left;width:200px;height:30px;padding-left:10px;" class="shopName" id="shopName"/><br/>
+					</div>
+					<div style="position:absolute;bottom:20px;left:65px;">
+						<input type="button" value="确定" id="ooButton_csw" />
+						<input type="button" value="取消" id="ccButton_csw" style="margin-left:50px;"/>
+					</div>
+				</div>
+			</div>
+			<!-- createShopWindow end -->
+			
 		</div>
 		<!-- content end -->
 
@@ -104,6 +97,60 @@
 var status = "${user.status}";	// 如果为2说明是店家
 var state = 0; // 0是不修改，1是修改
 $(function(){
+	// jqweight控件
+	$(".createShopWindow").jqxWindow({
+		isModal :true,
+		modalOpacity: 0.3,
+		theme : theme,
+		width : 340,
+		height : 180,
+		resizable : false,
+		autoOpen : false,
+		cancelButton : $('#ccButton_csw'),
+		okButton : $('#ooButton_csw'),
+		initContent : function() {
+			$('#ooButton_csw').jqxButton({
+				theme : theme,
+				template : "primary",
+				cursor : "pointer",
+				width : '80',
+				height : '30'
+			});
+			$('#ccButton_csw').jqxButton({
+				theme : theme,
+				template : "info",
+				cursor : "pointer",
+				width : '80',
+				height : '30'
+			});
+		}
+	});
+	$(".showWindow").click(function(){
+		$('.createShopWindow').jqxWindow('open');
+	});
+	$("#ooButton_csw").click(function(){
+		// 准备数据
+		var shopName = $("#shopName").val();
+		if(shopName.trim()!=""){
+			$.ajax({
+				url: basePath+"/shop/addShop",
+				data: {"shopName":shopName},
+				type: 'post',
+				success: function(data){
+					window.location.href=basePath+"/tologin/userPage/toMyShop";
+					// 改变用户status状态为2
+					$.ajax({
+						url: basePath+"/user/changeStatus",
+						data: {"status":2},
+						type: 'post'
+					});
+				}
+			});
+		}else{
+			showInfo("字段不能为空~","warning");
+		}
+	});
+
 	$(window).scroll(function(){
 		var topScr=$(window).scrollTop();
 		if(topScr>70){
@@ -238,19 +285,6 @@ $("#oldpass").blur(function(){
 	});
 });
 
-function hasShop(){
-	$.ajax({
-		url: basePath+"/shop/hasShop",
-		type: 'post',
-		success: function(data){
-			if(data.result=="yes"){
-				window.location.href=basePath+"/tologin/userPage/toMyShop";
-			}else{
-				window.location.href=basePath+"/page/createShop.jsp";
-			}
-		}
-	});
-}
 
 /* $.ajax({
 	url: basePath+"/",
