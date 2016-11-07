@@ -73,7 +73,7 @@
    <!-- ajax上传文件包 -->
    <package name="ajaxUploadPKG" namespace="/ajaxupload" extends="struts-default">
    		<action name="ajaxUploadAction/*" method="{1}" class="ajaxUploadAction">
-   			<result name="callback">/WEB-INF/adminpage/callback.jsp</result>
+   			<result name="callback">/page/callback.jsp</result>
    		</action>
    </package>
    

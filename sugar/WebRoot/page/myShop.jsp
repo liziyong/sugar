@@ -125,12 +125,12 @@
 						<span style="display:inline-block;width:70px;height:38px;font-size:15px;line-height:38px;float:left;margin-left:20px;">现价：</span><input type="text" style="float:left;width:200px;height:30px;padding-left:10px;" class="goodnprice" id="goodnprice"/><br/>
 					</div>
 					<div class="input" style="width:330px;height:40px;margin:20px auto 0 auto;">
-						<span style="display:inline-block;width:70px;height:38px;font-size:15px;line-height:38px;float:left;margin-left:20px;">类型：</span><div style="float:left;width:210px;height:30px;" name="bimg" class="bimg" id="bimg"></div><br/>
+						<span style="display:inline-block;width:70px;height:38px;font-size:15px;line-height:38px;float:left;margin-left:20px;">类型：</span><div style="float:left;width:210px;height:30px;" name="gclassid" class="gclassid" id="gclassid"></div><br/>
 					</div>
 					<div class="input" style="width:330px;height:40px;margin:20px auto 0 auto;">
-						<span style="display:inline-block;width:70px;height:38px;font-size:15px;line-height:38px;float:left;margin-left:20px;">图片：</span><input type="file" style="float:left;width:200px;height:30px;padding-left:10px;" name="goodpic" class="goodpic" id="goodpic"/><br/>
+						<span style="display:inline-block;width:70px;height:38px;font-size:15px;line-height:38px;float:left;margin-left:20px;">图片：</span><input type="file" style="float:left;width:200px;height:30px;padding-left:10px;" name="bimg" class="bimg" id="bimg"/><br/>
 					</div>
-					<div style="position:absolute;bottom:20px;left:65px;">
+					<div style="position:absolute;bottom:20px;left:126px;">
 						<input type="button" value="确定" id="ooButton_agw" />
 						<input type="button" value="取消" id="ccButton_agw" style="margin-left:50px;"/>
 					</div>
@@ -147,7 +147,8 @@
 	</div>
 
 <script type="text/javascript">
-
+	
+	var goodid;
 	// 点击编辑banner图层中的upload按钮
 	var t= $.tzUpload({
 		url:basePath+"/ajaxupload/ajaxUploadAction/addGoodPic",
@@ -155,10 +156,10 @@
 		type:"*.jpg;*.png;*.jpeg",
 		targetId:"bimg",
 		size:"10 MB",
-		single:false,
+		single:true,
 		callback:function(data){
 			var data = eval("("+data+")");
-			url = data.url;
+			goodid = data.goodid;
 		}
 	});
 
@@ -214,14 +215,18 @@
 	});
 	$("#ooButton_agw").click(function(){
 		// 准备数据
-		var shopName = $("#shopName").val();
-		if(shopName.trim()!=""){
+		var goodname = $("#goodname").val();
+		var goodcount = $("#goodcount").val();
+		var goodoprice = $("#goodoprice").val();
+		var goodnprice = $("#goodnprice").val();
+		var gclassid = $("#gclassid").val();
+		if(goodname.trim()!=""||goodcount.trim()!=""||goodoprice.trim()!=""||goodnprice.trim()!=""||gclassid.trim()!=""){
 			$.ajax({
-				url: basePath+"/shop/addShop",
-				data: {"shopName":shopName},
+				url: basePath+"/good/addGood",
+				data: {"goodid":goodid,"goodname":goodname,"goodcount":goodcount,"goodoprice":goodoprice,"goodnprice":goodnprice,"gclassid":gclassid},
 				type: 'post',
 				success: function(data){
-					window.location.href=basePath+"/tologin/userPage/toMyShop";
+					alert();
 				}
 			});
 		}else{

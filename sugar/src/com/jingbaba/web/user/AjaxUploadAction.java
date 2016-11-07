@@ -13,16 +13,20 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.json.JSONUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.jingbaba.core.action.BaseAction;
+import com.jingbaba.model.Good;
+import com.jingbaba.service.IGoodService;
 import com.jingbaba.util.TmFileUtil;
 import com.jingbaba.util.TzStringUtils;
 
@@ -35,12 +39,14 @@ import com.jingbaba.util.TzStringUtils;
  */
 @Controller("ajaxUploadAction")
 @Scope("prototype")
-public class AjaxUploadAction extends BaseAction{
+public class AjaxUploadAction extends BaseAction implements ServletRequestAware{
 
+	@Autowired
+	private IGoodService goodService;
+	private HttpServletRequest request;
 	private File bimg;
 	private String bimgFileName; // xxxFileName
 	private String bimgContentType; // xxxContentType
-	private Integer namecount;
 
 	public File getBimg() {
 		return bimg;
@@ -66,23 +72,19 @@ public class AjaxUploadAction extends BaseAction{
 		this.bimgContentType = bimgContentType;
 	}
 	
-	public Integer getNamecount() {
-		return namecount;
-	}
-
-	public void setNamecount(Integer namecount) {
-		this.namecount = namecount;
-	}
-
 	/**
 	 * 添加banner图片
 	 * @return
 	 */
 	public String addGoodPic(){
+		
+		Good good = new Good();
+		good.setStatus(0);
+		Good gd = goodService.save(good);
 		// ---------上传图片。
 		HashMap<String, Object> map = new HashMap<String,Object>();
 		//1：上传放入服务器，如何获取服务器的上传的路径
-		String uploadPath = ServletActionContext.getServletContext().getRealPath("/images/good");
+		String uploadPath = ServletActionContext.getServletContext().getRealPath("/images/good/"+gd.getId());
 		//2：如果服务器上传路径不存在，就创建
 		File dirPath = new File(uploadPath);
 		if(!dirPath.exists()){
@@ -90,8 +92,6 @@ public class AjaxUploadAction extends BaseAction{
 		}
 		//3:进行io流读写，将本地的图片上传到服务器的上传路基下
 		//对上传文件的重命名
-		int j = 0;
-		setNamecount(j++);
 		String newFileName = generateFileName(bimgFileName);
 		//文件上传了 io也可以用FileUtils
 		//建立文件上传的缓存读和写的流
@@ -116,6 +116,7 @@ public class AjaxUploadAction extends BaseAction{
 			map.put("size", bimg.length());
 			map.put("ext", TmFileUtil.getExtNoPoint(bimgFileName));
 			map.put("type", bimgContentType);
+			map.put("goodid", gd.getId());
 			map.put("path", "images/banner");
 			map.put("sizeString", TmFileUtil.countFileSize(bimg.length()));
 			result = JSONUtil.serialize(map);
@@ -141,14 +142,16 @@ public class AjaxUploadAction extends BaseAction{
 	 * @return
 	 */
 	private String generateFileName(String fileName){
-		Integer i = getNamecount();
 		if(TzStringUtils.isNotEmpty(fileName)){
 			String ext = fileName.substring(fileName.lastIndexOf("."));
-			String newFilName = i+ext;
+			String newFilName = "1"+ext;
 			return newFilName;
 		}else{
 			return fileName;
 		}
 	}
 
+	public void setServletRequest(HttpServletRequest request) {
+		this.request = request;
+	}
 }

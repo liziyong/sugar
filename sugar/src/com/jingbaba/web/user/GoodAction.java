@@ -15,9 +15,13 @@ import com.jingbaba.core.action.BaseAction;
 import com.jingbaba.model.CommentsList;
 import com.jingbaba.model.Good;
 import com.jingbaba.model.GoodpicList;
+import com.jingbaba.model.Shop;
+import com.jingbaba.model.User;
 import com.jingbaba.service.ICommentsListService;
+import com.jingbaba.service.IGoodClassService;
 import com.jingbaba.service.IGoodService;
 import com.jingbaba.service.IGoodpicListService;
+import com.jingbaba.service.IShopService;
 
 /**
  * 
@@ -46,6 +50,10 @@ public class GoodAction extends BaseAction implements ServletRequestAware{
 	@Autowired
 	private IGoodService goodService;
 	@Autowired
+	private IGoodClassService goodClassService;
+	@Autowired
+	private IShopService shopService;
+	@Autowired
 	private ICommentsListService commentsListService;
 	@Autowired
 	private IGoodpicListService goodpicListService;
@@ -65,6 +73,31 @@ public class GoodAction extends BaseAction implements ServletRequestAware{
 		String sql = "FROM Good";
 		List<Good> goodList = goodService.findAll(sql);
 		datamap.put("goodList", goodList);
+		return AJAX_SUCCESS;
+	}
+	
+	public String addGood(){
+		User user = (User)request.getSession().getAttribute("user");
+		Shop shop = shopService.findShopByUserId(user.getId());
+		String goodid = request.getParameter("goodid");
+		String goodname = request.getParameter("goodname");
+		String goodcount = request.getParameter("goodcount");
+		String goodoprice = request.getParameter("goodoprice");
+		String goodnprice = request.getParameter("goodnprice");
+		Integer gclassid = Integer.parseInt(request.getParameter("gclassid"));
+		Good good = new Good();
+		good.setId(Integer.parseInt(goodid));
+		good.setGoodclass(goodClassService.get(gclassid));
+		good.setGoodcount(Integer.parseInt(goodcount));
+		good.setGoodname(goodname);
+		good.setGoodnprice(goodnprice);
+		good.setGoodoprice(goodoprice);
+		good.setShopid(shop);
+		goodService.updateDefault(good);
+		GoodpicList gpl = new GoodpicList();
+		gpl.setGood(goodService.get(Integer.parseInt(goodid)));
+		gpl.setGoodpicurl("images/good/"+Integer.parseInt(goodid)+"1.jpg");
+		goodpicListService.save(gpl);
 		return AJAX_SUCCESS;
 	}
 	
