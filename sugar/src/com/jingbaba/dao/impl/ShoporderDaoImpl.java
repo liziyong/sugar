@@ -145,4 +145,14 @@ public class ShoporderDaoImpl extends BaseDaoImpl<Shoporder,Integer> implements 
 		shoporderBack = (Shoporder) getSession().get(Shoporder.class, shoporder.getId());
 		return shoporderBack;
 	}
+
+	public List<Shoporder> findAllOrderByShopId(Integer shopid, Integer i) {
+		List<Shoporder> shoporderList = new ArrayList<Shoporder>();
+		String hql = "FROM Shoporder s WHERE s.shop=? AND s.status=?";
+		Query query = getSession().createQuery(hql);
+		query.setInteger(0, shopid);
+		query.setInteger(1, i);
+		shoporderList = query.list();
+		return shoporderList;
+	}
 }

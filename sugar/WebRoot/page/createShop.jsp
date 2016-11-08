@@ -74,8 +74,17 @@
 				</div>
 				<div id="createShopWindowContent" style="overflow: hidden;position:relative;">
 					<div class="errormsg" style="display:none;position:absolute;top:8px;left:102px;color:red;font-size:13px;">该店铺名已经存在~</div>
-					<div class="input" style="width:330px;height:60%;margin:20px auto 0 auto;">
-						<span style="display:inline-block;width:70px;height:38px;font-size:15px;line-height:38px;float:left;margin-left:20px;">店铺名：</span><input type="text" style="float:left;width:200px;height:30px;padding-left:10px;" class="shopName" id="shopName"/><br/>
+					<div class="input" style="width:330px;height:40px;margin:20px auto 0 auto;">
+						<span style="display:inline-block;width:70px;height:38px;font-size:15px;line-height:38px;float:left;margin-left:20px;">店铺名：</span><input type="text" style="float:left;width:200px;height:30px;padding-left:10px;" class="shopname" id="shopname"/><br/>
+					</div>
+					<div class="input" style="width:330px;height:40px;margin:20px auto 0 auto;">
+						<span style="display:inline-block;width:70px;height:38px;font-size:15px;line-height:38px;float:left;margin-left:20px;">真实名：</span><input type="text" style="float:left;width:200px;height:30px;padding-left:10px;" class="realname" id="realname"/><br/>
+					</div>
+					<div class="input" style="width:330px;height:40px;margin:20px auto 0 auto;">
+						<span style="display:inline-block;width:70px;height:38px;font-size:15px;line-height:38px;float:left;margin-left:20px;">手机号：</span><input type="text" style="float:left;width:200px;height:30px;padding-left:10px;" class="phonenum" id="phonenum"/><br/>
+					</div>
+					<div class="input" style="width:330px;height:40px;margin:20px auto 0 auto;">
+						<span style="display:inline-block;width:70px;height:38px;font-size:15px;line-height:38px;float:left;margin-left:20px;">身份证：</span><input type="text" style="float:left;width:200px;height:30px;padding-left:10px;" class="idcard" id="idcard"/><br/>
 					</div>
 					<div style="position:absolute;bottom:20px;left:65px;">
 						<input type="button" value="确定" id="ooButton_csw" />
@@ -103,7 +112,7 @@ $(function(){
 		modalOpacity: 0.3,
 		theme : theme,
 		width : 340,
-		height : 180,
+		height : 340,
 		resizable : false,
 		autoOpen : false,
 		cancelButton : $('#ccButton_csw'),
@@ -130,11 +139,14 @@ $(function(){
 	});
 	$("#ooButton_csw").click(function(){
 		// 准备数据
-		var shopName = $("#shopName").val();
-		if(shopName.trim()!=""){
+		var shopname = $("#shopname").val();
+		var realname = $("#realname").val();
+		var phonenum = $("#phonenum").val();
+		var idcard = $("#idcard").val();
+		if(shopname.trim()!=""){
 			$.ajax({
 				url: basePath+"/shop/addShop",
-				data: {"shopName":shopName},
+				data: {"shopname":shopname,"realname":realname,"phonenum":phonenum,"idcard":idcard,},
 				type: 'post',
 				success: function(data){
 					window.location.href=basePath+"/tologin/userPage/toMyShop";

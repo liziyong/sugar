@@ -14,6 +14,7 @@ import com.jingbaba.core.action.BaseAction;
 import com.jingbaba.model.Shop;
 import com.jingbaba.model.User;
 import com.jingbaba.service.IShopService;
+import com.jingbaba.service.IUserService;
 
 /**
  * 
@@ -41,10 +42,19 @@ public class ShopAction extends BaseAction implements ServletRequestAware{
 	
 	@Autowired
 	private IShopService shopService;
+	@Autowired
+	private IUserService userService;
 	
 	public String addShop(){
 		String shopName = request.getParameter("shopName");
+		String realname = request.getParameter("realname");
+		String phonenum = request.getParameter("phonenum");
+		String idcard = request.getParameter("idcard");
 		User user = (User)request.getSession().getAttribute("user");
+		user.setRealname(realname);
+		user.setPhonenum(phonenum);
+		user.setIdcard(idcard);
+		userService.updateDefault(user);
 		Shop shop = new Shop();
 		shop.setShopowner(user);
 		shop.setShopname(shopName);

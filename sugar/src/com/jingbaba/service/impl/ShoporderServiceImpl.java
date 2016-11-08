@@ -92,4 +92,8 @@ public class ShoporderServiceImpl extends BaseServiceImpl<Shoporder,Integer>  im
 	public Shoporder addShoporder(Shoporder shoporder) {
 		return getShoporderDao().addShoporder(shoporder);
 	}
+
+	public List<Shoporder> findAllOrderByShopId(Integer shopid, Integer i) {
+		return getShoporderDao().findAllOrderByShopId( shopid,  i);
+	}
 }

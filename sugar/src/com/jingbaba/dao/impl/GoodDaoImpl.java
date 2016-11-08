@@ -83,7 +83,7 @@ public class GoodDaoImpl extends BaseDaoImpl<Good,Integer> implements IGoodDao{
 
 	public List<Good> findAllGoodByShopId(Integer shopid) {
 		List<Good> goodList = new ArrayList<Good>();
-		String hql = "FROM Good g WHERE g.shopid=?";
+		String hql = "FROM Good g WHERE g.shopid=? AND g.status!='1'";
 		Query query = getSession().createQuery(hql);
 		query.setInteger(0, shopid);
 		goodList = query.list();

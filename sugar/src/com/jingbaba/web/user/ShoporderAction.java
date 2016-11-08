@@ -1,5 +1,7 @@
 package com.jingbaba.web.user;
 
+import io.goeasy.GoEasy;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import com.jingbaba.core.action.BaseAction;
 import com.jingbaba.model.Good;
 import com.jingbaba.model.Ordergood;
+import com.jingbaba.model.Shop;
 import com.jingbaba.model.Shoporder;
 import com.jingbaba.model.User;
 import com.jingbaba.service.IAddressService;
@@ -84,6 +87,11 @@ public class ShoporderAction extends BaseAction implements ServletRequestAware{
 			ordergood.setShoporder(Shoporder);
 			ordergoodService.save(ordergood);
 		}
+		// web消息推送
+		Shop shop = shopService.get(Integer.parseInt(shopid));
+		Integer shopuserid = shop.getShopowner().getId();
+		GoEasy goEasy = new GoEasy("9429edab-5d60-470c-979f-c4c8100d079e");
+		goEasy.publish(shopuserid+"_addorder", Shoporder.getId()+"");
 		return AJAX_SUCCESS;
 	}
 	
@@ -105,6 +113,22 @@ public class ShoporderAction extends BaseAction implements ServletRequestAware{
 		shoporder.setId(Integer.parseInt(shoporderid));
 		shoporder.setStatus(Integer.parseInt(status));
 		shoporderService.updateDefault(shoporder);
+		return AJAX_SUCCESS;
+	}
+	
+	public String findAllOrderWillDeal(){
+		User user = (User)request.getSession().getAttribute("user");
+		Shop shop = shopService.findShopByUserId(user.getId());
+		Integer shopid;
+		if(shop!=null){
+			shopid = shop.getId();
+			// 先找到自己店铺未处理的订单
+			List<Shoporder> shoporderList_shop = shoporderService.findAllOrderByShopId(shopid,1);
+			datamap.put("shoporderList_shop", shoporderList_shop);
+		}
+		// 再找到自己购买商品被处理的订单(待收货和待评价)
+		List<Shoporder> shoporderList_get = shoporderService.findAllOrderByUserIdAndStatus(user.getId(),2);
+		datamap.put("shoporderList_get", shoporderList_get);
 		return AJAX_SUCCESS;
 	}
 	

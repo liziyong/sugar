@@ -8,6 +8,8 @@
  */
 package com.jingbaba.web.user;
 
+import io.goeasy.GoEasy;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

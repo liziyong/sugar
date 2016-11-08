@@ -39,7 +39,7 @@
 		<div class="content">
 			<div class="c_shoptitle">
 				<div class="s_logo" style="float:left;margin-left:20px;width:160px;height:100px;"><img src="${basePath }/images/logo.png" width="160" height="90" style="margin:5px 0 0 10px;"/></div>
-				<div class="s_shopname" style="float:left;margin-left:40px;width:660px;height:100px;font-family:'钟齐段宁行书';font-size:34px;line-height:100px;color:#333;">风华绝代举世无双家居城</div>
+				<div class="s_shopname" style="float:left;margin-left:40px;width:660px;height:100px;font-family:'钟齐段宁行书';font-size:34px;line-height:100px;color:#333;">${shop.shopname }</div>
 			</div>
 			
 			<div class="c_allgood">
@@ -138,6 +138,24 @@
 			</div>
 			<!-- addGoodWindow end -->
 			
+			<!-- goHotWindow start -->
+			<div class="goHotWindow">
+				<div id="goHotWindowHeader">
+					<span id="configContainer" style="float: left">发布热拼</span>
+				</div>
+				<div id="goHotWindowContent" style="overflow: hidden;position:relative;">
+					<div class="errormsg" style="display:none;position:absolute;top:8px;left:102px;color:red;font-size:13px;">该店铺名已经存在~</div>
+					<div class="input" style="width:330px;height:40px;margin:20px auto 0 auto;">
+						<span style="display:inline-block;width:80px;height:38px;font-size:15px;line-height:38px;float:left;margin-left:10px;">热拼数量：</span><input type="text" style="float:left;width:200px;height:30px;padding-left:10px;" class="hotcount" id="hotcount"/><br/>
+					</div>
+					<div style="position:absolute;bottom:20px;left:76px;">
+						<input type="button" value="确定" id="ooButton_ghw" />
+						<input type="button" value="取消" id="ccButton_ghw" style="margin-left:50px;"/>
+					</div>
+				</div>
+			</div>
+			<!-- goHotWindow end -->
+			
 		</div>
 		<!-- content end -->
 
@@ -182,6 +200,51 @@
 	    valueMember: "sexValue"
 	});
 
+	// jqweight控件
+	$(".goHotWindow").jqxWindow({
+		isModal :true,
+		modalOpacity: 0.3,
+		theme : theme,
+		width : 340,
+		height : 180,
+		resizable : false,
+		autoOpen : false,
+		cancelButton : $('#ccButton_ghw'),
+		okButton : $('#ooButton_ghw'),
+		initContent : function() {
+			$('#ooButton_ghw').jqxButton({
+				theme : theme,
+				template : "primary",
+				cursor : "pointer",
+				width : '80',
+				height : '30'
+			});
+			$('#ccButton_ghw').jqxButton({
+				theme : theme,
+				template : "info",
+				cursor : "pointer",
+				width : '80',
+				height : '30'
+			});
+		}
+	});
+	$("#ooButton_ghw").click(function(){
+		// 准备数据
+		var hotcount = $("#hotcount").val();
+		if(hotcount.trim()!=""){
+			$.ajax({
+				url: basePath+"/good/changeGoodStatus",
+				data: {"goodid":goodid,"status":"2","hotcount":hotcount},
+				type: 'post',
+				success: function(data){
+					window.location.href=basePath+"/tologin/userPage/toMyShop";
+				}
+			});
+		}else{
+			showInfo("字段不能为空~","warning");
+		}
+	});
+	
 	// jqweight控件
 	$(".addGoodWindow").jqxWindow({
 		isModal :true,
@@ -234,18 +297,43 @@
 		}
 	});
 	
+	var goodid;
 	$(".righttool .r_xiajia").click(function(){
-		var goodid = $(this).parent().parent().parent().attr("goodid");
-		delete_confirm("你确定要下架该商品吗？",callback(goodid));
+		goodid = $(this).parent().parent().parent().attr("goodid");
+		delete_confirm("你确定要下架该商品吗？",callback);
 	});
 	$(".hotrighttool .h_xiajia").click(function(){
-		var goodid = $(this).parent().parent().parent().attr("goodid");
-		delete_confirm("你确定要下架该商品吗？",callback(goodid));
+		goodid = $(this).parent().parent().parent().attr("goodid");
+		delete_confirm("你确定要下架该商品吗？",callback);
 	});
-	function callback(goodid){
+	function callback(){
 		$.ajax({
 			url: basePath+"/good/changeGoodStatus",
 			data: {"goodid":goodid,"status":"1"},
+			type: 'post',
+			success: function(data){
+				window.location.href=basePath+"/tologin/userPage/toMyShop";
+			}
+		});
+	}
+	
+	$(".righttool .r_hotbuy").click(function(){
+		goodid = $(this).parent().parent().parent().attr("goodid");
+		delete_confirm("你确定要把该商品发布为热拼吗？",callback_gohot);
+	});
+	$(".hotrighttool .h_hotbuy").click(function(){
+		goodid = $(this).parent().parent().parent().attr("goodid");
+		delete_confirm("你确定要为该商品取消热拼吗？",callback_quithot);
+	});
+	
+	function callback_gohot(){
+		$('.goHotWindow').jqxWindow('open');
+	}
+	
+	function callback_quithot(){
+		$.ajax({
+			url: basePath+"/good/changeGoodStatus",
+			data: {"goodid":goodid,"status":"0"},
 			type: 'post',
 			success: function(data){
 				window.location.href=basePath+"/tologin/userPage/toMyShop";

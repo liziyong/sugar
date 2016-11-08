@@ -102,9 +102,13 @@ public class GoodAction extends BaseAction implements ServletRequestAware{
 	}
 	
 	public String changeGoodStatus(){
+		String hotcount = request.getParameter("hotcount");
 		String goodid = request.getParameter("goodid");
 		String status = request.getParameter("status");
 		Good good = new Good();
+		if(hotcount!=null){
+			good.setHotcount(Integer.parseInt(hotcount));
+		}
 		good.setId(Integer.parseInt(goodid));
 		good.setStatus(Integer.parseInt(status));
 		goodService.updateDefault(good);

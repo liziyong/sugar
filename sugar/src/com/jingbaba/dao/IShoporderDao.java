@@ -59,5 +59,7 @@ public interface IShoporderDao extends IBaseDao<Shoporder,Integer> {
 	public List<Shop> findAllShopByUserIdNotZero(Integer id);
 
 	public Shoporder addShoporder(Shoporder shoporder);
+
+	public List<Shoporder> findAllOrderByShopId(Integer shopid, Integer i);
 	
 }

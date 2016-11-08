@@ -199,10 +199,12 @@ public class UserPageAction extends BaseAction implements ServletRequestAware{
 		Shop shop = shopService.findShopByUserId(user.getId());
 		request.setAttribute("shop", shop);
 		Integer shopid = shop.getId();
-		List<Good> goodList = goodService.findAllHotGoodByShopIdAndStatus(shopid,0);
+		List<Good> goodList = goodService.findAllGoodByShopId(shopid);
 		request.setAttribute("goodList", goodList);
 		List<Good> hotgoodList = goodService.findAllHotGoodByShopIdAndStatus(shopid,2);
-		request.setAttribute("hotgoodList", hotgoodList);
+		if(hotgoodList.size()!=0){
+			request.setAttribute("hotgoodList", hotgoodList);
+		}
 		return "myshop";
 	}
 	
