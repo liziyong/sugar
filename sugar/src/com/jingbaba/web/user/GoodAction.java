@@ -96,8 +96,18 @@ public class GoodAction extends BaseAction implements ServletRequestAware{
 		goodService.updateDefault(good);
 		GoodpicList gpl = new GoodpicList();
 		gpl.setGood(goodService.get(Integer.parseInt(goodid)));
-		gpl.setGoodpicurl("images/good/"+Integer.parseInt(goodid)+"1.jpg");
+		gpl.setGoodpicurl("images/good/"+Integer.parseInt(goodid)+"/1.jpg");
 		goodpicListService.save(gpl);
+		return AJAX_SUCCESS;
+	}
+	
+	public String changeGoodStatus(){
+		String goodid = request.getParameter("goodid");
+		String status = request.getParameter("status");
+		Good good = new Good();
+		good.setId(Integer.parseInt(goodid));
+		good.setStatus(Integer.parseInt(status));
+		goodService.updateDefault(good);
 		return AJAX_SUCCESS;
 	}
 	

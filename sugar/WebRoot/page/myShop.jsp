@@ -51,7 +51,7 @@
 				<div class="a_goodlist" style="width:100%;height:auto;padding:20px;">
 					<ul>
 						<c:forEach items="${goodList }" var="item">
-						<li style="width:180px;height:260px;float:left;border:1px solid #eee;margin-right:36px;margin-top:20px;">
+						<li goodid="${item.id }" style="width:180px;height:260px;float:left;border:1px solid #eee;margin-right:36px;margin-top:20px;">
 							<a style="display:block;width:180px;height:190px;" href="javascript:void(0)">
 								<img src="${basePath }/images/good/${item.id }/1.jpg" width="180" height="190"/>
 							</a>
@@ -61,8 +61,8 @@
 									<p style="margin-top:10px;">￥${item.goodnprice }</p>
 								</div>
 								<div class="righttool" style="float:left;width:40px;height:70px;">
-									<div style="width:20px;width:20px;color:#03a9f4;background:#eee;line-height:20px;text-align:center;margin:10px 0 0 10px;cursor:pointer;" title="下架">下</div>
-									<div style="width:20px;width:20px;color:red;background:#eee;line-height:20px;text-align:center;margin:10px 0 0 10px;cursor:pointer;" title="热拼">热</div>
+									<div class="r_xiajia" style="width:20px;width:20px;color:#03a9f4;background:#eee;line-height:20px;text-align:center;margin:10px 0 0 10px;cursor:pointer;" title="下架">下</div>
+									<div class="r_hotbuy" style="width:20px;width:20px;color:red;background:#eee;line-height:20px;text-align:center;margin:10px 0 0 10px;cursor:pointer;" title="热拼">热</div>
 								</div>
 							</div>
 						</li>
@@ -84,7 +84,7 @@
 				<div class="a_hotgoodlist" style="width:100%;height:auto;padding:20px;">
 					<ul>
 						<c:forEach items="${hotgoodList }" var="item">
-						<li style="width:180px;height:260px;float:left;border:1px solid #eee;margin-right:36px;margin-top:20px;">
+						<li goodid="${item.id }" style="width:180px;height:260px;float:left;border:1px solid #eee;margin-right:36px;margin-top:20px;">
 							<a style="display:block;width:180px;height:190px;" href="javascript:void(0)">
 								<img src="${basePath }/images/good/${item.id }/1.jpg" width="180" height="190"/>
 							</a>
@@ -94,8 +94,8 @@
 									<p style="margin-top:10px;">￥${item.goodnprice }</p>
 								</div>
 								<div class="hotrighttool" style="float:left;width:40px;height:70px;">
-									<div style="width:20px;width:20px;color:#03a9f4;background:#eee;line-height:20px;text-align:center;margin:10px 0 0 10px;cursor:pointer;" title="下架">下</div>
-									<div style="width:20px;width:20px;color:#bbb;background:#eee;line-height:20px;text-align:center;margin:10px 0 0 10px;cursor:pointer;" title="去热拼">热</div>
+									<div class="h_xiajia" style="width:20px;width:20px;color:#03a9f4;background:#eee;line-height:20px;text-align:center;margin:10px 0 0 10px;cursor:pointer;" title="下架">下</div>
+									<div class="h_hotbuy" style="width:20px;width:20px;color:#bbb;background:#eee;line-height:20px;text-align:center;margin:10px 0 0 10px;cursor:pointer;" title="去热拼">热</div>
 								</div>
 							</div>
 						</li>
@@ -125,7 +125,7 @@
 						<span style="display:inline-block;width:70px;height:38px;font-size:15px;line-height:38px;float:left;margin-left:20px;">现价：</span><input type="text" style="float:left;width:200px;height:30px;padding-left:10px;" class="goodnprice" id="goodnprice"/><br/>
 					</div>
 					<div class="input" style="width:330px;height:40px;margin:20px auto 0 auto;">
-						<span style="display:inline-block;width:70px;height:38px;font-size:15px;line-height:38px;float:left;margin-left:20px;">类型：</span><div style="float:left;width:210px;height:30px;" name="gclassid" class="gclassid" id="gclassid"></div><br/>
+						<span style="display:inline-block;width:70px;height:38px;font-size:15px;line-height:38px;float:left;margin-left:20px;">类型：</span><div style="float:left;width:210px;height:30px;" class="gclassid" id="gclassid"></div><br/>
 					</div>
 					<div class="input" style="width:330px;height:40px;margin:20px auto 0 auto;">
 						<span style="display:inline-block;width:70px;height:38px;font-size:15px;line-height:38px;float:left;margin-left:20px;">图片：</span><input type="file" style="float:left;width:200px;height:30px;padding-left:10px;" name="bimg" class="bimg" id="bimg"/><br/>
@@ -226,13 +226,32 @@
 				data: {"goodid":goodid,"goodname":goodname,"goodcount":goodcount,"goodoprice":goodoprice,"goodnprice":goodnprice,"gclassid":gclassid},
 				type: 'post',
 				success: function(data){
-					alert();
+					window.location.href=basePath+"/tologin/userPage/toMyShop";
 				}
 			});
 		}else{
 			showInfo("字段不能为空~","warning");
 		}
 	});
+	
+	$(".righttool .r_xiajia").click(function(){
+		var goodid = $(this).parent().parent().parent().attr("goodid");
+		delete_confirm("你确定要下架该商品吗？",callback(goodid));
+	});
+	$(".hotrighttool .h_xiajia").click(function(){
+		var goodid = $(this).parent().parent().parent().attr("goodid");
+		delete_confirm("你确定要下架该商品吗？",callback(goodid));
+	});
+	function callback(goodid){
+		$.ajax({
+			url: basePath+"/good/changeGoodStatus",
+			data: {"goodid":goodid,"status":"1"},
+			type: 'post',
+			success: function(data){
+				window.location.href=basePath+"/tologin/userPage/toMyShop";
+			}
+		});
+	}
 	
 /* $.ajax({
 	url: basePath+"/",
