@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-11-07 07:31:54
+Date: 2016-11-09 00:49:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,7 @@ CREATE TABLE `sugar_address` (
   PRIMARY KEY (`id`),
   KEY `FK_2ipxlwl2pwkoqi8jw2tdjxy7k` (`uid`),
   CONSTRAINT `FK_2ipxlwl2pwkoqi8jw2tdjxy7k` FOREIGN KEY (`uid`) REFERENCES `sugar_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sugar_address
@@ -44,7 +44,8 @@ INSERT INTO `sugar_address` VALUES ('5', '浙江杭州', '浙江省杭州市西�
 INSERT INTO `sugar_address` VALUES ('7', '贵州毕节', '贵州省毕节市哪里哪里不知道', '2016-11-01 21:28:30', '13616549386', '刘静', null, null, '1');
 INSERT INTO `sugar_address` VALUES ('15', '浙江杭州', '浙江省杭州市西湖区', '2016-11-01 21:50:52', '13616549386', '孙肇将', null, null, '1');
 INSERT INTO `sugar_address` VALUES ('16', '浙江杭州', '浙江省杭州市西湖区', '2016-11-01 21:53:11', '124434434532334', '孙肇将', null, null, '1');
-INSERT INTO `sugar_address` VALUES ('17', '四川重庆', '四川省重庆市青羊区', '2016-11-05 01:05:43', '13616549386', '刘静', null, null, '2');
+INSERT INTO `sugar_address` VALUES ('17', '四川重庆', '四川省成都市青羊区', '2016-11-07 23:09:58', '13616549386', '刘静', null, null, '2');
+INSERT INTO `sugar_address` VALUES ('18', '浙江杭州', '浙江省杭州市西湖区五莲西苑', '2016-11-08 21:45:38', '13616549386', '刘静', null, null, '5');
 
 -- ----------------------------
 -- Table structure for sugar_admin
@@ -104,6 +105,7 @@ CREATE TABLE `sugar_good` (
   `updatetime` datetime DEFAULT NULL,
   `gclassid` int(11) DEFAULT NULL,
   `shopid` int(11) DEFAULT NULL,
+  `hotcount` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_e1kc9y7l3oq2e1dkjg0swbjbo` (`gclassid`),
   KEY `FK_li04kikvhnvfcjut8fdqdv580` (`shopid`),
@@ -114,13 +116,13 @@ CREATE TABLE `sugar_good` (
 -- ----------------------------
 -- Records of sugar_good
 -- ----------------------------
-INSERT INTO `sugar_good` VALUES ('1', '2016-11-03 22:01:31', '500', '宜家精品家居，红木沙发，哈哈，就爱啊这个家居啊怎么样', '1100', '2100', null, null, '1', '1');
-INSERT INTO `sugar_good` VALUES ('2', '2016-11-03 22:01:35', '1000', '精品家居，红木衣柜精品，设计师全心打造，精美衣柜爆款。', '1200', '2600', null, null, '2', '1');
-INSERT INTO `sugar_good` VALUES ('3', '2016-11-03 22:01:22', '500', '精品家居，红木茶几精品，设计师全心打造，精美茶几爆款。', '600', '1600', null, null, '3', '2');
-INSERT INTO `sugar_good` VALUES ('4', '2016-11-03 22:00:49', '500', '厨房家居沥水架精品，设计师全心打造，精美沥水架爆款。', '1300', '1800', null, null, '4', '1');
-INSERT INTO `sugar_good` VALUES ('5', '2016-11-03 22:15:02', '400', '儿童部家居儿童床精品，设计师全心打造，精美儿童床爆款。', '400', '600', null, null, '5', '1');
-INSERT INTO `sugar_good` VALUES ('6', '2016-11-03 22:15:07', '600', '纺织品家居床褥精品，设计师全心打造，精美床褥爆款。', '150', '300', null, null, '6', '1');
-INSERT INTO `sugar_good` VALUES ('7', '2016-11-03 22:15:13', '700', '装饰家居照片墙相框精品，设计师全心打造，精美照片墙相框爆款。', '300', '400', null, null, '7', '1');
+INSERT INTO `sugar_good` VALUES ('1', '2016-11-07 20:39:42', '500', '宜家精品家居，红木沙发，哈哈，就爱啊这个家居啊怎么样', '1100', '2100', '0', null, '1', '1', '500');
+INSERT INTO `sugar_good` VALUES ('2', '2016-11-08 19:35:13', '1000', '精品家居，红木衣柜精品，设计师全心打造，精美衣柜爆款。', '1200', '2600', '0', null, '2', '1', '500');
+INSERT INTO `sugar_good` VALUES ('3', '2016-11-08 19:04:50', '500', '精品家居，红木茶几精品，设计师全心打造，精美茶几爆款。', '600', '1600', '0', null, '3', '2', null);
+INSERT INTO `sugar_good` VALUES ('4', '2016-11-08 19:34:15', '500', '厨房家居沥水架精品，设计师全心打造，精美沥水架爆款。', '1300', '1800', '0', null, '4', '1', null);
+INSERT INTO `sugar_good` VALUES ('5', '2016-11-08 19:04:52', '400', '儿童部家居儿童床精品，设计师全心打造，精美儿童床爆款。', '400', '600', '0', null, '5', '1', null);
+INSERT INTO `sugar_good` VALUES ('6', '2016-11-08 19:04:53', '600', '纺织品家居床褥精品，设计师全心打造，精美床褥爆款。', '150', '300', '0', null, '6', '1', null);
+INSERT INTO `sugar_good` VALUES ('7', '2016-11-08 19:04:54', '700', '装饰家居照片墙相框精品，设计师全心打造，精美照片墙相框爆款。', '300', '400', '0', null, '7', '1', '500');
 
 -- ----------------------------
 -- Table structure for sugar_goodclass
@@ -200,18 +202,14 @@ CREATE TABLE `sugar_ordergood` (
   KEY `FK_lb9x5wn1sad11bbn1o464nk8c` (`shoporder_id`),
   CONSTRAINT `FK_19j8s7h9vmd4adoadnt977tut` FOREIGN KEY (`gid`) REFERENCES `sugar_good` (`id`),
   CONSTRAINT `FK_lb9x5wn1sad11bbn1o464nk8c` FOREIGN KEY (`shoporder_id`) REFERENCES `sugar_shoporder` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sugar_ordergood
 -- ----------------------------
 INSERT INTO `sugar_ordergood` VALUES ('3', '600', '1', '3', '2');
-INSERT INTO `sugar_ordergood` VALUES ('6', '1100', '1', '1', '3');
-INSERT INTO `sugar_ordergood` VALUES ('7', '1300', '1', '4', '4');
-INSERT INTO `sugar_ordergood` VALUES ('8', '150', '1', '6', '5');
-INSERT INTO `sugar_ordergood` VALUES ('9', '600', '2', '7', '6');
 INSERT INTO `sugar_ordergood` VALUES ('10', '600', '2', '7', '7');
-INSERT INTO `sugar_ordergood` VALUES ('11', '1100', '1', '1', '8');
+INSERT INTO `sugar_ordergood` VALUES ('12', '600', '1', '3', '9');
 
 -- ----------------------------
 -- Table structure for sugar_shop
@@ -227,13 +225,14 @@ CREATE TABLE `sugar_shop` (
   PRIMARY KEY (`id`),
   KEY `FK_9n2h8s12i9741f1sl8uo03q5j` (`uid`),
   CONSTRAINT `FK_9n2h8s12i9741f1sl8uo03q5j` FOREIGN KEY (`uid`) REFERENCES `sugar_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sugar_shop
 -- ----------------------------
 INSERT INTO `sugar_shop` VALUES ('1', '2016-10-30 20:34:46', '师大家居', null, null, '1');
-INSERT INTO `sugar_shop` VALUES ('2', '2016-10-30 20:35:01', '宜家家居', null, null, '2');
+INSERT INTO `sugar_shop` VALUES ('2', '2016-11-08 20:48:09', '宜家家居', null, null, '4');
+INSERT INTO `sugar_shop` VALUES ('4', '2016-11-07 23:20:31', '风华绝代举世无双家居城', null, null, '3');
 
 -- ----------------------------
 -- Table structure for sugar_shopcar
@@ -255,7 +254,7 @@ CREATE TABLE `sugar_shopcar` (
   CONSTRAINT `FK_49hf1vptg18q7bscf7w3gxqg7` FOREIGN KEY (`uid`) REFERENCES `sugar_user` (`id`),
   CONSTRAINT `FK_d6798a9lcbfys3nyfss1khnvv` FOREIGN KEY (`sid`) REFERENCES `sugar_shop` (`id`),
   CONSTRAINT `FK_r660l85ffs8ejkjyeo7wa0lki` FOREIGN KEY (`gid`) REFERENCES `sugar_good` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sugar_shopcar
@@ -267,6 +266,7 @@ INSERT INTO `sugar_shopcar` VALUES ('7', '2016-11-05 01:04:03', '1', null, null,
 INSERT INTO `sugar_shopcar` VALUES ('8', '2016-11-05 21:49:03', '1', null, null, '1', '1', '1');
 INSERT INTO `sugar_shopcar` VALUES ('9', '2016-11-05 21:57:55', '1', null, null, '2', '1', '1');
 INSERT INTO `sugar_shopcar` VALUES ('10', '2016-11-05 21:58:51', '1', null, null, '3', '2', '1');
+INSERT INTO `sugar_shopcar` VALUES ('11', '2016-11-08 21:44:21', '1', null, null, '3', '2', '5');
 
 -- ----------------------------
 -- Table structure for sugar_shoporder
@@ -288,18 +288,14 @@ CREATE TABLE `sugar_shoporder` (
   CONSTRAINT `FK_gkar29p11wqd408rxwjwswwl5` FOREIGN KEY (`sid`) REFERENCES `sugar_shop` (`id`),
   CONSTRAINT `FK_iesxv8n57atw5x72kqf58prdp` FOREIGN KEY (`address_id`) REFERENCES `sugar_address` (`id`),
   CONSTRAINT `FK_pa2e52ysen9pyuupmyr2atjj1` FOREIGN KEY (`uid`) REFERENCES `sugar_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sugar_shoporder
 -- ----------------------------
-INSERT INTO `sugar_shoporder` VALUES ('2', '2016-11-04 22:04:04', '1', null, '2', '1', '2016110421082', '2');
-INSERT INTO `sugar_shoporder` VALUES ('3', '2016-11-04 22:04:08', '2', null, '1', '1', '2016110421523', '3');
-INSERT INTO `sugar_shoporder` VALUES ('4', '2016-11-04 22:04:11', '3', null, '1', '1', '2016110421534', '5');
-INSERT INTO `sugar_shoporder` VALUES ('5', '2016-11-04 23:52:48', '1', null, '1', '1', '20161104235248', '2');
-INSERT INTO `sugar_shoporder` VALUES ('6', '2016-11-04 23:55:50', '1', null, '1', '1', '20161104235550', '3');
+INSERT INTO `sugar_shoporder` VALUES ('2', '2016-11-08 23:37:32', '2', null, '2', '1', '2016110421082', '2');
 INSERT INTO `sugar_shoporder` VALUES ('7', '2016-11-05 01:05:56', '1', null, '1', '2', '20161105010556', '17');
-INSERT INTO `sugar_shoporder` VALUES ('8', '2016-11-05 21:52:24', '3', null, '1', '1', '20161105215224', '7');
+INSERT INTO `sugar_shoporder` VALUES ('9', '2016-11-08 21:45:51', '3', null, '2', '5', '20161108214551', '18');
 
 -- ----------------------------
 -- Table structure for sugar_user
@@ -319,12 +315,13 @@ CREATE TABLE `sugar_user` (
   `updatetime` datetime DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sugar_user
 -- ----------------------------
 INSERT INTO `sugar_user` VALUES ('1', '2016-10-13 08:57:56', '1083910359@qq.com', '362426199511011810', '123456', '13216549386', 'images/user/pic.jpg', '孙肇将', 'm', '2', null, 'momolela');
-INSERT INTO `sugar_user` VALUES ('2', '2016-10-27 23:54:37', '757410690@qq.com', null, '123456', null, 'images/user/pic.jpg', null, 'f', '1', null, 'jingbaba');
-INSERT INTO `sugar_user` VALUES ('3', '2016-10-13 09:03:38', '1548011224@qq.com', null, '123456', null, 'images/user/pic.jpg', null, 'm', '0', null, 'forever');
-INSERT INTO `sugar_user` VALUES ('4', '2016-10-17 21:14:06', '757410690@qq.com', null, '123456', null, 'images/user/pic.jpg', null, 'm', '0', null, '大傻逼');
+INSERT INTO `sugar_user` VALUES ('2', '2016-11-08 21:00:30', '757410690@qq.com', null, '123456', null, 'images/user/pic.jpg', '', 'f', '0', null, 'jingbaba');
+INSERT INTO `sugar_user` VALUES ('3', '2016-11-08 21:01:20', '1548011224@qq.com', '362426199511011810', '123456', '13216549386', 'images/user/pic.jpg', '孙孝楚', 'm', '2', null, 'forever');
+INSERT INTO `sugar_user` VALUES ('4', '2016-11-08 21:01:22', '757410690@qq.com', '362426199511011810', '123456', '13216549386', 'images/user/pic.jpg', '刘静', 'm', '2', null, '大傻逼');
+INSERT INTO `sugar_user` VALUES ('5', '2016-11-08 21:36:19', '1548011224@qq.com', null, '123456', null, 'images/user/pic.jpg', null, 'm', '0', null, '小白');
