@@ -20,7 +20,7 @@
 			#showGoods{width:100%;height:100%;}
 			
 			#showGoods .content{width:100%;background:#fff;margin-bottom:60px;}
-			#showGoods .content .m_nav{width:100%;height:100px;background:#fff;position:absolute;top:40px;left:0;}
+			#showGoods .content .m_nav{width:100%;height:100px;background:#fff;position:absolute;top:40px;left:0;z-index:88;}
 			#showGoods .content .m_nav.fixed{position:fixed;top:0px;left:0px;border-bottom:1px solid #f6f6f6;}
 			#showGoods .content .m_nav .n_nav{width:1226px;height:100px;margin:0 auto;}
 			#showGoods .content .m_nav .n_nav .logo{width:180px;height:100px;display:block;text-align:center;float:left;}
@@ -143,12 +143,7 @@
 						</ul>
 					</div>
 					<div class="h_list">
-						<ul>
-							<li></li>
-							<li></li>
-							<li></li>
-							<li></li>
-						</ul>
+						<ul></ul>
 					</div>
 				</div>
 				<!--  -->
@@ -212,6 +207,28 @@
 			}
 		});
 		
+		// 加载所有的热拼商品
+		$.ajax({
+			url: basePath+"/good/findAllHotGood",
+			type: 'post',
+			success: function(data){
+				var hotgoodList = data.datamap.hotgoodList;
+				for(var i = 0;i<hotgoodList.length;i++){
+					var html = "<li goodid='"+hotgoodList[i].id+"' style='position:relative;'>"+
+"								<a href=''><img src='${basePath }/images/good/"+hotgoodList[i].id+"/1.jpg' width='300' height='200'/></a>"+
+"								<div style='position:absolute;bottom:0;left:0;width:100%;height:40px;background:rgba(0,0,0,.2);'>"+
+"									<span style='text-indent:20px;color:#fff;line-height:40px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;font-size:14px;width:180px;display:inline-block;'>"+hotgoodList[i].goodname+"</span><span style='display:inline-block;line-height:40px;color:#fff;float:right;margin-right:20px;'>还差："+hotgoodList[i].hotcount+"件</span>"+
+"								</div>"+
+"							</li>";
+					$(".h_list ul").append(html);
+				}
+				$(".h_list ul li").click(function(){
+					var goodid = $(this).attr("goodid");
+					window.open(basePath+"/page/goodsInfo.jsp?goodid="+goodid);
+				});
+			}
+		});
+		
 	});
 
 	// 用户登录
@@ -244,6 +261,16 @@
 	$(".search input").blur(function(){
 		if($(".search input").val()==""){
 			$(".s_a").show();
+		}
+	});
+	
+	// 
+	$(".search .s_icon").click(function(){
+		var value = $(".search input").val();
+		if(value==""){
+			$(".search input").focus();
+		}else{
+			window.location.href=basePath+"/page/showGoods.jsp?value="+value;
 		}
 	});
 	

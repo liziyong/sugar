@@ -219,23 +219,14 @@
 				</div>
 			</div>
 			<div class="m_product">
-				<div class="p_nav">
-					<ul>
-						<li><a href=""><i></i>开放购买</a></li>
-						<li><a href=""><i></i>企业团购</a></li>
-						<li><a href=""><i></i>官翻产品</a></li>
-						<li class="bottom"><a href=""><i></i>F码通道</a></li>
-						<li class="bottom"><a href=""><i></i>话费充值</a></li>
-						<li class="bottom"><a href=""><i></i>防伪查询</a></li>
-					</ul>
-				</div>
-				<a href="javascript:void(0)"  onclick="toGoodsInfo(this)" goodid="1"><img src="images/index/m_product/1.jpg" alt="净水器" width="316" height="170"/></a>
-				<a href=""><img src="images/index/m_product/2.jpg" alt="手机" width="316" height="170"/></a>
-				<a href=""><img src="images/index/m_product/3.jpg" alt="平板" width="316" height="170"/></a>
+				<a href="javascript:void(0)"  onclick="toGoodsInfo(this)" goodid="1"><img src="images/good/1/1.jpg" alt="净水器" width="290" height="170"/></a>
+				<a href="javascript:void(0)"  onclick="toGoodsInfo(this)" goodid="2"><img src="images/good/2/1.jpg" alt="净水器" width="290" height="170"/></a>
+				<a href="javascript:void(0)"  onclick="toGoodsInfo(this)" goodid="3"><img src="images/good/3/1.jpg" alt="手机" width="290" height="170"/></a>
+				<a href="javascript:void(0)"  onclick="toGoodsInfo(this)" goodid="4"><img src="images/good/4/1.jpg" alt="平板" width="290" height="170"/></a>
 			</div>
 			<div class="m_star">
 				<div class="s_title">
-					<h2>小米明星单品</h2><span>&gt;</span><span>&lt;</span>
+					<h2>sugar明星单品</h2><span>&gt;</span><span>&lt;</span>
 				</div>
 				<div class="s_product">
 					<ul>

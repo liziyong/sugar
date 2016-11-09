@@ -70,7 +70,7 @@ public class GoodAction extends BaseAction implements ServletRequestAware{
 	}
 	
 	public String findAllGood(){
-		String sql = "FROM Good";
+		String sql = "FROM Good g WHERE g.status!=1";
 		List<Good> goodList = goodService.findAll(sql);
 		datamap.put("goodList", goodList);
 		return AJAX_SUCCESS;
@@ -112,6 +112,22 @@ public class GoodAction extends BaseAction implements ServletRequestAware{
 		good.setId(Integer.parseInt(goodid));
 		good.setStatus(Integer.parseInt(status));
 		goodService.updateDefault(good);
+		return AJAX_SUCCESS;
+	}
+	
+	public String findAllHotGood(){
+		String sql = "FROM Good g WHERE g.status=2";
+		List<Good> hotgoodList = goodService.findAll(sql);
+		datamap.put("hotgoodList", hotgoodList);
+		return AJAX_SUCCESS;
+	}
+	
+	public String findOtherGoodByShopid(){
+		String shopid = request.getParameter("shopid");
+		String goodid = request.getParameter("goodid");
+		String sql = "FROM Good g WHERE g.id!="+goodid+" AND g.shopid="+shopid;
+		List<Good> othergoodList = goodService.findAll(sql);
+		datamap.put("othergoodList", othergoodList);
 		return AJAX_SUCCESS;
 	}
 	

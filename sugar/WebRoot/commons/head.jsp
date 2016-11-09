@@ -42,7 +42,7 @@
 				<span id="configContainer" style="float: left">订单处理</span>
 			</div>
 			<div id="dealOrderWindowContent" style="padding:30px;overflow: hidden;position:relative;">
-				<ul calss="ul_shop"></ul>
+				<ul class="ul_shop"></ul>
 				<ul class="ul_get" style="margin-top:20px;"></ul>
 			</div>
 		</div>
@@ -54,7 +54,7 @@
 <script type="text/javascript">
 var localdata;
 $(function(){
-	// web消息推送
+	/* // web消息推送
 	var userid = "${user.id}";
 	var goEasy = new GoEasy({
 		appkey:"9429edab-5d60-470c-979f-c4c8100d079e"
@@ -62,9 +62,14 @@ $(function(){
 	goEasy.subscribe({
 		channel:userid+"_addorder",
 		onMessage:function(message){
-			alert(message.channel+"=="+message.content);
+			var r=confirm("你的店铺有新的订单,订单ID为"+message.content);
+			if(r==true){
+				window.location.reload(location);
+			}else{
+				window.location.reload(location);
+			}
 		}
-	});
+	}); */
 	
 	//加载用户消息数量
 	if($(".t_Islogin").find(".name").text()!=""){
@@ -73,7 +78,9 @@ $(function(){
 			type: 'post',
 			success: function(data){
 				var count = Number(data.datamap.shoporderList_shop.length)+Number(data.datamap.shoporderList_get.length);
-				$(".order span").text(count);
+				if(count!=0){
+					$(".order span").text(count);
+				}
 				localdata = data.datamap;
 				//
 				for(var i =0;i<localdata.shoporderList_get.length;i++){
@@ -119,7 +126,7 @@ $(function(){
 		modalOpacity: 0.3,
 		theme : theme,
 		width : 340,
-		minHeight: 300,
+		minHeight: 200,
 		resizable : false,
 		autoOpen : false,
 	});

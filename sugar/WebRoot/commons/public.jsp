@@ -18,5 +18,5 @@
 		<script type="text/javascript" src="${basePath}/js/tz_util.js"></script>
 		<script type="text/javascript" src="${basePath}/js/sg/sg.js"></script>
 		<script type="text/javascript" src="${basePath}/js/dialog_login.js"></script>
-		<script type="text/javascript" src="https://cdn.goeasy.io/goeasy.js"></script>
+		<!-- <script type="text/javascript" src="https://cdn.goeasy.io/goeasy.js"></script> -->
 		<script type="text/javascript">var basePath="${basePath}";</script>

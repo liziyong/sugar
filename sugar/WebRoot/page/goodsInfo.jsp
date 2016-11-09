@@ -205,13 +205,7 @@
 			<div class="c_right">
 				<div class="r_title">这家店还在卖：</div>
 				<div class="r_sellList">
-					<ul>
-						<li style="position:relative;"><a href="#"><img src="../images/index/l_hot/1.jpg" width="280" height="180"/></a><div style="width:100%;height:30px;position:absolute;background:rgba(255,255,255,.8);bottom:0;left:0;text-align:center;line-height:30px;color:#333;">￥<span>250</span></div></li>
-						<li style="position:relative;"><a href="#"><img src="../images/index/l_hot/2.jpg" width="280" height="180"/></a><div style="width:100%;height:30px;position:absolute;background:rgba(255,255,255,.6);bottom:0;left:0;text-align:center;line-height:30px;color:#333;">￥<span>250</span></div></li>
-						<li style="position:relative;"><a href="#"><img src="../images/index/l_hot/3.jpg" width="280" height="180"/></a><div style="width:100%;height:30px;position:absolute;background:rgba(255,255,255,.8);bottom:0;left:0;text-align:center;line-height:30px;color:#333;">￥<span>250</span></div></li>
-						<li style="position:relative;"><a href="#"><img src="../images/index/l_hot/4.jpg" width="280" height="180"/></a><div style="width:100%;height:30px;position:absolute;background:rgba(255,255,255,.8);bottom:0;left:0;text-align:center;line-height:30px;color:#333;">￥<span>250</span></div></li>
-						<li style="position:relative;"><a href="#"><img src="../images/index/y_right/5.jpg" width="280" height="180"/></a><div style="width:100%;height:30px;position:absolute;background:rgba(255,255,255,.8);bottom:0;left:0;text-align:center;line-height:30px;color:#333;">￥<span>250</span></div></li>
-					</ul>
+					<ul></ul>
 				</div>
 			</div>
 			<!-- c_right end -->
@@ -226,6 +220,7 @@
 	</div>
 
 <script type="text/javascript">
+	var shopid;
 	$(function(){
 		//滚动屏幕的时候nav固定
 		$(window).scroll(function(){
@@ -242,8 +237,9 @@
 			var goodid = window.location.href.split("=")[1];
 			$.ajax({
 				url: basePath+"/good/findGoodById?goodid="+goodid,
+				async: false,
 				success: function(data){
-					console.log(data.datamap);
+					shopid = data.datamap.good.shopid.id;
 					// 商品信息html
 					var t_buy = "<div class='goodsName'>"+data.datamap.good.goodname+"</div>"+
 "						<div class='goodsPrice'>"+
@@ -355,6 +351,26 @@
 	"							</li>";
 						$(".b_commentsList ul").append(b_commentsList);
 					}
+					
+					
+					// 这家店的其他商品
+					var goodid = window.location.href.split("=")[1];
+					$.ajax({
+						url: basePath+"/good/findOtherGoodByShopid",
+						type: 'post',
+						data: {"goodid":goodid,"shopid":shopid},
+						success: function(data){
+							var othergoodList = data.datamap.othergoodList;
+							for(var i = 0;i<othergoodList.length;i++){
+								var html = "<li goodid='' style='position:relative;'><a href='#'><img src='${basePath}/images/good/"+othergoodList[i].id+"/1.jpg' width='280' height='180'/></a><div style='width:100%;height:30px;position:absolute;background:rgba(255,255,255,.8);bottom:0;left:0;text-align:center;line-height:30px;color:#333;'>￥<span>"+othergoodList[i].goodnprice+"</span></div></li>";
+								$(".r_sellList ul").append(html);
+							}
+							$(".r_sellList ul li").click(function(){
+								var goodid = $(this).attr("goodid");
+								window.open(basePath+"/page/goodsInfo.jsp?goodid="+goodid);
+							});
+						}
+					});
 				}
 			});
 		}
@@ -367,6 +383,16 @@
 	$(".search input").blur(function(){
 		if($(".search input").val()==""){
 			$(".s_a").show();
+		}
+	});
+	
+	// 
+	$(".search .s_icon").click(function(){
+		var value = $(".search input").val();
+		if(value==""){
+			$(".search input").focus();
+		}else{
+			window.location.href=basePath+"/page/showGoods.jsp?value="+value;
 		}
 	});
 
